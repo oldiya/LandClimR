@@ -1,0 +1,19 @@
+Package: LandClimR
+Title: Runs the model LandClim
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Olalla",
+           family = "Díaz-Yáñez",
+           role = c("aut", "cre"),
+           email = "olalla.diaz@usys.ethz.ch",
+           comment = c(ORCID = "0000-0003-3829-5759"))
+    person(given = "Hussain",
+           family = "Abbas",
+           role = c("aut", "cre"),
+           email = "hussain.abbas@usys.ethz.ch")
+Description: What the package does (one paragraph).
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
