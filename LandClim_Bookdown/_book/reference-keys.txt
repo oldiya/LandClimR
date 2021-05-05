@@ -167,3 +167,6 @@ harvesting
 meadow-management
 pasture-management
 climate-and-landscape-input-1
+Section_GDD
+Section_DroughtIndex
+Section_fire

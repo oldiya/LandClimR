@@ -1,5 +1,5 @@
 --- 
-title: "ALandClim"
+title: "LandClim"
 author: "Forest Ecology ETH"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -31,8 +31,6 @@ knitr::write_bib(c(
 ```
 
 Alternative index structure:
-
-
 https://docs.google.com/document/d/1WsQXHRRXekKGCfXsGkc-zMnjEqkckcZ-CGNbogn2ptI/edit
 
 ForClim overview
@@ -59,41 +57,9 @@ Forest stand scale processes
 
 
 
-3.	Forest stand processes (i.e. within a grid cell)
-  a.	Growth
-    i.	Growth functions (?)
-    ii.	Growth reducing factors
-    b.	Mortality
-    i.	Growth dependent
-    ii.	Density dependent
-    iii.	Maximum age
-  c.	Establishment
-  d.	Reproduction
-  e.	Understory interactions
 
-4.	Forest stand properties
-  a.	Tree diameter (DBH)
-  b.	Foliage weight
-  c.	Twig weight
-  d.	Bole weight
-  e.	Dead biomass (fuel)
-  f.	Leaf area index (LAI)
-  g.	Light availability
-  h.	Water availability 
 
-5.	Landscape scale processes
-  a.	Seed dispersal
-  b.	Natural disturbances
-    i.	Wind
-    ii.	Fire
-    iii.	Bark beetles
-    iv.	Browsing
-  c.	Management
-    i.	Forest management
-  1.	Thinning
-  2.	Planting
-  3.	Harvesting
-    ii.	Meadow management
-    iii.	Pasture management
+
+
 
 

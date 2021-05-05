@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>ALandClim</title>
+  <title>LandClim</title>
   <meta name="description" content="This is a book about LandCLim" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="ALandClim" />
+  <meta property="og:title" content="LandClim" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="ALandClim" />
+  <meta name="twitter:title" content="LandClim" />
   
   <meta name="twitter:description" content="This is a book about LandCLim" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Forest Ecology ETH" />
 
 
-<meta name="date" content="2021-03-03" />
+<meta name="date" content="2021-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="intro.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -118,6 +120,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -137,73 +140,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> TOC</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> LandClim overview</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#model-concept"><i class="fa fa-check"></i><b>2.1</b> Model concept</a>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#structure-of-this-book"><i class="fa fa-check"></i><b>2.1</b> Structure of this book</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-is-landclim"><i class="fa fa-check"></i><b>2.2</b> What is LandClim?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#what-landclim-does"><i class="fa fa-check"></i><b>2.3</b> What LandClim does?</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#how-landclim-works"><i class="fa fa-check"></i><b>2.4</b> How LandClim works?</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#who-is-behind-landclim"><i class="fa fa-check"></i><b>2.5</b> Who is behind LandClim?</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#brief-history-of-landclim"><i class="fa fa-check"></i><b>2.6</b> Brief history of LandClim</a></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#studies-with-landclim"><i class="fa fa-check"></i><b>2.7</b> Studies with LandClim</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#how-to-use-landclim"><i class="fa fa-check"></i><b>2.8</b> How to use LandClim?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#what-is-landclim"><i class="fa fa-check"></i><b>2.1.1</b> What is LandClim?</a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#what-landclim-does"><i class="fa fa-check"></i><b>2.1.2</b> What LandClim does?</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#how-landclim-works"><i class="fa fa-check"></i><b>2.1.3</b> How LandClim works?</a></li>
-<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#who-is-behind-landclim"><i class="fa fa-check"></i><b>2.1.4</b> Who is behind LandClim?</a></li>
+<li class="chapter" data-level="2.8.1" data-path="intro.html"><a href="intro.html#downloading-landclim"><i class="fa fa-check"></i><b>2.8.1</b> Downloading LandClim</a></li>
+<li class="chapter" data-level="2.8.2" data-path="intro.html"><a href="intro.html#using-the-source-code"><i class="fa fa-check"></i><b>2.8.2</b> Using the source code</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#application"><i class="fa fa-check"></i><b>2.2</b> Application</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#how-to-use-landclim"><i class="fa fa-check"></i><b>2.3</b> How to use LandClim</a>
+<li class="chapter" data-level="2.9" data-path="intro.html"><a href="intro.html#how-to-cite-landclim-and-this-documentation"><i class="fa fa-check"></i><b>2.9</b> How to cite LandClim and this documentation</a></li>
+<li class="chapter" data-level="2.10" data-path="intro.html"><a href="intro.html#version-and-open-access"><i class="fa fa-check"></i><b>2.10</b> Version and open access</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html"><i class="fa fa-check"></i><b>3</b> Climate and landscape input</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="intro.html"><a href="intro.html#downloading-landclim"><i class="fa fa-check"></i><b>2.3.1</b> Downloading LandClim</a></li>
-<li class="chapter" data-level="2.3.2" data-path="intro.html"><a href="intro.html#using-the-source-code"><i class="fa fa-check"></i><b>2.3.2</b> Using the source code</a></li>
+<li class="chapter" data-level="3.1" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#Section_GDD"><i class="fa fa-check"></i><b>3.1</b> Calculation of Growing Degree Days</a></li>
+<li class="chapter" data-level="3.2" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#Section_DroughtIndex"><i class="fa fa-check"></i><b>3.2</b> Calculation of Drought Index</a></li>
+<li class="chapter" data-level="3.3" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#slope-and-aspect"><i class="fa fa-check"></i><b>3.3</b> Slope and aspect</a></li>
+<li class="chapter" data-level="3.4" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#soil-bucket-size"><i class="fa fa-check"></i><b>3.4</b> Soil bucket size</a></li>
+<li class="chapter" data-level="3.5" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#landtype-masks"><i class="fa fa-check"></i><b>3.5</b> Landtype masks</a></li>
+<li class="chapter" data-level="3.6" data-path="climate-and-landscape-input.html"><a href="climate-and-landscape-input.html#climate-input-file-calculation-of-lapse-rates-etc."><i class="fa fa-check"></i><b>3.6</b> Climate input file (calculation of lapse rates etc.)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#how-to-cite-landclim-and-this-documentation"><i class="fa fa-check"></i><b>2.4</b> How to cite LandClim and this documentation</a></li>
-<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#version-and-open-access"><i class="fa fa-check"></i><b>2.5</b> Version and open access</a></li>
-<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#main-structure-of-this-book"><i class="fa fa-check"></i><b>2.6</b> Main structure of this book</a>
+<li class="chapter" data-level="4" data-path="science1.html"><a href="science1.html"><i class="fa fa-check"></i><b>4</b> Forest stand processes</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#section"><i class="fa fa-check"></i><b>2.6.1</b> </a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#history-of-the-model"><i class="fa fa-check"></i><b>2.7</b> History of the model</a></li>
-<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#section-2"><i class="fa fa-check"></i><b>2.8</b> </a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="implementation.html"><a href="implementation.html"><i class="fa fa-check"></i><b>3</b> Implementation</a>
+<li class="chapter" data-level="4.1" data-path="science1.html"><a href="science1.html#growth"><i class="fa fa-check"></i><b>4.1</b> Growth</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="implementation.html"><a href="implementation.html#climate-and-landscape-input"><i class="fa fa-check"></i><b>3.1</b> Climate and landscape input</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="implementation.html"><a href="implementation.html#ascii-files"><i class="fa fa-check"></i><b>3.1.1</b> <strong>ASCII files</strong></a></li>
-<li class="chapter" data-level="3.1.2" data-path="implementation.html"><a href="implementation.html#treeinit"><i class="fa fa-check"></i><b>3.1.2</b> <strong>TreeInit</strong></a></li>
-<li class="chapter" data-level="3.1.3" data-path="implementation.html"><a href="implementation.html#species-configuration-xml"><i class="fa fa-check"></i><b>3.1.3</b> <strong>Species-configuration XML</strong></a></li>
-<li class="chapter" data-level="3.1.4" data-path="implementation.html"><a href="implementation.html#landtype-parameters-xml"><i class="fa fa-check"></i><b>3.1.4</b> <strong>Landtype parameters XML</strong></a></li>
-<li class="chapter" data-level="3.1.5" data-path="implementation.html"><a href="implementation.html#planting-parameters-xml"><i class="fa fa-check"></i><b>3.1.5</b> <strong>Planting parameters XML</strong></a></li>
+<li class="chapter" data-level="4.1.1" data-path="science1.html"><a href="science1.html#growth-functions"><i class="fa fa-check"></i><b>4.1.1</b> Growth functions (?)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="science1.html"><a href="science1.html#growth-reducing-factors"><i class="fa fa-check"></i><b>4.1.2</b> Growth reducing factors</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="implementation.html"><a href="implementation.html#the-control-file"><i class="fa fa-check"></i><b>3.2</b> The control file</a></li>
-<li class="chapter" data-level="3.3" data-path="implementation.html"><a href="implementation.html#set-up-of-the-lanscape"><i class="fa fa-check"></i><b>3.3</b> Set up of the lanscape</a></li>
-<li class="chapter" data-level="3.4" data-path="implementation.html"><a href="implementation.html#simulation-set-up"><i class="fa fa-check"></i><b>3.4</b> Simulation set up</a></li>
-<li class="chapter" data-level="3.5" data-path="implementation.html"><a href="implementation.html#tutorials"><i class="fa fa-check"></i><b>3.5</b> Tutorials</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="forest-stand.html"><a href="forest-stand.html"><i class="fa fa-check"></i><b>4</b> Forest stand</a>
+<li class="chapter" data-level="4.2" data-path="science1.html"><a href="science1.html#mortality"><i class="fa fa-check"></i><b>4.2</b> Mortality</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="forest-stand.html"><a href="forest-stand.html#forest-stand-scale-processes"><i class="fa fa-check"></i><b>4.1</b> Forest stand scale processes</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="forest-stand.html"><a href="forest-stand.html#treegrowth"><i class="fa fa-check"></i><b>4.1.1</b> Treegrowth</a></li>
-<li class="chapter" data-level="4.1.2" data-path="forest-stand.html"><a href="forest-stand.html#herbaceous-understorey-growth"><i class="fa fa-check"></i><b>4.1.2</b> Herbaceous understorey growth</a></li>
-<li class="chapter" data-level="4.1.3" data-path="forest-stand.html"><a href="forest-stand.html#treemortality"><i class="fa fa-check"></i><b>4.1.3</b> Treemortality</a></li>
-<li class="chapter" data-level="4.1.4" data-path="forest-stand.html"><a href="forest-stand.html#treeregeneration"><i class="fa fa-check"></i><b>4.1.4</b> Treeregeneration</a></li>
+<li class="chapter" data-level="4.2.1" data-path="science1.html"><a href="science1.html#growth-dependent"><i class="fa fa-check"></i><b>4.2.1</b> Growth dependent</a></li>
+<li class="chapter" data-level="4.2.2" data-path="science1.html"><a href="science1.html#density-dependent"><i class="fa fa-check"></i><b>4.2.2</b> Density dependent</a></li>
+<li class="chapter" data-level="4.2.3" data-path="science1.html"><a href="science1.html#maximum-age"><i class="fa fa-check"></i><b>4.2.3</b> Maximum age</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="forest-stand.html"><a href="forest-stand.html#forest-stand-properties"><i class="fa fa-check"></i><b>4.2</b> Forest stand properties</a>
+<li class="chapter" data-level="4.3" data-path="science1.html"><a href="science1.html#establishment"><i class="fa fa-check"></i><b>4.3</b> Establishment</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="forest-stand.html"><a href="forest-stand.html#treediameterdbh"><i class="fa fa-check"></i><b>4.2.1</b> Treediameter(DBH)</a></li>
-<li class="chapter" data-level="4.2.2" data-path="forest-stand.html"><a href="forest-stand.html#treeheighth"><i class="fa fa-check"></i><b>4.2.2</b> Treeheight(H)</a></li>
-<li class="chapter" data-level="4.2.3" data-path="forest-stand.html"><a href="forest-stand.html#foliageweightfolw"><i class="fa fa-check"></i><b>4.2.3</b> Foliageweight(folW)</a></li>
-<li class="chapter" data-level="4.2.4" data-path="forest-stand.html"><a href="forest-stand.html#twigweight-twigw"><i class="fa fa-check"></i><b>4.2.4</b> Twigweight (twigW)</a></li>
-<li class="chapter" data-level="4.2.5" data-path="forest-stand.html"><a href="forest-stand.html#boleweight-bolew"><i class="fa fa-check"></i><b>4.2.5</b> Boleweight (boleW)</a></li>
-<li class="chapter" data-level="4.2.6" data-path="forest-stand.html"><a href="forest-stand.html#leafareaindex-lai"><i class="fa fa-check"></i><b>4.2.6</b> Leafareaindex (LAI)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="science1.html"><a href="science1.html#reproduction"><i class="fa fa-check"></i><b>4.3.1</b> Reproduction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="science1.html"><a href="science1.html#understory-interactions"><i class="fa fa-check"></i><b>4.4</b> Understory interactions</a></li>
+<li class="chapter" data-level="4.5" data-path="science1.html"><a href="science1.html#forest-stand-scale-processes"><i class="fa fa-check"></i><b>4.5</b> Forest stand scale processes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="science1.html"><a href="science1.html#treegrowth"><i class="fa fa-check"></i><b>4.5.1</b> Treegrowth</a></li>
+<li class="chapter" data-level="4.5.2" data-path="science1.html"><a href="science1.html#herbaceous-understorey-growth"><i class="fa fa-check"></i><b>4.5.2</b> Herbaceous understorey growth</a></li>
+<li class="chapter" data-level="4.5.3" data-path="science1.html"><a href="science1.html#treemortality"><i class="fa fa-check"></i><b>4.5.3</b> Treemortality</a></li>
+<li class="chapter" data-level="4.5.4" data-path="science1.html"><a href="science1.html#treeregeneration"><i class="fa fa-check"></i><b>4.5.4</b> Treeregeneration</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="science1.html"><a href="science1.html#forest-stand-properties"><i class="fa fa-check"></i><b>4.6</b> Forest stand properties</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="science1.html"><a href="science1.html#treediameterdbh"><i class="fa fa-check"></i><b>4.6.1</b> Treediameter(DBH)</a></li>
+<li class="chapter" data-level="4.6.2" data-path="science1.html"><a href="science1.html#treeheighth"><i class="fa fa-check"></i><b>4.6.2</b> Treeheight(H)</a></li>
+<li class="chapter" data-level="4.6.3" data-path="science1.html"><a href="science1.html#foliageweightfolw"><i class="fa fa-check"></i><b>4.6.3</b> Foliageweight(folW)</a></li>
+<li class="chapter" data-level="4.6.4" data-path="science1.html"><a href="science1.html#twigweight-twigw"><i class="fa fa-check"></i><b>4.6.4</b> Twigweight (twigW)</a></li>
+<li class="chapter" data-level="4.6.5" data-path="science1.html"><a href="science1.html#boleweight-bolew"><i class="fa fa-check"></i><b>4.6.5</b> Boleweight (boleW)</a></li>
+<li class="chapter" data-level="4.6.6" data-path="science1.html"><a href="science1.html#leafareaindex-lai"><i class="fa fa-check"></i><b>4.6.6</b> Leafareaindex (LAI)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html"><i class="fa fa-check"></i><b>5</b> <strong>Landscape scale processes</strong></a>
+<li class="chapter" data-level="5" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html"><i class="fa fa-check"></i><b>5</b> Forest stand properties</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#seed-dispersal"><i class="fa fa-check"></i><b>5.1</b> Seed dispersal</a></li>
-<li class="chapter" data-level="5.2" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#natural-disturbances"><i class="fa fa-check"></i><b>5.2</b> Natural disturbances</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#wind-module"><i class="fa fa-check"></i><b>5.2.1</b> Wind module</a></li>
-<li class="chapter" data-level="5.2.2" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#wind-module-1"><i class="fa fa-check"></i><b>5.2.2</b> Wind module</a></li>
-<li class="chapter" data-level="5.2.3" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#fire-module"><i class="fa fa-check"></i><b>5.2.3</b> Fire module</a></li>
-<li class="chapter" data-level="5.2.4" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#browsing-module"><i class="fa fa-check"></i><b>5.2.4</b> Browsing module</a></li>
-<li class="chapter" data-level="5.2.5" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#bark-beetle-module"><i class="fa fa-check"></i><b>5.2.5</b> Bark beetle module</a></li>
+<li class="chapter" data-level="5.1" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#tree-diameter-dbh"><i class="fa fa-check"></i><b>5.1</b> Tree diameter (DBH)</a></li>
+<li class="chapter" data-level="5.2" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#foliage-weight"><i class="fa fa-check"></i><b>5.2</b> Foliage weight</a></li>
+<li class="chapter" data-level="5.3" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#twig-weight"><i class="fa fa-check"></i><b>5.3</b> Twig weight</a></li>
+<li class="chapter" data-level="5.4" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#bole-weight"><i class="fa fa-check"></i><b>5.4</b> Bole weight</a></li>
+<li class="chapter" data-level="5.5" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#dead-biomass-fuel"><i class="fa fa-check"></i><b>5.5</b> Dead biomass (fuel)</a></li>
+<li class="chapter" data-level="5.6" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#leaf-area-index-lai"><i class="fa fa-check"></i><b>5.6</b> Leaf area index (LAI)</a></li>
+<li class="chapter" data-level="5.7" data-path="forest-stand-properties-1.html"><a href="forest-stand-properties-1.html#light-availability-water-availability"><i class="fa fa-check"></i><b>5.7</b> Light availability Water availability</a></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html"><i class="fa fa-check"></i><b>6</b> Landscape scale processes</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#seed-dispersal"><i class="fa fa-check"></i><b>6.1</b> Seed dispersal</a></li>
+<li class="chapter" data-level="6.2" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#natural-disturbances"><i class="fa fa-check"></i><b>6.2</b> Natural disturbances</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#wind"><i class="fa fa-check"></i><b>6.2.1</b> Wind</a></li>
+<li class="chapter" data-level="6.2.2" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#section"><i class="fa fa-check"></i><b>6.2.2</b> </a></li>
+<li class="chapter" data-level="6.2.3" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#Section_fire"><i class="fa fa-check"></i><b>6.2.3</b> Fire</a></li>
+<li class="chapter" data-level="6.2.4" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#section-1"><i class="fa fa-check"></i><b>6.2.4</b> </a></li>
+<li class="chapter" data-level="6.2.5" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#browsing-management"><i class="fa fa-check"></i><b>6.2.5</b> Browsing Management</a></li>
+<li class="chapter" data-level="6.2.6" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#bark-beetle"><i class="fa fa-check"></i><b>6.2.6</b> Bark beetle</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#forest-management"><i class="fa fa-check"></i><b>6.3</b> Forest management</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#thinning"><i class="fa fa-check"></i><b>6.3.1</b> Thinning</a></li>
+<li class="chapter" data-level="6.3.2" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#planting"><i class="fa fa-check"></i><b>6.3.2</b> Planting</a></li>
+<li class="chapter" data-level="6.3.3" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#harvesting"><i class="fa fa-check"></i><b>6.3.3</b> Harvesting</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#meadow-management"><i class="fa fa-check"></i><b>6.4</b> Meadow management</a></li>
+<li class="chapter" data-level="6.5" data-path="landscape-scale-processes.html"><a href="landscape-scale-processes.html#pasture-management"><i class="fa fa-check"></i><b>6.5</b> Pasture management</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="implementation.html"><a href="implementation.html"><i class="fa fa-check"></i><b>7</b> Implementation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="implementation.html"><a href="implementation.html#climate-and-landscape-input-1"><i class="fa fa-check"></i><b>7.1</b> Climate and landscape input</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="implementation.html"><a href="implementation.html#ascii-files"><i class="fa fa-check"></i><b>7.1.1</b> <strong>ASCII files</strong></a></li>
+<li class="chapter" data-level="7.1.2" data-path="implementation.html"><a href="implementation.html#treeinit"><i class="fa fa-check"></i><b>7.1.2</b> <strong>TreeInit</strong></a></li>
+<li class="chapter" data-level="7.1.3" data-path="implementation.html"><a href="implementation.html#species-configuration-xml"><i class="fa fa-check"></i><b>7.1.3</b> <strong>Species-configuration XML</strong></a></li>
+<li class="chapter" data-level="7.1.4" data-path="implementation.html"><a href="implementation.html#landtype-parameters-xml"><i class="fa fa-check"></i><b>7.1.4</b> <strong>Landtype parameters XML</strong></a></li>
+<li class="chapter" data-level="7.1.5" data-path="implementation.html"><a href="implementation.html#planting-parameters-xml"><i class="fa fa-check"></i><b>7.1.5</b> <strong>Planting parameters XML</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="implementation.html"><a href="implementation.html#the-control-file"><i class="fa fa-check"></i><b>7.2</b> The control file</a></li>
+<li class="chapter" data-level="7.3" data-path="implementation.html"><a href="implementation.html#set-up-of-the-lanscape"><i class="fa fa-check"></i><b>7.3</b> Set up of the lanscape</a></li>
+<li class="chapter" data-level="7.4" data-path="implementation.html"><a href="implementation.html#simulation-set-up"><i class="fa fa-check"></i><b>7.4</b> Simulation set up</a></li>
+<li class="chapter" data-level="7.5" data-path="implementation.html"><a href="implementation.html#tutorials"><i class="fa fa-check"></i><b>7.5</b> Tutorials</a></li>
+<li class="chapter" data-level="7.6" data-path="implementation.html"><a href="implementation.html#section-2"><i class="fa fa-check"></i><b>7.6</b> —</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="implementation.html"><a href="implementation.html#tutorials"><i class="fa fa-check"></i><b>8</b> Tutorials</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tutorials.html"><a href="tutorials.html"><i class="fa fa-check"></i><b>8.1</b> Seed dispersal</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -218,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ALandClim</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">LandClim</a>
           </h1>
         </div>
 
@@ -227,76 +272,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">ALandClim</h1>
+<h1 class="title">LandClim</h1>
 <p class="author"><em>Forest Ecology ETH</em></p>
-<p class="date"><em>2021-03-03</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-05-05</em></p>
 </div>
 <div id="toc" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> TOC</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
 <span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
 <span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Alternative index structure:</p>
-<ol style="list-style-type: decimal">
-<li><p>LandClim overview</p></li>
-<li><p>Climate and landscape input</p></li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Calculation of Drought Index</li>
-<li>Calculation of GDD</li>
-<li>Slope and aspect</li>
-<li>Soil bucket size</li>
-<li>Landtype masks</li>
-<li>Climate input file (calculation of lapse rates etc.)</li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li>Forest stand processes (i.e. within a grid cell)</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Growth
-i. Growth functions (?)
-ii. Growth reducing factors
-b. Mortality
-i. Growth dependent
-ii. Density dependent
-iii. Maximum age</li>
-<li>Establishment</li>
-<li>Reproduction</li>
-<li>Understory interactions</li>
-</ol>
-<ol start="4" style="list-style-type: decimal">
-<li>Forest stand properties</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Tree diameter (DBH)</li>
-<li>Foliage weight</li>
-<li>Twig weight</li>
-<li>Bole weight</li>
-<li>Dead biomass (fuel)</li>
-<li>Leaf area index (LAI)</li>
-<li>Light availability</li>
-<li>Water availability</li>
-</ol>
-<ol start="5" style="list-style-type: decimal">
-<li>Landscape scale processes</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>Seed dispersal</li>
-<li>Natural disturbances
-i. Wind
-ii. Fire
-iii. Bark beetles
-iv. Browsing</li>
-<li>Management
-i. Forest management</li>
-</ol>
-<ol style="list-style-type: decimal">
-<li>Thinning</li>
-<li>Planting</li>
-<li>Harvesting
-ii. Meadow management
-iii. Pasture management</li>
-</ol>
+<p>Alternative index structure:
+<a href="https://docs.google.com/document/d/1WsQXHRRXekKGCfXsGkc-zMnjEqkckcZ-CGNbogn2ptI/edit" class="uri">https://docs.google.com/document/d/1WsQXHRRXekKGCfXsGkc-zMnjEqkckcZ-CGNbogn2ptI/edit</a></p>
+<p>ForClim overview
+What is ForClim?
+Model concept
+What ForClim does
+Who is behind ForClim
+History
+How to cite ForClim and this documentation
+Version and open access
+Main structure of this book
+How Forclim works
+Tutorial with R
+Install ForClim
+Run ForClim
+Changning the ForClim setup
+The source code</p>
+<p>Forest stand scale processes</p>
 
 </div>
             </section>
@@ -328,6 +330,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

@@ -28,7 +28,7 @@ At the landscape scale, LandClim simulates how these patch scale processes are i
 
 LandClim was originally created by Harald Bugmann and many collaborators and researchers working in the Forest Ecology group at ETH have been part of its development.
 
-## Brief history of LandClim 
+## Brief history of LandClim
 
 Forest landscape models emerged from the need to simulate processes at large spatial scales (100s ha to 1000s km) for research and management purposes \\citep{Mladenoff2004}. This includes processes such as seed dispersal, and disturbances (e.g., fire, windthrow, bark beetle, management). A key challenge is the trade-off between mechanistic detail and spatial dynamics ([Fig. X](#Fig_Mladenoff2004_Spatial_Mechanism)) as well as the trade-off between extent and resolution ([Fig.X](#Fig_Mladenoff2004_Extent_Resolution)). Raster-based models have the advantage of being computationally faster and capable of representing the greatest range of resolution and extent.
 
@@ -126,4 +126,3 @@ You can create an executable file for Windows (.exe), MacOS or Linux by using th
 ## Version and open access
 
 Link to the code and last version release.
-
