@@ -4,16 +4,78 @@ editor_options:
     wrap: 72
 ---
 
-# Climate and landscape input 
+# Climate and landscape input
 
-## Calculation of Drought Index 
+LandClim calculates bioclimatic metrics which are used to determine
+climatic limitations on vegetation growth or susceptibility to
+disturbances such us bark beetle or fire. These metrics are based on
+average temperature and precipitation sums, which have to be provided
+for each year at a monthly resolution. The climatic parameters for every
+grid cell are adjusted for elevation using lapse rates, thus resulting
+in a landscape-wide input data set of weather conditions in any given
+simulation year. It is also possible to provide the climatic parameter
+values per grid cell. The derived bioclimatic variables are growing
+degree days (GDD) to represent temperature limitations, and a drought
+index (DI) to represent water limitations on growth. 
 
-## Calculation of GDD 
+**Technical note 1**: Temperature input data has to be defined as degree
+celcius and precipitation data as mm per month (with exception of the
+climate data 'KBDI' for fire-modelling, where temperature in kelvin and
+precipitation in inches is required, see [fire section](#Section_fire)
 
-## Slope and aspect 
+**Technical note 2**: The lapses rates correspond to the changes in
+temperature (ºC change) per typically 100m change in altitude. The
+lapses rates for precipitation are also changes in precipitation by
+altitude (precipitation + precipitation lapse rate \* (elevation -
+reference elevation) / lapse)
 
-## Soil bucket size 
+## Calculation of Growing Degree Days {#Section_GDD}
 
-## Landtype masks 
+The direct effect of temperature on vegetation is modelled via the
+annual sum of degree days. This index was used since it correlates well
+with plant species distribution \\citep{Woodward1988}. Monthly
+temperature is used to calculate the annual sum of degree days based on
+the method of \\citet{Bugmann1994} page 81. The growing degree days are
+estimated for cell for each month based on the mean temperature in the
+cell each month
+
+\
+For evergreen species, the sum of growing degree days is calculated for
+the entire year (January to December): 
+
+$$
+GDD = \sum_{m=Jan}^{Dec} max(T_m - dtt, 0) \cdot days + DDcorr(T_m)
+$$
+
+\
+For deciduous species, the growing degree day sum is restricted to the
+months when trees have leaves (i.e., April to October):
+
+$$
+GDD = \sum_{m=Apr}^{Oct} max(T_m - dtt, 0) \cdot days + DDcorr(T_m)
+$$\
+\
+where $dtt$ is the developmental threshold temperature ( = 5.5ºC),
+$days$ is the average number of days per month ( = 30.5 days), and
+$DDcorr(T_{m})$ is an empirical correction function developed by
+\\citet{Bugmann1994} page 81.
+
+The following parameter are available:
+
+| Parameters         | Data type | Description                                                                                                                                                                                    |
+|--------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dtt / $k$          | numeric   | It the developmental threshold temperature and its value is 5.5ºC . It is defined in the src of the model (IS IT THE SAME AS \_droughtTolerantTemperature ??)                                  |
+| Dcorr(Tm) / $corr$ | numeric   | Empirical correction of the number of degree days. It is estimated based o                                                                                                                     |
+| $DegreeDays$       | function  | Calculates the Degree days for cell for each month. Returns an array of the degree days for each month in each cell. It uses as input an array of the mean temperature in the cell each month. |
+| Tm / $temperature$ | numeric   | Array of the mean temperature in the cell each month                                                                                                                                           |
+| $days$             | numeric   | It is the average number of days per month ( = 30.5 days). It is defined in the src                                                                                                            |
+
+## Calculation of Drought Index {#Section_DroughtIndex}
+
+## Slope and aspect
+
+## Soil bucket size
+
+## Landtype masks
 
 ## Climate input file (calculation of lapse rates etc.)
