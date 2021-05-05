@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 LandClim overview | ALandClim</title>
   <meta name="description" content="This is a book about LandCLim" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 LandClim overview | ALandClim" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Forest Ecology ETH" />
 
 
-<meta name="date" content="2021-04-07" />
+<meta name="date" content="2021-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="science1.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,9 @@
 
 
 
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -80,6 +83,7 @@
 <li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#what-landclim-does"><i class="fa fa-check"></i><b>2.2.2</b> What LandClim does?</a></li>
 <li class="chapter" data-level="2.2.3" data-path="intro.html"><a href="intro.html#how-landclim-works"><i class="fa fa-check"></i><b>2.2.3</b> How LandClim works?</a></li>
 <li class="chapter" data-level="2.2.4" data-path="intro.html"><a href="intro.html#who-is-behind-landclim"><i class="fa fa-check"></i><b>2.2.4</b> Who is behind LandClim?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="intro.html"><a href="intro.html#brief-history-of-landclim-development"><i class="fa fa-check"></i><b>2.2.5</b> Brief history of LandClim development</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#application"><i class="fa fa-check"></i><b>2.3</b> Application</a></li>
 <li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#how-to-use-landclim"><i class="fa fa-check"></i><b>2.4</b> How to use LandClim</a>
@@ -179,28 +183,52 @@
 <div id="what-is-landclim" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> What is LandClim?</h3>
 <p>LandClim is a spatially explicit, dynamic forest landscape model which simulates vegetation dynamics driven by competition, environmental conditions and disturbances at large scales \citep{Schumacher2004}. </p>
-<p><br />
-</p>
-<p>The design of LandClim reflects processes at two spatial scales (Fig.1.1): (1) the patch scale (patches / grid-cells of 25 x 25 m) and (2) the landscape scale (large geographical areas up to several thousand hectares)</p>
 </div>
 <div id="what-landclim-does" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> What LandClim does?</h3>
-<p>Landclim is a spatially explicit, raster-based, and stochastic model designed to simulate forest change in combination with disturbance regimes. The model simulates vegetation dynamics on large landscapes (100 –10<sup>6</sup> ha) and over long time spans (e.g. hundreds of years) in 1 year time steps.</p>
-<p>The forest stands are simulated in a <strong>grid cell</strong> of 25 X 25 m.</p>
+<p>Landclim is a spatially explicit, raster-based, and stochastic model designed to simulate forest change in combination with disturbance regimes. The model simulates vegetation dynamics on large landscapes (100 –10<sup>6</sup> ha) and over long time spans (e.g. hundreds of years) in 1 or 10 year time steps.</p>
 </div>
 <div id="how-landclim-works" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> How LandClim works?</h3>
+<p>The design of LandClim reflects processes at two spatial scales (Fig.1.1): (1) the patch scale (patches / grid-cells e.g. of 25 x 25 m) and (2) the landscape scale (large geographical areas up to several thousand hectares)</p>
+<div class="figure">
+<img src="Images/Schumacher2004_LandClim_Schema.png" id="Fig_LandClimScheme" width="650" alt="" />
+<p class="caption">Structure of LandClim, modified from Schumacher et al. (2004)</p>
+</div>
+<p>At the patch scale, the processes that influence forest succession are simulated on an annual time-step. This includes the simulation of establishment, growth, reproduction, mortality, intra- and inter-specific competition. Although the probabilities for tree establishment and mortality are calculated annually, the actual occurrence of establishment and regeneration events is only once a decade. Similar to other forest models, LandClim does not simulate individual trees but rather uses a cohort approach, i.e. groups of trees of the same age and species \citep{Bugmann2001}.</p>
+<p>At the landscape scale, LandClim simulates how these patch scale processes are influenced by large-scale natural disturbances (e.g., fires, windthrow, bark beetles), forest management, and the physical environment. Interactions between cells and landscape scale processes are implemented on a decadal time step. Using different time-steps for different processes allows the model to efficiently simulate large landscapes, while maintaining a relatively fine spatial and thematic resolution.  </p>
 </div>
 <div id="who-is-behind-landclim" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Who is behind LandClim?</h3>
-<div id="tree-cohorts" class="section level4" number="2.2.4.1">
-<h4><span class="header-section-number">2.2.4.1</span> <strong>Tree cohorts</strong></h4>
+<p>LandClim was originally created by Harald Bugmann and many collaborators and researchers working in the Forest Ecology group at ETH have been part of its development.</p>
+</div>
+<div id="brief-history-of-landclim-development" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Brief history of LandClim development</h3>
+<p>Forest landscape models emerged from the need to simulate processes at large spatial scales (100s ha to 1000s km) for research and management purposes \citep{Mladenoff2004}. This includes processes such as seed dispersal, and disturbances (e.g., fire, windthrow, bark beetle, management). A key challenge is the trade-off between mechanistic detail and spatial dynamics (<a href="intro.html#Fig_Mladenoff2004_Spatial_Mechanism">Fig. X</a>) as well as the trade-off between extent and resolution (<a href="intro.html#Fig_Mladenoff2004_Extent_Resolution">Fig.X</a>). Raster-based models have the advantage of being computationally faster and capable of representing the greatest range of resolution and extent.</p>
+<div class="figure">
+<img src="Images/Mladenoff2004_Spatial_Mechanism.png" id="Fig_Mladenoff2004_Spatial_Mechanism" alt="" />
+<p class="caption">Trade-off between spatial dynamics and mechanistic detail, as shown in Mladenoff et al. (2004)</p>
+</div>
+<div class="figure">
+<img src="Images/Mladenoff2004_Extent_Resolution.png" id="Fig_Mladenoff2004_Extent_Resolution" alt="" />
+<p class="caption">Trade-off between spatial extent and resolution, as shown in Mladenoff et al. (2004)</p>
+</div>
+<p>The development of LandClim was based on the structure of the raster-based LANDIS model \citep{Mladenoff2004}. At this time, LANDIS Version 3.40 \citep{He1999b} was not capable of simulating a number of important ecological processes important to capture forest dynamics in the Central European Alps \citep{Schumacher2004}. This included: </p>
+<ul>
+<li><p>Interspecific competition effects during stand development. </p></li>
+<li><p>Species establishment probabilities that were self-emergent properties, which is pivotal for simulating the effects of changing environments (e.g., climate change) or transitions of species composition over climatic gradients.</p></li>
+<li><p>Detailed quantitative descriptions of forest structure in each grid cell, (i.e. stem density, biomass, dbh, etc.), to simulate competition more accurately and assess the effects on landscape properties relevant for ecosystem management.</p></li>
+</ul>
+<p>Therefore, the first version of LandClim featured a similar approach as used in the LANDIS model, but included an improved representation of tree growth and succession \citep{Schumacher2004}. The tree growth (‘stand scale’) processes were based on a simplified version of the forest gap model FORCLIM \citep{Bugmann1994}, in order to maintain computational efficiency at the large scale.   </p>
+<p>Since the first LandClim release, the representation of forest dynamics at the patch and landscape scale has continuously been improved. This includes in particular improvements of tree growth, light and water competition, the inclusion of an herbaceous understorey layer, natural disturbances (e.g., fire and bark beetles), and various landscape-level management options (e.g, forest, pasture-woodland and meadows).</p>
+<div id="tree-cohorts" class="section level4" number="2.2.5.1">
+<h4><span class="header-section-number">2.2.5.1</span> <strong>Tree cohorts</strong></h4>
 <p>Quantitative information of <strong>tree diameter cohorts,</strong> i.e. groups of trees of the same species and diameter.</p>
 <p>These cohorts are characterized by the average biomass of an individual tree (Bi ) and the number of trees in the cohort (Nc ), not just presence/absence. Thus, the biomass of a cohort (Bc ) is calculated: Bc = Bi Nc</p>
 <p>The change of cohort biomass is tracked using a <u>yearly time step</u> in the model.</p>
 </div>
-<div id="tree-growth" class="section level4" number="2.2.4.2">
-<h4><span class="header-section-number">2.2.4.2</span> <strong>Tree growth</strong></h4>
+<div id="tree-growth" class="section level4" number="2.2.5.2">
+<h4><span class="header-section-number">2.2.5.2</span> <strong>Tree growth</strong></h4>
 <p>The growth model is based on the a priori assumption of a logistic growth relation for the isolated plant. This equation simply represents a phenomenological description of individual tree growth, not a model of population-level dynamics.</p>
 <p>The individual growth rate, ri (t), is derived from a species-specific maximum growth rate (rs ), which represents growth under optimum environmental conditions. The growth rate ri (t) is calculated as a function of three growth-limiting factors, light availability (light rf), the sum of degree-days (DD rf) and a drought index (DrStr rf), as described below. We applied Liebig’s “Law of the Minimum” to combine these growth response factors.</p>
 </div>
@@ -292,6 +320,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
