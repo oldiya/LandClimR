@@ -1,0 +1,107 @@
+--- 
+title: "ALandClim"
+author: "Forest Ecology ETH"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a book about LandCLim"
+---
+
+# TOC
+
+
+```{r eval=FALSE}
+install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+Alternative index structure:
+
+
+https://docs.google.com/document/d/1WsQXHRRXekKGCfXsGkc-zMnjEqkckcZ-CGNbogn2ptI/edit
+
+ForClim overview
+  What is ForClim?
+    Model concept
+    What ForClim does
+    Who is behind ForClim
+    History
+    How to cite ForClim and this documentation
+    Version and open access
+    Main structure of this book
+How Forclim works
+  Tutorial with R
+  Install ForClim
+  Run ForClim
+  Changning the ForClim setup
+The source code
+
+
+Forest stand scale processes
+
+
+
+
+1.	LandClim overview 
+
+2.	Climate and landscape input
+  a.	Calculation of Drought Index
+  b.	Calculation of GDD
+  c.	Slope and aspect
+  d.	Soil bucket size
+  e.	Landtype masks
+  f.	Climate input file (calculation of lapse rates etc.)
+
+3.	Forest stand processes (i.e. within a grid cell)
+  a.	Growth
+    i.	Growth functions (?)
+    ii.	Growth reducing factors
+    b.	Mortality
+    i.	Growth dependent
+    ii.	Density dependent
+    iii.	Maximum age
+  c.	Establishment
+  d.	Reproduction
+  e.	Understory interactions
+
+4.	Forest stand properties
+  a.	Tree diameter (DBH)
+  b.	Foliage weight
+  c.	Twig weight
+  d.	Bole weight
+  e.	Dead biomass (fuel)
+  f.	Leaf area index (LAI)
+  g.	Light availability
+  h.	Water availability 
+
+5.	Landscape scale processes
+  a.	Seed dispersal
+  b.	Natural disturbances
+    i.	Wind
+    ii.	Fire
+    iii.	Bark beetles
+    iv.	Browsing
+  c.	Management
+    i.	Forest management
+  1.	Thinning
+  2.	Planting
+  3.	Harvesting
+    ii.	Meadow management
+    iii.	Pasture management
+
+

@@ -1,0 +1,183 @@
+# Forest stand {#science1}
+
+We describe stand level processes and properties
+
+## Forest stand scale processes
+
+LandClim distinguishes between three different types of stand-scale processes:
+
+(1) Tree growth,
+
+(2) Tree mortality
+
+(3) Tree regeneration.
+
+These processes are simulated for each cohort, i.e. groups of trees of the same species and the same age within each patch (i.e. landscape grid-cell). 
+
+LandClim calculates the average biomass of an individual tree ($B_i$) and the number of trees ($N_c$) within each cohort. The biomass ($B_{c}$) per cohort is thus calculated as:
+
+$$
+\begin{equation}
+  B_{c} = B_{i} \cdot N_{c}
+  (\#eq:biomasspercohoreq)
+\end{equation}
+$$
+
+
+The change of cohort biomass per year is calculated with the differential equation \@ref(eq:ChangeBiomassPerCohortEq). The first term tracks the changes in biomass of individual plants (i.e. representation of growth), whereas the second term tracks changes in the number of individuals ($N_{c}$) within a cohort (thus accounting for mortality).
+
+$$
+\begin{equation}
+  \frac{dB_{c}}{dt} = \frac{dB_{i}}{dt} \cdot N_{c} + \frac{dN_{c}}{dt} %\cdot B_{i}
+  (\#eq:ChangeBiomassPerCohortEq)
+\end{equation}
+$$
+
+### Treegrowth
+
+In LandClim, tree growth is simulated via functional relationships, which are based on a species-specific maximum growth rate ($r_{s}$; growth under optimum environmental conditions) and a species-specific maximum biomass ($K_{s}$; maximum biomass an individual tree of a certain species can reach), representing growth under optimum environmental conditions. To account for the reduction of growth under non-optimum environmental conditions, reduction factors by light-, drought- and temperature-limitation are considered in the growth formulation. 
+
+#### Tree growth formulation
+
+Under non-optimal environmental conditions, a number of growth-limiting factors reduce the optimal growth rate. These factors include, (1) light limitation (light_rf), (2) degree-day limitation (DD_rf), and (3) drought limitation (drStr_rf). Values for the reduction factor range between 0 (maximum limitation) and 1 (no limitation).
+
+
+
+\begin{figure}[h!]
+
+\\centering
+
+\\includegraphics[width=1.00\\textwidth]{GrowthRedFcts.png}
+
+    \\caption{Growth reduction functions for a) light response factor (light\\\_rf), b) degree-day response factor (DD\\\_rf) c) drought response factor (drSt\\\_rf)}
+
+    \\label{Fig_GrowthRedFcts}
+
+\\end{figure}
+
+
+These factors are implemented via Liebig's 'Law of the Minimum'. Thus, the realized growth rate ($r_{i}(t)$) is calculated as the optimum growth rate ($r_{s}$) reduced by the most limiting environmental factor (Eq. \@ref(eq:GrowthRedminEq)).
+
+
+$$
+\begin{equation}
+    r_{i}(t) = r_{s} \cdot min(light\_rf(t) , DD_rf(t), drStr_rf(t))
+    (\#eq:GrowthRedminEq)
+\end{equation}
+$$
+
+
+The realized maximum biomass $K_i$(t) is also limited by environmental conditions, which reduce the maximum biomass ($K_s$) by the minimum of growing degree-days (DD_rf) or drought (drStr_rf).
+
+\
+$$
+\begin{equation}
+    K_{i}(t) = K_{s} \cdot min(DD_rf(t), drStr_rf(t))
+    (\#eq:MaxPlantSizeRedminEq)
+\end{equation}
+$$
+
+Three different phenomenological growth models can be selected to simulate tree growth in LandClim: (1) Logistic, (2) Gompertz and (3) von Bertalanffy. For further descriptions about the background of each equation, and for a comparison between the different models, see \\citet{Elkin2013}. Equations used for the different growth models are:
+
+
+```CHANGED ~~TO CHECK~~: I believe these equations are prediciting the individual tree biomass $B_i$, that multiplied by $N_c$ would give $B_c$", confirmed! The change has been done in the original manual pdf and here. It was only a typo present in LandCLim manual the article (Improving the formulation of tree growth and succession in a spatially explicit landscape model) and the thesis were correct```
+
+
+Type 'LOGISTIC'
+
+
+$$
+\begin{equation}
+    \frac{dB_{i}}{dt} =  r_{i}(t) \cdot (1.0 - \frac{B_{i}(t)}{K_{i}(t)} \cdot B_{i}(t) 
+\end{equation}
+$$
+
+Type 'GOMPERTZ'
+$$
+\begin{equation}
+
+    \frac{dB_{i}}{dt} =  r_{i}(t) \\cdot ( log(K_{i}) - log( B_{i}(t))) \cdot B_{i}(t)  
+
+\end{equation}
+$$
+
+
+Type 'BERTALANFFY'
+$$
+\begin{equation}
+
+  \frac{dB_{i}}{dt} =  3.0 \cdot r_{i}(t) \cdot K_{i}(t)\^{1/3} \cdot B_{i}(t)\^{2/3} - B_{i}(t) 
+
+\end{equation}
+$$
+\
+
+By default, the LOGISTIC growth model is used.
+
+#### Tree growth formulation in the src code
+
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Variable name          | Type      | Location                                 | Reference       | Description                                                                                                                                  |
++========================+===========+==========================================+=================+==============================================================================================================================================+
+| GrowthTree()           | Function  | Cohort.cs                                | Schumacher 2004 | The realized growth rate $r_i(t)$                                                                                                            |
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| SpeciesParameters.RMax | Parameter | User input in the species parameter file |                 | Optimun growth rate $r_s$                                                                                                                    |
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| DeltaBiomass           | Value     | float Cohort.DeltaBiomass                |                 | the change of individual tree biomass per year                                                                                               |
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| Biomass                | Value     | float Cohort.Biomass                     |                 | The biomass of an individual tree in a cohort (multiplied by the number of trees in the cohort Nc will provide the biomass in of the cohort) |
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| UpdateDiameter()       | Function  |                                          |                 | This function transforms the biomass into dbh values                                                                                         |
++------------------------+-----------+------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+#### Treegrowthformulation
+
+#### Lightreduction(lightrf)
+
+#### Cohortself-shading
+
+#### Temperaturereduction(DDrf)
+
+#### Droughtreduction(drStrrf)
+
+#### Parameters for stand scale processes
+
+### Herbaceous understorey growth
+
+#### Understorey biomass growth and cover
+
+#### UnderstoreyLAI
+
+#### Understorey mortality
+
+#### Understorey water competition
+
+### Treemortality
+
+#### Stress-Mortality
+
+#### Age-Mortality
+
+#### Density-Mortality
+
+#### Density-Mortality
+
+#### Disturbance related mortality
+
+### Treeregeneration
+
+#### Vegetativeregeneration
+
+## Forest stand properties
+
+### Treediameter(DBH)
+
+### Treeheight(H)
+
+### Foliageweight(folW)
+
+### Twigweight (twigW)
+
+### Boleweight (boleW)
+
+### Leafareaindex (LAI)

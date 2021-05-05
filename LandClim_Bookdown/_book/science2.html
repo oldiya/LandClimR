@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Landscape scale processes | ALandClim</title>
+  <meta name="description" content="This is a book about LandCLim" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Landscape scale processes | ALandClim" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a book about LandCLim" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Landscape scale processes | ALandClim" />
+  
+  <meta name="twitter:description" content="This is a book about LandCLim" />
+  
+
+<meta name="author" content="Forest Ecology ETH" />
+
+
+<meta name="date" content="2021-04-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="science1.html"/>
+<link rel="next" href="implementation.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> TOC</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> LandClim overview</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#structure-of-this-book"><i class="fa fa-check"></i><b>2.1</b> Structure of this book</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#model-concept"><i class="fa fa-check"></i><b>2.2</b> Model concept</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#what-is-landclim"><i class="fa fa-check"></i><b>2.2.1</b> What is LandClim?</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#what-landclim-does"><i class="fa fa-check"></i><b>2.2.2</b> What LandClim does?</a></li>
+<li class="chapter" data-level="2.2.3" data-path="intro.html"><a href="intro.html#how-landclim-works"><i class="fa fa-check"></i><b>2.2.3</b> How LandClim works?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="intro.html"><a href="intro.html#who-is-behind-landclim"><i class="fa fa-check"></i><b>2.2.4</b> Who is behind LandClim?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#application"><i class="fa fa-check"></i><b>2.3</b> Application</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#how-to-use-landclim"><i class="fa fa-check"></i><b>2.4</b> How to use LandClim</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="intro.html"><a href="intro.html#downloading-landclim"><i class="fa fa-check"></i><b>2.4.1</b> Downloading LandClim</a></li>
+<li class="chapter" data-level="2.4.2" data-path="intro.html"><a href="intro.html#using-the-source-code"><i class="fa fa-check"></i><b>2.4.2</b> Using the source code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#how-to-cite-landclim-and-this-documentation"><i class="fa fa-check"></i><b>2.5</b> How to cite LandClim and this documentation</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#version-and-open-access"><i class="fa fa-check"></i><b>2.6</b> Version and open access</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="intro.html"><a href="intro.html#section"><i class="fa fa-check"></i><b>2.6.1</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="intro.html"><a href="intro.html#history-of-the-model"><i class="fa fa-check"></i><b>2.7</b> History of the model</a></li>
+<li class="chapter" data-level="2.8" data-path="intro.html"><a href="intro.html#section-2"><i class="fa fa-check"></i><b>2.8</b> </a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="science1.html"><a href="science1.html"><i class="fa fa-check"></i><b>3</b> Forest stand</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="science1.html"><a href="science1.html#forest-stand-scale-processes"><i class="fa fa-check"></i><b>3.1</b> Forest stand scale processes</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="science1.html"><a href="science1.html#treegrowth"><i class="fa fa-check"></i><b>3.1.1</b> Treegrowth</a></li>
+<li class="chapter" data-level="3.1.2" data-path="science1.html"><a href="science1.html#herbaceous-understorey-growth"><i class="fa fa-check"></i><b>3.1.2</b> Herbaceous understorey growth</a></li>
+<li class="chapter" data-level="3.1.3" data-path="science1.html"><a href="science1.html#treemortality"><i class="fa fa-check"></i><b>3.1.3</b> Treemortality</a></li>
+<li class="chapter" data-level="3.1.4" data-path="science1.html"><a href="science1.html#treeregeneration"><i class="fa fa-check"></i><b>3.1.4</b> Treeregeneration</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="science1.html"><a href="science1.html#forest-stand-properties"><i class="fa fa-check"></i><b>3.2</b> Forest stand properties</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="science1.html"><a href="science1.html#treediameterdbh"><i class="fa fa-check"></i><b>3.2.1</b> Treediameter(DBH)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="science1.html"><a href="science1.html#treeheighth"><i class="fa fa-check"></i><b>3.2.2</b> Treeheight(H)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="science1.html"><a href="science1.html#foliageweightfolw"><i class="fa fa-check"></i><b>3.2.3</b> Foliageweight(folW)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="science1.html"><a href="science1.html#twigweight-twigw"><i class="fa fa-check"></i><b>3.2.4</b> Twigweight (twigW)</a></li>
+<li class="chapter" data-level="3.2.5" data-path="science1.html"><a href="science1.html#boleweight-bolew"><i class="fa fa-check"></i><b>3.2.5</b> Boleweight (boleW)</a></li>
+<li class="chapter" data-level="3.2.6" data-path="science1.html"><a href="science1.html#leafareaindex-lai"><i class="fa fa-check"></i><b>3.2.6</b> Leafareaindex (LAI)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="science1.html"><a href="science1.html#section-3"><i class="fa fa-check"></i><b>3.3</b> —</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="science2.html"><a href="science2.html"><i class="fa fa-check"></i><b>4</b> Landscape scale processes</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="science2.html"><a href="science2.html#seed-dispersal"><i class="fa fa-check"></i><b>4.1</b> Seed dispersal</a></li>
+<li class="chapter" data-level="4.2" data-path="science2.html"><a href="science2.html#natural-disturbances"><i class="fa fa-check"></i><b>4.2</b> Natural disturbances</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="science2.html"><a href="science2.html#wind-module"><i class="fa fa-check"></i><b>4.2.1</b> Wind module</a></li>
+<li class="chapter" data-level="4.2.2" data-path="science2.html"><a href="science2.html#wind-module-1"><i class="fa fa-check"></i><b>4.2.2</b> Wind module</a></li>
+<li class="chapter" data-level="4.2.3" data-path="science2.html"><a href="science2.html#fire-module"><i class="fa fa-check"></i><b>4.2.3</b> Fire module</a></li>
+<li class="chapter" data-level="4.2.4" data-path="science2.html"><a href="science2.html#browsing-module"><i class="fa fa-check"></i><b>4.2.4</b> Browsing module</a></li>
+<li class="chapter" data-level="4.2.5" data-path="science2.html"><a href="science2.html#bark-beetle-module"><i class="fa fa-check"></i><b>4.2.5</b> Bark beetle module</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="implementation.html"><a href="implementation.html"><i class="fa fa-check"></i><b>5</b> Implementation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="implementation.html"><a href="implementation.html#climate-and-landscape-input"><i class="fa fa-check"></i><b>5.1</b> Climate and landscape input</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="implementation.html"><a href="implementation.html#ascii-files"><i class="fa fa-check"></i><b>5.1.1</b> <strong>ASCII files</strong></a></li>
+<li class="chapter" data-level="5.1.2" data-path="implementation.html"><a href="implementation.html#treeinit"><i class="fa fa-check"></i><b>5.1.2</b> <strong>TreeInit</strong></a></li>
+<li class="chapter" data-level="5.1.3" data-path="implementation.html"><a href="implementation.html#species-configuration-xml"><i class="fa fa-check"></i><b>5.1.3</b> <strong>Species-configuration XML</strong></a></li>
+<li class="chapter" data-level="5.1.4" data-path="implementation.html"><a href="implementation.html#landtype-parameters-xml"><i class="fa fa-check"></i><b>5.1.4</b> <strong>Landtype parameters XML</strong></a></li>
+<li class="chapter" data-level="5.1.5" data-path="implementation.html"><a href="implementation.html#planting-parameters-xml"><i class="fa fa-check"></i><b>5.1.5</b> <strong>Planting parameters XML</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="implementation.html"><a href="implementation.html#the-control-file"><i class="fa fa-check"></i><b>5.2</b> The control file</a></li>
+<li class="chapter" data-level="5.3" data-path="implementation.html"><a href="implementation.html#set-up-of-the-lanscape"><i class="fa fa-check"></i><b>5.3</b> Set up of the lanscape</a></li>
+<li class="chapter" data-level="5.4" data-path="implementation.html"><a href="implementation.html#simulation-set-up"><i class="fa fa-check"></i><b>5.4</b> Simulation set up</a></li>
+<li class="chapter" data-level="5.5" data-path="implementation.html"><a href="implementation.html#tutorials"><i class="fa fa-check"></i><b>5.5</b> Tutorials</a></li>
+<li class="chapter" data-level="5.6" data-path="implementation.html"><a href="implementation.html#section-4"><i class="fa fa-check"></i><b>5.6</b> —</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="implementation.html"><a href="implementation.html#tutorials"><i class="fa fa-check"></i><b>6</b> Tutorials</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tutorials.html"><a href="tutorials.html"><i class="fa fa-check"></i><b>6.1</b> Seed dispersal</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ALandClim</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="science2" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Landscape scale processes</h1>
+<div id="seed-dispersal" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Seed dispersal</h2>
+</div>
+<div id="natural-disturbances" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Natural disturbances</h2>
+<div id="wind-module" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Wind module</h3>
+<div id="table-of-contents" class="section level4" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> Table of Contents</h4>
+</div>
+<div id="description-of-the-module" class="section level4" number="4.2.1.2">
+<h4><span class="header-section-number">4.2.1.2</span> Description of the module</h4>
+<p>The wind module in LandClim currently offers two different approaches. One is based in the <em>old</em> windthrow module version and the most up to date version.</p>
+</div>
+<div id="input-data" class="section level4" number="4.2.1.3">
+<h4><span class="header-section-number">4.2.1.3</span> Input data</h4>
+</div>
+<div id="project-file-parameters" class="section level4" number="4.2.1.4">
+<h4><span class="header-section-number">4.2.1.4</span> Project file parameters</h4>
+<p>The behavior of the wind module is configured by settings in the XML-control file <a href="#the-control-file-controlfile"><strong>??</strong></a>.</p>
+<p><br />
+The following parameter settings are available:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="output-data" class="section level4" number="4.2.1.5">
+<h4><span class="header-section-number">4.2.1.5</span> Output data</h4>
+<p>The output data is collected in the output file XXX and contain the following parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="wind-module-1" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Wind module</h3>
+<div id="table-of-contents-1" class="section level4" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Table of Contents</h4>
+</div>
+<div id="description-of-the-module-1" class="section level4" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Description of the module</h4>
+<p>The wind module in LandClim currently offers two different approaches. One is based in the <em>old</em> windthrow module version and the most up to date version.</p>
+</div>
+<div id="input-data-1" class="section level4" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> Input data</h4>
+</div>
+<div id="project-file-parameters-1" class="section level4" number="4.2.2.4">
+<h4><span class="header-section-number">4.2.2.4</span> Project file parameters</h4>
+<p>The behavior of the wind module is configured by settings in the XML-control file <a href="#the-control-file-controlfile"><strong>??</strong></a>.</p>
+<p><br />
+The following parameter settings are available:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="output-data-1" class="section level4" number="4.2.2.5">
+<h4><span class="header-section-number">4.2.2.5</span> Output data</h4>
+<p>The output data is collected in the output file XXX and contain the following parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="fire-module" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Fire module</h3>
+<div id="table-of-contents-2" class="section level4" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Table of Contents</h4>
+</div>
+<div id="description-of-the-module-2" class="section level4" number="4.2.3.2">
+<h4><span class="header-section-number">4.2.3.2</span> Description of the module</h4>
+</div>
+<div id="input-data-2" class="section level4" number="4.2.3.3">
+<h4><span class="header-section-number">4.2.3.3</span> Input data</h4>
+</div>
+<div id="project-file-parameters-2" class="section level4" number="4.2.3.4">
+<h4><span class="header-section-number">4.2.3.4</span> Project file parameters</h4>
+<p>The behavior of the wind module is configured by settings in the XML-control file <a href="#the-control-file-controlfile"><strong>??</strong></a>.</p>
+<p><br />
+The following parameter settings are available:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="output-data-2" class="section level4" number="4.2.3.5">
+<h4><span class="header-section-number">4.2.3.5</span> Output data</h4>
+<p>The output data is collected in the output file XXX and contain the following parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="browsing-module" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Browsing module</h3>
+<div id="table-of-contents-3" class="section level4" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> Table of Contents</h4>
+</div>
+<div id="description-of-the-module-3" class="section level4" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> Description of the module</h4>
+<p>The wind module in LandClim currently offers two different approaches. One is based in the <em>old</em> windthrow module version and the most up to date version.</p>
+</div>
+<div id="input-data-3" class="section level4" number="4.2.4.3">
+<h4><span class="header-section-number">4.2.4.3</span> Input data</h4>
+</div>
+<div id="project-file-parameters-3" class="section level4" number="4.2.4.4">
+<h4><span class="header-section-number">4.2.4.4</span> Project file parameters</h4>
+<p>The behavior of the wind module is configured by settings in the XML-control file <a href="#the-control-file-controlfile"><strong>??</strong></a>.</p>
+<p><br />
+The following parameter settings are available:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="output-data-3" class="section level4" number="4.2.4.5">
+<h4><span class="header-section-number">4.2.4.5</span> Output data</h4>
+<p>The output data is collected in the output file XXX and contain the following parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="bark-beetle-module" class="section level3" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Bark beetle module</h3>
+<div id="table-of-contents-4" class="section level4" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> Table of Contents</h4>
+</div>
+<div id="description-of-the-module-4" class="section level4" number="4.2.5.2">
+<h4><span class="header-section-number">4.2.5.2</span> Description of the module</h4>
+<p>LandClim simulates bark beetle dynamics by integrating forest susceptibility to bark beetle infestation (a proxy for the quality of bark beetle habitat) and bark beetle pressure. First, the spatial distribution of bark beetle infestation is determined at the landscape scale and second, bark beetle-induced tree mortality is evaluated at the tree cohort scale within each simulation cell (Fig. ). Similar to all disturbance modules in LandClim, bark beetle disturbances are simulated on a decadal time step. The forest susceptibility assessment is conducted every decade, while the bark beetle pressure assessment is based on yearly bioclimatic data.</p>
+</div>
+<div id="forest-susceptibility-to-beetle-infestation" class="section level4" number="4.2.5.3">
+<h4><span class="header-section-number">4.2.5.3</span> Forest susceptibility to beetle infestation</h4>
+<p>At the cell scale the susceptibility of live trees to beetle attack is evaluated using three factors:</p>
+<ol style="list-style-type: decimal">
+<li><p>The drought stress of the host tree (<span class="math inline">\(S_{d}\)</span>)</p></li>
+<li><p>The dominant age of the host tree (<span class="math inline">\(S_{a}\)</span>)</p></li>
+<li><p>The relative basal area of the host tree (<span class="math inline">\(S_{s}\)</span>)</p></li>
+</ol>
+<p>These susceptibility indexes are all scaled to between 0 and 1, with 0 indicating no susceptibility and 1 indicating maximum susceptibility. To translate these factors to drought-, age- and host share-induced susceptibility (<span class="math inline">\(S_{d}\)</span> , <span class="math inline">\(S_{a}\)</span> and <span class="math inline">\(S_{s}\)</span>), we adopted the sigmoidal relationships proposed by \citet{Netherer2005} and \citet{Seidl2007a}.</p>
+<div id="the-drought-stress-of-the-host-tree" class="section level5" number="4.2.5.3.1">
+<h5><span class="header-section-number">4.2.5.3.1</span> The drought stress of the host tree</h5>
+<p>The equation used to define the relationship between the drought index (drI) (REF HERE TO DROUGHT INDEX SECTION IN THE MANUAL) and the drought index susceptibility (<span class="math inline">\(S_{d}\)</span>) was defined by a logistic relationship as follow:</p>
+<p><span class="math display">\[
+Sd = \Big(\frac{1}{1 + e^{-r (drI- m)}}\Big)
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+m = \frac{(1-{drStrrf_{host}}^2) * drTol_{host}}{2}
+\]</span></p>
+<p>with drTol being the beetle host drought tolerance parameter that is added by the user in the species parameter file (ADD REFERENCE TO DESCRIPTION TO THIS FILE IN THE MANUAL), and drStr_rf being the species drought stress growth reduction factor. The species drought stress growth reduction factor (drStr_rf) is reached when the value of the in-built LandClim drought index (drI, Schumacher et al. 2004 LINK TO THE DESCRIPTION IN THIS MANUAL) has the value at which the drought induce susceptibility (Sdr) is close to its maximum (~1).</p>
+<p>The class _soilMoistureAtMaxSusceptibility defines the species drought stress growth reduction factor: drStr_rf, for Norway spruce is set to 20%.</p>
+<p>The species drought stress growth reduction factor (drStr_rf) is set by default to 20% (0.2, a value that will make sense for Norway spruce). drStr_rf is reached when the value of the in-built LandClim drought index (drI, Schumacher et al. 2004) has the value at which the drought induce susceptibility (Sdr) is close to its maximum (~1).</p>
+<p>The relation between the in-built LandClim drought index (drI) and the drought induce susceptibility (Sdr) is defined by:</p>
+<p><span class="math display">\[
+Sdr = \Big( \frac{1}{1 + e^{-r (drI- m)}} \Big)
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+m = \frac{(1-{drStrf_{rf}}^2) * drTol_{spr}}{2}
+\]</span>and</p>
+<p><span class="math display">\[
+r = - \frac{log \Big(\frac{1}{0.99}-1\Big)}{m}
+\]</span></p>
+<p>There are two alternative functions to this one:</p>
+<p><strong>Logistic alternative</strong> which is as the previous equation but adding a parameter. <em>Assuming that under conditions of very low drought (i.e., drI close to zero) the maximum resistance (i.e., negative susceptibility) of spruce to beetles amounts to 10% and 20% of the maximum possible susceptibility (drS = 1) we decreased the lower asymptote (A) of the logistic function Eq. A.1b to drS = -0.1 and -0.2, respectively</em></p>
+<p><span class="math display">\[
+Sdr = A + \Big(\frac{1 - A}{1 + e^{-r (drI- m)}}\Big)
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+m = \frac{(1-{drStrf_{rf}}^2) * drTol_{spr}}{2}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+r = - \frac{log \Big(\frac{1-0.99}{0.99-A}\Big)}{m}
+\]</span></p>
+<p><strong>Polynomial alternative</strong>: <em>We extended Eq. A.1a by subtracting a unimodal function (probability density function of the beta distribution) such that the resulting polynome (Eq. A.1c) has a minimum (i.e., maximum resistance of spruce against beetles) at a drought (drI) level of 0.03. This assumes zero beetle susceptibility at zero drought, decreasing susceptibility (i.e. increasing resistance) until drI = 0.03 and increasing susceptibility for drI &gt; 0.03. We parameterized the scale parameter C such that the polynome reaches a minimum drS value (i.e. maximum resistance of spruce to beetles) of -0.1 and 0.2, respectively (Fig. A1b).</em></p>
+<p><span class="math display">\[
+Sdr = \Big(\frac{1 }{1 + e^{-r (drI- m)}}\Big) -C*drI^{a-1}*(1-drI)^{b-1}
+\]</span></p>
+</div>
+</div>
+<div id="project-file-parameters-4" class="section level4" number="4.2.5.4">
+<h4><span class="header-section-number">4.2.5.4</span> Project file parameters</h4>
+<p>The behavior of the bark beetle module is configured by settings in the XML-bark beetle parameter file <a href="#the-control-file-controlfile"><strong>??</strong></a>.</p>
+<p><br />
+The following parameter settings are available:</p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="1%" />
+<col width="76%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameters</th>
+<th>Data type</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>_drStr_rf [in the src code]</p>
+<p>DrStrRf [in the bark beetle parameter file]</p></td>
+<td>numeric</td>
+<td>Species drought stress growth reduction factor parameter. It is used to calculate the <em>m</em> parameter on the logistic and polynomial drought-susceptibility functions to specify the species drought stress growth reduction factor. The default value of 0.2 is used if DrStrRf is missing in beetleparameters xml</td>
+<td>user defined parameter in the bark beetle XML parameter file</td>
+</tr>
+<tr class="even">
+<td>IniBdi</td>
+<td>numeric</td>
+<td>Beetle damage Index which equals the beetle damage in the previous decade [t/ha] divided by the maximum possible host tree biomass on a cell (Equals MaxBiomassDensity)</td>
+<td>initial value is user defined parameter in the bark beetle XML parameter file</td>
+</tr>
+<tr class="odd">
+<td><p>Age</p>
+<p>AssessDominantBeetleHostAge()</p></td>
+<td>numeric</td>
+<td>Mean age of beetle host which in the paper refers to “dominant beetle host age” in the cell. It is calculated as the mean age of beetle host cohorts &gt; 10 cm dbh on a cell. Taking the mean age of cohorts instead of individual trees takes account of the right skewed distribution of tree ages and favors the “dominant,” old trees</td>
+<td>value calculated in Wind.cs</td>
+</tr>
+<tr class="even">
+<td>DBH<br />
+<br />
+AssessMeanBeetleHostDBH()</td>
+<td>numeric</td>
+<td>Beetle host mean diameter in a cell: Mean diameter of beetle host cohorts &gt; 10 cm dbh on a cell</td>
+<td>value calculated in Wind.cs</td>
+</tr>
+<tr class="odd">
+<td>rDD _seasonalDroughtIndex</td>
+<td></td>
+<td>Average drought stress during the growing season when temp exceeds dtt. If monthly temperature is greater or equal than dtt (where dtt is the _droughtTolerantTemperature = 5.5f that has the same value as the developmental threshold temperature ( = 5.5◦ C) that month is included in the annual drought stress summation and then divided by the number of months included.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>BgBpi</td>
+<td>numeric</td>
+<td>background beetle pressure if beetle pressure is lower than background beetle pressure. A user defined value that takes into consideration what is the beetle pressure when for poor conditions for bark beetle development a low number of bark beetles enters the simulation landscape and maintains a small but persistent population. This value will be used if the estimated beetle pressure Pbtl is lower than BgBpi. In Temperli et al 2013 this value was assigned to 0.01</td>
+<td>initial value is user defined parameter in the bark beetle XML parameter file</td>
+</tr>
+<tr class="odd">
+<td>SiCellNi</td>
+<td>numeric</td>
+<td><p>It sets the importance of cell susceptibility on susceptibility of neighboring cell (default: 0). If the value is higher than 0 it will consider the surrounding cells when calculating the individual cell susceptibility as follow:</p>
+<p>Scell = (1-SiCellNi) * Scell + SiCellNi * Scell * max Scell of directly surrounding cells</p></td>
+<td>This value can be a user defined parameter in the bark beetle XML parameter file</td>
+</tr>
+<tr class="even">
+<td>BgBpi</td>
+<td>numeric</td>
+<td>background beetle pressure. If the estimated beetle pressure folowwing the equation 3 in Temperli et al 2013 is lower than BgBpi, then this parameter is used. Its default value is 0.01.</td>
+<td>This value can be a user defined parameter in the bark beetle XML parameter file</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="output-data-4" class="section level4" number="4.2.5.5">
+<h4><span class="header-section-number">4.2.5.5</span> Output data</h4>
+<p>The output data is collected in the output file XXX and contain the following parameters.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="science1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="implementation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-landscape.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
