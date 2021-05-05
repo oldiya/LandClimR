@@ -57,15 +57,7 @@ Forest stand scale processes
 
 
 
-1.	LandClim overview 
 
-2.	Climate and landscape input
-  a.	Calculation of Drought Index
-  b.	Calculation of GDD
-  c.	Slope and aspect
-  d.	Soil bucket size
-  e.	Landtype masks
-  f.	Climate input file (calculation of lapse rates etc.)
 
 3.	Forest stand processes (i.e. within a grid cell)
   a.	Growth

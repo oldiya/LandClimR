@@ -1,0 +1,21 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Forest stand properties 
+
+## Tree diameter (DBH) 
+
+## Foliage weight 
+
+## Twig weight 
+
+## Bole weight 
+
+## Dead biomass (fuel)
+
+##  Leaf area index (LAI) 
+
+## Light availability Water availability

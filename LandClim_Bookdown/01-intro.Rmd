@@ -127,6 +127,3 @@ You can create an executable file for Windows (.exe), MacOS or Linux by using th
 
 Link to the code and last version release.
 
-#### 
-
-## 

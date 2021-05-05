@@ -1,0 +1,19 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Climate and landscape input 
+
+## Calculation of Drought Index 
+
+## Calculation of GDD 
+
+## Slope and aspect 
+
+## Soil bucket size 
+
+## Landtype masks 
+
+## Climate input file (calculation of lapse rates etc.)
