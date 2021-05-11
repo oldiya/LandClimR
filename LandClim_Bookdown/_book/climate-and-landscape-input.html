@@ -220,15 +220,21 @@ simulation year. It is also possible to provide the climatic parameter
 values per grid cell. The derived bioclimatic variables are growing
 degree days (GDD) to represent temperature limitations, and a drought
 index (DI) to represent water limitations on growth. </p>
-<p><strong>Technical note 1</strong>: Temperature input data has to be defined as degree
-celcius and precipitation data as mm per month (with exception of the
-climate data ‘KBDI’ for fire-modelling, where temperature in kelvin and
-precipitation in inches is required, see <a href="landscape-scale-processes.html#Section_fire">fire section</a></p>
-<p><strong>Technical note 2</strong>: The lapses rates correspond to the changes in
-temperature (ºC change) per typically 100m change in altitude. The
-lapses rates for precipitation are also changes in precipitation by
-altitude (precipitation + precipitation lapse rate * (elevation -
-reference elevation) / lapse)</p>
+<hr />
+<p><strong>Technical note</strong></p>
+<p>Temperature input data has to be defined as degree celcius and
+precipitation data as mm per month (with exception of the climate data
+‘KBDI’ for fire-modelling, where temperature in kelvin and precipitation
+in inches is required, see <a href="landscape-scale-processes.html#Section_fire">fire section</a></p>
+<hr />
+<hr />
+<p><strong>Technical note</strong></p>
+<p>The lapses rates correspond to the changes in temperature (ºC change)
+per typically 100m change in altitude. The lapses rates for
+precipitation are also changes in precipitation by altitude
+(precipitation + precipitation lapse rate * (elevation - reference
+elevation) / lapse)</p>
+<hr />
 <div id="Section_GDD" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Calculation of Growing Degree Days</h2>
 <p>The direct effect of temperature on vegetation is modelled via the
@@ -256,50 +262,143 @@ where <span class="math inline">\(dtt\)</span> is the developmental threshold te
 <span class="math inline">\(DDcorr(T_{m})\)</span> is an empirical correction function developed by
 \citet{Bugmann1994} page 81.</p>
 <p>The following parameter are available:</p>
-<table>
+<table style="width:99%;">
 <colgroup>
 <col width="8%" />
-<col width="4%" />
-<col width="86%" />
+<col width="5%" />
+<col width="84%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parameters</th>
-<th>Data type</th>
+<th>P
+ara
+met
+ers</th>
+<th>D
+a
+t
+a
+t
+y
+p
+e</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>dtt</td>
-<td>numeric</td>
-<td>It the developmental threshold temperature and its value is 5.5ºC . It is defined in the src of the model (IS IT THE SAME AS _droughtTolerantTemperature ??)</td>
+<td>dtt
+/
+<span class="math inline">\(k\)</span></td>
+<td>n
+u
+m
+e
+r
+i
+c</td>
+<td>It the developmental threshold temperature and its value
+is 5.5ºC . It is defined in the src of the model (IS IT
+THE SAME AS _droughtTolerantTemperature ??)</td>
 </tr>
 <tr class="even">
-<td>Dcorr(Tm)</td>
-<td>numeric</td>
-<td>Empirical correction of the number of degree days. It is estimated based o</td>
+<td>Dco
+rr(
+Tm)
+/
+$
+co
+r
+r$</td>
+<td>n
+u
+m
+e
+r
+i
+c</td>
+<td>Empirical correction of the number of degree days. It is
+estimated based o</td>
 </tr>
 <tr class="odd">
-<td>DegreeDays</td>
-<td>function</td>
-<td>Calculates the Degree days for cell for each month. Returns an array of the degree days for each month in each cell. It uses as input an array of the mean temperature in the cell each month.</td>
+<td><span class="math inline">\(D e g  r  e  e Da ys\)</span></td>
+<td>f
+u
+n
+c
+t
+i
+o
+n</td>
+<td>Calculates the Degree days for cell for each month.
+Returns an array of the degree days for each month in each
+cell. It uses as input an array of the mean temperature in
+the cell each month.</td>
 </tr>
 <tr class="even">
-<td>Tm / temperature</td>
-<td>numeric</td>
+<td>Tm
+/
+$
+tem
+per
+atu
+r
+e$</td>
+<td>n
+u
+m
+e
+r
+i
+c</td>
 <td>Array of the mean temperature in the cell each month</td>
 </tr>
 <tr class="odd">
-<td>days</td>
-<td>numeric</td>
-<td>It is the average number of days per month ( = 30.5 days). It is defined in the src</td>
+<td>$
+da
+y
+s$</td>
+<td>n
+u
+m
+e
+r
+i
+c</td>
+<td>It is the average number of days per month ( = 30.5 days).
+It is defined in the src</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="Section_DroughtIndex" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Calculation of Drought Index</h2>
+<p>LandClim calculates a water balance for each grid cell individually on a
+monthly basis which influences tree growth, wildfire and bark beetle
+dynamics via a drought index (see also section \ref{Fire_subsection}).
+The water balance is controlled by topographic and environmental
+factors, i.e. monthly temperature, precipitation sum, slope and aspect.
+The current Version of LandClim (2.0) includes three different water
+balance modules, which differ in their representation of vegetation
+effects.</p>
+<ul>
+<li><p>‘ORIGINAL’ Version, as described in \citet{Schumacher2004} and
+\citet{Bugmann1998}</p></li>
+<li><p>‘VEGETATIONLAI’ Version, as described in \citet{Elkin2015}</p></li>
+<li><p>‘HERBTREE’ Version, as described in \citet{Thrippleton2017a}.</p></li>
+</ul>
+<div class="infobox caution">
+<p><strong>Technical note</strong></p>
+<p>The water balance module has to be specified in the control file
+(e.g.,&lt;WaterBalanceModel&gt;ORIGINAL &lt;/WaterBalanceModel&gt; see also
+control file in the LandClim example folder). Besides, the choice of the
+water balance module determines the species parameter file to be used.
+By default, it is suggested to use the ORIGINAL water balance version
+with the species drought tolerances determined by \citet{Henne2011}
+(see also species file in the LandClim example folder). The HERBTREE
+water balance version should only be used if a herbaceous PFT is
+included in the simulation (see details below).</p>
+</div>
 </div>
 <div id="slope-and-aspect" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Slope and aspect</h2>

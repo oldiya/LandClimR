@@ -18,16 +18,28 @@ values per grid cell. The derived bioclimatic variables are growing
 degree days (GDD) to represent temperature limitations, and a drought
 index (DI) to represent water limitations on growth. 
 
-**Technical note 1**: Temperature input data has to be defined as degree
-celcius and precipitation data as mm per month (with exception of the
-climate data 'KBDI' for fire-modelling, where temperature in kelvin and
-precipitation in inches is required, see [fire section](#Section_fire)
+------------------------------------------------------------------------
 
-**Technical note 2**: The lapses rates correspond to the changes in
-temperature (ºC change) per typically 100m change in altitude. The
-lapses rates for precipitation are also changes in precipitation by
-altitude (precipitation + precipitation lapse rate \* (elevation -
-reference elevation) / lapse)
+**Technical note**
+
+Temperature input data has to be defined as degree celcius and
+precipitation data as mm per month (with exception of the climate data
+'KBDI' for fire-modelling, where temperature in kelvin and precipitation
+in inches is required, see [fire section](#Section_fire)
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+**Technical note**
+
+The lapses rates correspond to the changes in temperature (ºC change)
+per typically 100m change in altitude. The lapses rates for
+precipitation are also changes in precipitation by altitude
+(precipitation + precipitation lapse rate \* (elevation - reference
+elevation) / lapse)
+
+------------------------------------------------------------------------
 
 ## Calculation of Growing Degree Days {#Section_GDD}
 
@@ -62,15 +74,80 @@ $DDcorr(T_{m})$ is an empirical correction function developed by
 
 The following parameter are available:
 
-| Parameters         | Data type | Description                                                                                                                                                                                    |
-|--------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| dtt / $k$          | numeric   | It the developmental threshold temperature and its value is 5.5ºC . It is defined in the src of the model (IS IT THE SAME AS \_droughtTolerantTemperature ??)                                  |
-| Dcorr(Tm) / $corr$ | numeric   | Empirical correction of the number of degree days. It is estimated based o                                                                                                                     |
-| $DegreeDays$       | function  | Calculates the Degree days for cell for each month. Returns an array of the degree days for each month in each cell. It uses as input an array of the mean temperature in the cell each month. |
-| Tm / $temperature$ | numeric   | Array of the mean temperature in the cell each month                                                                                                                                           |
-| $days$             | numeric   | It is the average number of days per month ( = 30.5 days). It is defined in the src                                                                                                            |
++-----+------------+------------------------------------------------------------+
+| P   | Data type  | Description                                                |
+| ara |            |                                                            |
+| met |            |                                                            |
+| ers |            |                                                            |
++=====+============+============================================================+
+| dtt | n u m e r  | It the developmental threshold temperature and its value   |
+| /   | i c        | is 5.5ºC . It is defined in the src of the model (IS IT    |
+| $k$ |            | THE SAME AS \_droughtTolerantTemperature ??)               |
++-----+------------+------------------------------------------------------------+
+| Dco | n u m e r  | Empirical correction of the number of degree days. It is   |
+| rr( | i c        | estimated based o                                          |
+| Tm) |            |                                                            |
+| /   |            |                                                            |
+| \$  |            |                                                            |
+| co  |            |                                                            |
+| r   |            |                                                            |
+| r\$ |            |                                                            |
++-----+------------+------------------------------------------------------------+
+| $   | f u n c t  | Calculates the Degree days for cell for each month.        |
+| D e | i o n      | Returns an array of the degree days for each month in each |
+|  g  |            | cell. It uses as input an array of the mean temperature in |
+|  r  |            | the cell each month.                                       |
+|  e  |            |                                                            |
+|  e  |            |                                                            |
+| Da  |            |                                                            |
+| ys$ |            |                                                            |
++-----+------------+------------------------------------------------------------+
+| Tm  | n u m e r  | Array of the mean temperature in the cell each month       |
+| /   | i c        |                                                            |
+| \$  |            |                                                            |
+| tem |            |                                                            |
+| per |            |                                                            |
+| atu |            |                                                            |
+| r   |            |                                                            |
+| e\$ |            |                                                            |
++-----+------------+------------------------------------------------------------+
+| \$  | n u m e r  | It is the average number of days per month ( = 30.5 days). |
+| da  | i c        | It is defined in the src                                   |
+| y   |            |                                                            |
+| s\$ |            |                                                            |
++-----+------------+------------------------------------------------------------+
 
 ## Calculation of Drought Index {#Section_DroughtIndex}
+
+LandClim calculates a water balance for each grid cell individually on a
+monthly basis which influences tree growth, wildfire and bark beetle
+dynamics via a drought index (see also section \\ref{Fire_subsection}).
+The water balance is controlled by topographic and environmental
+factors, i.e. monthly temperature, precipitation sum, slope and aspect.
+The current Version of LandClim (2.0) includes three different water
+balance modules, which differ in their representation of vegetation
+effects.
+
+-   'ORIGINAL' Version, as described in \\citet{Schumacher2004} and
+    \\citet{Bugmann1998}
+
+-   'VEGETATIONLAI' Version, as described in \\citet{Elkin2015}
+
+-   'HERBTREE' Version, as described in \\citet{Thrippleton2017a}.
+
+::: {.infobox .caution data-latex="{caution}"}
+**Technical note**
+
+The water balance module has to be specified in the control file
+(e.g.,\<WaterBalanceModel\>ORIGINAL \</WaterBalanceModel\> see also
+control file in the LandClim example folder). Besides, the choice of the
+water balance module determines the species parameter file to be used.
+By default, it is suggested to use the ORIGINAL water balance version
+with the species drought tolerances determined by \\citet{Henne2011}
+(see also species file in the LandClim example folder). The HERBTREE
+water balance version should only be used if a herbaceous PFT is
+included in the simulation (see details below).
+:::
 
 ## Slope and aspect
 
