@@ -23,10 +23,10 @@ writeMaps <- function(landClimRasterStack, nodata_value = "-9999",
                  paste("xllcorner", raster::xmin(x)),
                  paste("yllcorner", raster::ymin(x)),
                  paste("cellsize", lcResolution),
-                 paste("nodata_value ", nodata_value)))
+                 paste("NODATA_value", nodata_value)))
     sink()
     write.table (matrix(round(x[]), nrow = nrow(x), ncol = ncol(x), byrow = TRUE),
-                file=paste(folder, "/", names(x), ".asc", sep = ""), append = TRUE,
+                file = paste(folder, "/", names(x), ".asc", sep = ""), append = TRUE,
                 quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
   lapply(landClimRasterStack_list, function(x) foo(x))
