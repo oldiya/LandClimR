@@ -915,7 +915,7 @@
     # Run landclim
 
     controlfilename = controlfilename
-    executablefilepath = "Model/landclim2DEV/"
+    executablefilepath = executablefilepath
 
     runlandclim (controlfilename = controlfilename,
                  controlfilepath = controlfilepath,
