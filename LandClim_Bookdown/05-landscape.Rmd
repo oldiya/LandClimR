@@ -4,7 +4,7 @@
 
 # Landscape scale processes
 
-## Seed dispersal
+## Seed dispersal {#sectionSeedDispersal}
 
 ## Natural disturbances
 
@@ -182,7 +182,7 @@ The output data is collected in the output file XXX and contain the following pa
 
 ### 
 
-### Browsing Management 
+### Browsing Management {#sectionBrowsing}
 
 #### Table of Contents
 
@@ -444,4 +444,4 @@ The output data is collected in the output file XXX and contain the following pa
 
 ## Meadow management 
 
-## Pasture management
+## Pasture management {#sectionPastureManagement}

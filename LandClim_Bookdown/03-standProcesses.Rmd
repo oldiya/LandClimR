@@ -22,7 +22,122 @@ editor_options:
 
 ### Maximum age
 
-## Establishment
+### Tree regeneration {#Section_TreeRegeneration}
+
+Tree regeneration is simulated based on seed availability (see section
+on [seed dispersal](#sectionSeedDispersal)), environmental conditions
+and depends on the intensity of [browsing](#sectionBrowsing) and
+[grazing](#sectionPastureManagement). New tree cohorts are established
+once every ten years. However, the model checks the establishment
+potential for every year and calculates a decadal establishment
+probability. The annual and decadal processes of the regeneration
+routine are shown in further detail in the conceptual diagrams for the
+[annual routine](\#Fig_RegenerationConcept_annual) and [decadal
+routine](\#Fig_RegenerationConcept_decadal).
+
+![Conceptual diagram for annual regeneration
+routine](Images/RegenerationConcept_annual.png){#Fig_RegenerationConcept_annual}
+
+![Conceptual diagram for decadal regeneration
+routine](Images/RegenerationConcept_decadal.png){#Fig_RegenerationConcept_decadal}
+
+This 'establishment filter' approach is widely applied in forest gap
+models \citep[e.g.,][]{Bugmann1994, Bugmann1996, Shugart1984}. A
+particular year is favourable for establishment only if the following
+criteria are met \citep{Schumacher2004}
+
+```{=tex}
+\begin{enumerate}
+\item Available \textbf{light at forest floor} is higher than a species-specific threshold value (\textit{minL$_{\text{s}}$});
+\item \textbf{Winter temperature} (mean temperature of the coldest month) is higher than a threshold minimum temperature (\textit{minT$_{\text{s}}$}); 
+\item The sum of \textbf{growing degree-days} exceeds the minimum species-specific requirement (\textit{minDD$_{\text{s}}$}); 
+\item The \textbf{drought index} (\textit{Dl$_{\text{se}}$}) has to be lower than the species-specific maximum drought tolerance; 
+\item \textbf{Browsing probability} has to be smaller than a uniformly distributed random number (see section \ref{browsing_section} for more information about browsing). 
+\item A user defined \textbf{establishment coefficient} ($estCoeff_s$, defined in the landtype input file) has to be higher than a uniformly distributed random number. This variable represents additional factors which are not explicitly modelled.
+\item If \textbf{pasture management} is turned on, then grazing intensity is also used (see section \ref{PastureManagement_section}) with a random number generator to determine if establishment could occur this year. Pasture management adds an additional constraint that there needs to be a minimum of five good establishment years \textit{in a row} for a cohort of that particular species to establish.
+\end{enumerate}
+```
+The number of favourable establishment years for each species within
+each decade ($estYrs_s$) is one of the factors used to determine
+establishment densities (Eq. \ref{Establ_Density_Eq}).
+
+The biomass of the newly established cohorts (B$_{\text{i}}$(t=10)) at
+the end of the decade is calculated from an initial tree biomass
+(B$_{\text{i}}$(t=0), 10 kg). Biomass increment over ten years is
+tracked by an exponential growth function (Eq. \ref{Exp_Growth_Eq}).
+Growth rates (r$_{\text{i}}$) are reduced every year by environmental
+conditions in an similar way to those described in the 'tree growth'
+sub-model (Eq. \ref{GrowthRed_min_Eq}). This results in larger
+establishment biomass for species with higher growth rates and for those
+with a higher tolerance of unfavourable environmental conditions.
+
+```{=tex}
+\begin{equation}\label{Exp_Growth_Eq}
+    B_{i}(t = 10):B_{i}(t+1) = B_{i}(t) \cdot (1 + r_{i}(t))
+\end{equation}
+```
+Finally, the density of newly established trees (N$_{\text{c}}$(t=10))
+is determined. N$_{\text{c}}$(t=10) is calculated based on a
+user-defined potential establishment density ($potDens_{f}$), which is
+reduced linearly by light availability at the forest floor ($avL_{s}$)
+(decadal average), resulting in smaller densities of tree regeneration
+under a dense canopy (see \citet{Schumacher2004} for further details).
+The resulting tree density is distributed among all tree species with
+available seeds ($sumSpec_{f}$) in proportion to the species' growth
+performance in the establishment layer. Growth performance ($grPer_{s}$)
+is defined here as the ratio of realized growth increment during the
+last ten years to the maximum possible growth increment under optimal
+environmental conditions. Species with better growth performance are
+capable of establishing more trees than species whose saplings do not
+grow well. Furthermore, the potential regeneration density of each
+species is reduced proportionally to the species-specific number of
+years over the last 10-year period when establishment would have been
+possible ($estYrs_{s}$). This takes into account the fact that
+unfavourable establishment years cause a reduction of a species'
+establishment density (\ref{Establ_Density_Eq}).
+
+```{=tex}
+\begin{equation}\label{Establ_Density_Eq}
+    N_{c}(t = 10) = potDens_{f} \cdot avL_{ff} \cdot \frac{grPer_{s}}{\displaystyle\sum_{x=1}^{sumSpec_{f}} grPer_{s,x}} \cdot \frac{estYrs_{s}}{10}
+\end{equation}
+```
+\textbf{Technical note:} LandClim Versions prior to V1.6 assumed that
+establishment can only occur if the total stand biomass is at least ten
+percent smaller than the maximum stand biomass. This assumption has been
+removed in LandClim Version 1.6. with the introduction of a new cohort
+self-shading (see section \ref{Chapter_Cohort_Fraction}). Here, very
+dense stands reduce the amount of light on the forest floor which
+prevents tree regeneration.
+
+```{=tex}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[height=0.65\textwidth]{RegenerationConcept_annual.png}
+    \caption{Conceptual diagram for annual regeneration routine}
+    \label{Fig_RegenerationConcept_annual}
+\end{figure}
+```
+```{=tex}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.60\textwidth]{RegenerationConcept_decadal.png}
+    \caption{Conceptual diagram for decadal regeneration routine}
+    \label{Fig_RegenerationConcept_decadal}
+\end{figure}
+```
+```{=tex}
+\subsection{Vegetative regeneration}
+\label{Vegetative regeneration}
+```
+Vegetative reproduction of trees can be included in simulations with
+LandClim (see \citet{Schumacher2004}). This type of reproduction can
+only occur after the following disturbance types: fire, windthrow and
+harvest . In order to enable this feature, species specific values for
+\textbf{VegetativePropagules} have to be included in the landtype file
+(xml tag $<$DefaultVegetativePropagules$>$). These vegetative propagules
+are then added to the number of stems establishing in a post-disturbance
+regeneration event. If this information is not included in the landtype
+file, vegetative reproduction is inactive.
 
 ### Reproduction
 
@@ -141,17 +256,19 @@ $$
 \end{equation}
 $$
 
-Type 'GOMPERTZ' \$\$ \begin{equation}
+Type 'GOMPERTZ' \$\$ \\begin{equation}
 
-    \frac{dB_{i}}{dt} =  r_{i}(t) \\cdot ( log(K_{i}) - log( B_{i}(t))) \cdot B_{i}(t)  
+\\frac{dB\_{i}}{dt} =  r\_{i}(t) \\\\cdot ( log(K\_{i}) - log(
+B\_{i}(t))) \\cdot B\_{i}(t)  
 
-\end{equation} \$\$
+\\end{equation} \$\$
 
-Type 'BERTALANFFY' \$\$ \begin{equation}
+Type 'BERTALANFFY' \$\$ \\begin{equation}
 
-  \frac{dB_{i}}{dt} =  3.0 \cdot r_{i}(t) \cdot K_{i}(t)\^{1/3} \cdot B_{i}(t)\^{2/3} - B_{i}(t) 
+\\frac{dB\_{i}}{dt} =  3.0 \\cdot r\_{i}(t) \\cdot K\_{i}(t)\\\^{1/3}
+\\cdot B\_{i}(t)\\\^{2/3} - B\_{i}(t) 
 
-\end{equation} \$\$\
+\\end{equation} \$\$\
 
 By default, the LOGISTIC growth model is used.
 
