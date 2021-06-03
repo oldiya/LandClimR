@@ -892,21 +892,21 @@
 
                      # Output specifications
                      fulloutputyears =  fulloutputtime, # years from where you want to obtain the full output files
-                     aggregateoutput1 = c("elevation", "Dem.txt"),
-                     aggregateoutput2 = c("landtype", "LandType.txt"),
+                     aggregateoutput1 = c("elevation", ElevationFile),
+                     aggregateoutput2 = c("landtype", LandTypeFile),
 
                      # Names of the map files
-                     ElevationFile = "Dem.txt",
-                     SlopeFile = "Slope.txt",
-                     LandMaskFile = "Mask.txt",
-                     LandTypeFile = "LandType.txt",
-                     AspectFile = "Aspect.txt",
-                     SoilDepthFile = "Soil.txt",
+                     ElevationFile = ElevationFile,
+                     SlopeFile = SlopeFile,
+                     LandMaskFile = LandMaskFile,
+                     LandTypeFile = LandTypeFile,
+                     AspectFile = AspectFile,
+                     SoilDepthFile = SoilDepthFile,
 
                      # Name of the configuration files
-                     BeetleParameterFile = "BarkBeetleParameters.xml",
-                     SpeciesConfigurationFile = "SpeciesConfiguration.xml",#"SpeciesCentralEuropeInclHerb.xml",
-                     LandTypeParameterFile = "LandTypeParameters.xml",
+                     BeetleParameterFile =   BeetleParameterFile,
+                     SpeciesConfigurationFile = SpeciesConfigurationFile,#"SpeciesCentralEuropeInclHerb.xml",
+                     LandTypeParameterFile = LandTypeParameterFile,
                      treeInitStateFile = treeInitStateFile,
                      HarvestStandsFile = "",# This file is empty because for this simulation we are not using this input
                      HarvestManagementAreasFile = "") # This file is empty because for this simulation we are not using this input
