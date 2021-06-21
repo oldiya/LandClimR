@@ -1,0 +1,4 @@
+﻿Id,Name,MinShadeYears,MeanFireReturnInterval,FireIgnitionCoefficient,FireProbabilityCoefficient,LastWindthrowDisturbance,LastFireDisturbance,BrowsingIntensity,PotentialSaplingDensity,DefaultEstablishmentCoefficient,SpeciesEstablishmentCoefficient_Name,SpeciesEstablishmentCoefficient_EstablishmentCoefficient,SpeciesEstablishmentCoefficient_VegetativePropagules,DefaultVegetativePropagules,MaxBiomassDensity
+0,empty,30,3000,0.0002,20,0,400,0,0,0,piceabie,0.9,false,false,0
+1,NE,30,3000,0.0002,20,400,400,0,0.5,0.9,piceabie,0.9,false,false,1000
+2,SW,30,3000,0.0002,20,400,400,0,0.5,0.9,piceabie,0.9,false,false,1000

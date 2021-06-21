@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlantingConfiguration>
+  <PlantingParameters>
+    <ManagementAreaId>2</ManagementAreaId>
+    <Begin>0</Begin>
+    <End>10009</End>
+    <Interval>20</Interval>
+    <Years>21 51 81</Years>
+    <Target>1</Target>
+    <Rank>BIOMASS</Rank>
+    <HarvestedAreaOnly>0</HarvestedAreaOnly>
+    <MinBiomass>1000</MinBiomass>
+    <MinDensity>10000</MinDensity>
+    <Browse>true</Browse>
+    <LastPlanting>5</LastPlanting>
+    <PlantingMask>
+      <SpeciesPlanting>
+        <Name>piceabie</Name>
+        <BiomassPlant>20</BiomassPlant>
+        <DensityPlant>200</DensityPlant>
+      </SpeciesPlanting>
+    </PlantingMask>
+  </PlantingParameters>
+  <PlantingParameters>
+    <ManagementAreaId>2</ManagementAreaId>
+    <Begin>0</Begin>
+    <End>10009</End>
+    <Interval>20</Interval>
+    <Target>1</Target>
+    <Rank>BIOMASS</Rank>
+    <HarvestedAreaOnly>0</HarvestedAreaOnly>
+    <MinBiomass>1000</MinBiomass>
+    <MinDensity>10000</MinDensity>
+    <Browse>true</Browse>
+    <LastPlanting>5</LastPlanting>
+    <PlantingMask>
+      <SpeciesPlanting>
+        <Name>larideci</Name>
+        <BiomassPlant>20</BiomassPlant>
+        <DensityPlant>200</DensityPlant>
+      </SpeciesPlanting>
+    </PlantingMask>
+  </PlantingParameters>
+</PlantingConfiguration>

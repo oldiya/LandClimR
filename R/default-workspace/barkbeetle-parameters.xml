@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BeetleConfiguration>
+  <BeetleParameters>
+    <BeetleHostName>piceabie</BeetleHostName>
+    <BetaScale>10000</BetaScale>
+    <IniBdi>0.01</IniBdi>
+    <BgBpi>0.01</BgBpi>
+    <SiWMaxCoeff>1</SiWMaxCoeff>
+    <BdiMaxCoeff>1</BdiMaxCoeff>
+    <CellCoI>1</CellCoI>
+    <SiCellNi>0</SiCellNi>
+    <SiWni>1</SiWni>
+    <WISiCell>0.5</WISiCell>
+    <DRSiCell>0.167</DRSiCell>
+    <SSSiCell>0.167</SSSiCell>
+    <ADSiCell>0.167</ADSiCell>
+    <BpCoeff>14</BpCoeff>
+    <MaxInfBm>150</MaxInfBm>
+    <WIDist>500</WIDist>
+    <DTBark>2</DTBark>
+    <LowerAsymDrS>0</LowerAsymDrS>
+    <ParamCDrS>0</ParamCDrS>
+    <DrStrRf>0.2</DrStrRf>
+    <DrSFunction>default</DrSFunction>
+    <SpruceShareParameters>
+      <SsA>0.08</SsA>
+      <SsK>1</SsK>
+      <SsQ>0.2674846</SsQ>
+      <Ssr>6.8455438</Ssr>
+      <Ssm>0.375</Ssm>
+      <Ssv>0.3002734</Ssv>
+    </SpruceShareParameters>
+  </BeetleParameters>
+</BeetleConfiguration>

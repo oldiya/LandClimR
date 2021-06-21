@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RandomState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <X>1</X>
+  <Y>10000</Y>
+  <Z>3000</Z>
+  <XSeed>1</XSeed>
+  <YSeed>10000</YSeed>
+  <ZSeed>3000</ZSeed>
+</RandomState>
