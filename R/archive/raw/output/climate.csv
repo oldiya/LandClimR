@@ -1,0 +1,6 @@
+year,row,col,elevation,annualDroughtIndex,annualDroughtIndex_Tree,annualDroughtIndex_Herb,annualDroughtIndex_Sapling,seasonalDroughtIndex,seasonalDroughtIndex_Tree,seasonalDroughtIndex_Herb,seasonalDroughtIndex_Sapling,annualDegreeDaySum,seasonalDegreeDaySum,minimumTemperature,AET,PET,annualPrecipitationSum
+1,3,15,2300,0,0,0,0,0,0,0,0,413.9801,406.549,-8.891,34.4267,34.4267,120.7184
+10,3,15,2300,0,0,0,0,0,0,0,0,287.8424,283.2697,-12.274,33.2103,33.2103,139.4204
+20,3,15,2300,0,0,0,0,0,0,0,0,325.9574,317.7736,-5.984,35.2043,35.2043,125.3514
+30,3,15,2300,0,0,0,0,0,0,0,0,345.9633,343.4711,-9.701,31.0423,31.0423,110.6244
+40,3,15,2300,0,0,0,0,0,0,0,0,345.9633,343.4711,-9.701,31.0423,31.0423,110.6244
