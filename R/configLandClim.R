@@ -101,12 +101,12 @@
                                dispersalEffectiveDm1Prob = 0.1,
                                dispersalMaxDm1Prob = 0.01,
 
-                               ElevationFile = "Dem.txt",
-                               SlopeFile = "Slope.txt",
-                               LandMaskFile = "Mask.txt",
-                               LandTypeFile = "LandType.txt",
-                               AspectFile = "Aspect.txt",
-                               SoilDepthFile = "Soil.txt",
+                               ElevationFile,
+                               SlopeFile,
+                               LandMaskFile,
+                               LandTypeFile,
+                               AspectFile ,
+                               SoilDepthFile,
                                treeInitStateFile,
                                HarvestStandsFile = "HarvestStands.txt",
                                HarvestManagementAreasFile = "HarvestManagementAreas.txt",
@@ -904,7 +904,7 @@
                      SoilDepthFile = SoilDepthFile,
 
                      # Name of the configuration files
-                     BeetleParameterFile =   BeetleParameterFile,
+                     BeetleParameterFile =  BeetleParameterFile,
                      SpeciesConfigurationFile = SpeciesConfigurationFile,#"SpeciesCentralEuropeInclHerb.xml",
                      LandTypeParameterFile = LandTypeParameterFile,
                      treeInitStateFile = treeInitStateFile,

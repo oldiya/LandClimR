@@ -255,7 +255,7 @@ The output data is collected in the output file XXX and contain the following pa
 |          |           |             |
 |          |           |             |
 
-### Bark beetle 
+### Bark beetle
 
 #### Table of Contents
 
@@ -436,12 +436,12 @@ The output data is collected in the output file XXX and contain the following pa
 
 ## Forest management
 
-### Thinning 
+### Thinning
 
-### Planting 
+### Planting
 
 ### Harvesting
 
-## Meadow management 
+## Meadow management
 
 ## Pasture management {#sectionPastureManagement}

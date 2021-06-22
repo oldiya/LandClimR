@@ -32,31 +32,47 @@ once every ten years. However, the model checks the establishment
 potential for every year and calculates a decadal establishment
 probability. The annual and decadal processes of the regeneration
 routine are shown in further detail in the conceptual diagrams for the
-[annual routine](\#Fig_RegenerationConcept_annual) and [decadal
-routine](\#Fig_RegenerationConcept_decadal).
+[annual routine](#Fig_RegenerationConcept_annual) and [decadal
+routine](#Fig_RegenerationConcept_decadal).
 
 ![Conceptual diagram for annual regeneration
 routine](Images/RegenerationConcept_annual.png){#Fig_RegenerationConcept_annual}
-
-![Conceptual diagram for decadal regeneration
-routine](Images/RegenerationConcept_decadal.png){#Fig_RegenerationConcept_decadal}
 
 This 'establishment filter' approach is widely applied in forest gap
 models \citep[e.g.,][]{Bugmann1994, Bugmann1996, Shugart1984}. A
 particular year is favourable for establishment only if the following
 criteria are met \citep{Schumacher2004}
 
-```{=tex}
-\begin{enumerate}
-\item Available \textbf{light at forest floor} is higher than a species-specific threshold value (\textit{minL$_{\text{s}}$});
-\item \textbf{Winter temperature} (mean temperature of the coldest month) is higher than a threshold minimum temperature (\textit{minT$_{\text{s}}$}); 
-\item The sum of \textbf{growing degree-days} exceeds the minimum species-specific requirement (\textit{minDD$_{\text{s}}$}); 
-\item The \textbf{drought index} (\textit{Dl$_{\text{se}}$}) has to be lower than the species-specific maximum drought tolerance; 
-\item \textbf{Browsing probability} has to be smaller than a uniformly distributed random number (see section \ref{browsing_section} for more information about browsing). 
-\item A user defined \textbf{establishment coefficient} ($estCoeff_s$, defined in the landtype input file) has to be higher than a uniformly distributed random number. This variable represents additional factors which are not explicitly modelled.
-\item If \textbf{pasture management} is turned on, then grazing intensity is also used (see section \ref{PastureManagement_section}) with a random number generator to determine if establishment could occur this year. Pasture management adds an additional constraint that there needs to be a minimum of five good establishment years \textit{in a row} for a cohort of that particular species to establish.
-\end{enumerate}
-```
+-   Available **light at forest floor** is higher than a
+    species-specific threshold value ($minL_s$);
+
+-   **Winter temperature** (mean temperature of the coldest month) is
+    higher than a threshold minimum temperature ($minT_s$);
+
+-   The sum of **growing degree-days** exceeds the minimum
+    species-specific requirement ($minDD_s$);
+
+-   The **drought index** ($Dl_{se}$) has to be lower than the
+    species-specific maximum drought tolerance;
+
+-   **Browsing probability** has to be smaller than a uniformly
+    distributed random number (see [browsing
+    section](%5B#sectionBrowsing%5D(http://127.0.0.1:35763/#sectionBrowsing%20%22#sectionBrowsing%22))
+    for more information about browsing).
+
+-   A user defined **establishment coefficient** ($estCoeff_s$, defined
+    in the landtype input file) has to be higher than a uniformly
+    distributed random number. This variable represents additional
+    factors which are not explicitly modelled.
+
+-   If **pasture management** is turned on, then grazing intensity is
+    also used (see section on [Pasture
+    Management](%5B#sectionPastureManagement%5D(http://127.0.0.1:35763/#sectionPastureManagement%20%22#sectionPastureManagement%22)))
+    with a random number generator to determine if establishment could
+    occur this year. Pasture management adds an additional constraint
+    that there needs to be a minimum of five good establishment years
+    *in a row* for a cohort of that particular species to establish.
+
 The number of favourable establishment years for each species within
 each decade ($estYrs_s$) is one of the factors used to determine
 establishment densities (Eq. \ref{Establ_Density_Eq}).
@@ -138,6 +154,105 @@ harvest . In order to enable this feature, species specific values for
 are then added to the number of stems establishing in a post-disturbance
 regeneration event. If this information is not included in the landtype
 file, vegetative reproduction is inactive.
+
++-----------------------+----------------------+-----------------------+
+| Variable              | Data type            | Description           |
++=======================+======================+=======================+
+| SaplingInitialBiomass | numeric              | 0,01 tonnes (10kg)    |
+|                       |                      | the initial tree      |
+|                       |                      | biomass (Bi (t=0)     |
+|                       |                      | assumed to be the     |
+|                       |                      | same for all the tree |
+|                       |                      | species. This value   |
+|                       |                      | is fixed in the code  |
+|                       |                      |                       |
+|                       |                      | \_                    |
+|                       |                      | initialSaplingBiomass |
++-----------------------+----------------------+-----------------------+
+| Rmax                  | numeric              | User defined species  |
+|                       |                      | specific parameter    |
+|                       |                      | that shows the        |
+|                       |                      | maximum growth rate   |
+|                       |                      | under optimum         |
+|                       |                      | environmental         |
+|                       |                      | conditions per year   |
++-----------------------+----------------------+-----------------------+
+| Sapling               | category             | Defined as trees less |
+|                       |                      | than 10 years old     |
++-----------------------+----------------------+-----------------------+
+| rela                  |                      | Ratio of realized     |
+| tiveGrowthPerformance |                      | growth incremetn      |
+|                       |                      | during the last 10    |
+|                       |                      | years to max          |
+|                       |                      | potential growth      |
+|                       |                      | increment under       |
+|                       |                      | optimal environmental |
+|                       |                      | conditions (aka       |
+|                       |                      | species with better   |
+|                       |                      | grotwht are capable   |
+|                       |                      | of establishment more |
+|                       |                      | trees)                |
+|                       |                      |                       |
+|                       |                      | \_relativ             |
+|                       |                      | eGrowthPerformance[i] |
+|                       |                      | =                     |
+|                       |                      | (\_init               |
+|                       |                      | ialRealizedBiomass[i] |
+|                       |                      | -                     |
+|                       |                      | \_init                |
+|                       |                      | ialSaplingBiomass[i]) |
+|                       |                      | /                     |
+|                       |                      | \_optimum             |
+|                       |                      | GrowthPerformance[i]; |
++-----------------------+----------------------+-----------------------+
+| \_opt                 |                      | maximun potential     |
+| imumGrowthPerformance |                      | growth icrement under |
+|                       |                      | optimal environmental |
+|                       |                      | conditions            |
+|                       |                      |                       |
+|                       |                      | \_initialSapl         |
+|                       |                      | ingBiomass[speciesId] |
+|                       |                      | \*                    |
+|                       |                      | (float)Math.Pow(1.0f  |
+|                       |                      | + \_Rmax[speciesId],  |
+|                       |                      | \_e                   |
+|                       |                      | stablishmentInterval) |
+|                       |                      | -                     |
+|                       |                      | \_initialSapli        |
+|                       |                      | ngBiomass[speciesId]; |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
+|                       |                      |                       |
++-----------------------+----------------------+-----------------------+
 
 ### Reproduction
 

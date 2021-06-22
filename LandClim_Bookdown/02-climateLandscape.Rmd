@@ -74,48 +74,13 @@ $DDcorr(T_{m})$ is an empirical correction function developed by
 
 The following parameter are available:
 
-+-----+------------+------------------------------------------------------------+
-| P   | Data type  | Description                                                |
-| ara |            |                                                            |
-| met |            |                                                            |
-| ers |            |                                                            |
-+=====+============+============================================================+
-| dtt | n u m e r  | It the developmental threshold temperature and its value   |
-| /   | i c        | is 5.5ºC . It is defined in the src of the model (IS IT    |
-| $k$ |            | THE SAME AS \_droughtTolerantTemperature ??)               |
-+-----+------------+------------------------------------------------------------+
-| Dco | n u m e r  | Empirical correction of the number of degree days. It is   |
-| rr( | i c        | estimated based o                                          |
-| Tm) |            |                                                            |
-| /   |            |                                                            |
-| \$  |            |                                                            |
-| co  |            |                                                            |
-| r   |            |                                                            |
-| r\$ |            |                                                            |
-+-----+------------+------------------------------------------------------------+
-| $   | f u n c t  | Calculates the Degree days for cell for each month.        |
-| D e | i o n      | Returns an array of the degree days for each month in each |
-|  g  |            | cell. It uses as input an array of the mean temperature in |
-|  r  |            | the cell each month.                                       |
-|  e  |            |                                                            |
-|  e  |            |                                                            |
-| Da  |            |                                                            |
-| ys$ |            |                                                            |
-+-----+------------+------------------------------------------------------------+
-| Tm  | n u m e r  | Array of the mean temperature in the cell each month       |
-| /   | i c        |                                                            |
-| \$  |            |                                                            |
-| tem |            |                                                            |
-| per |            |                                                            |
-| atu |            |                                                            |
-| r   |            |                                                            |
-| e\$ |            |                                                            |
-+-----+------------+------------------------------------------------------------+
-| \$  | n u m e r  | It is the average number of days per month ( = 30.5 days). |
-| da  | i c        | It is defined in the src                                   |
-| y   |            |                                                            |
-| s\$ |            |                                                            |
-+-----+------------+------------------------------------------------------------+
+| P ara met ers             | Data type       | Description                                                                                                                                                                                    |
+|---------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dtt / $k$                 | n u m e r i c   | It the developmental threshold temperature and its value is 5.5ºC . It is defined in the src of the model (IS IT THE SAME AS \_droughtTolerantTemperature ??)                                  |
+| Dco rr( Tm) / \$ co r r\$ | n u m e r i c   | Empirical correction of the number of degree days. It is estimated based o                                                                                                                     |
+| \$ D e g r e e Da ys\$    | f u n c t i o n | Calculates the Degree days for cell for each month. Returns an array of the degree days for each month in each cell. It uses as input an array of the mean temperature in the cell each month. |
+| Tm / \$ tem per atu r e\$ | n u m e r i c   | Array of the mean temperature in the cell each month                                                                                                                                           |
+| \$ da y s\$               | n u m e r i c   | It is the average number of days per month ( = 30.5 days). It is defined in the src                                                                                                            |
 
 ## Calculation of Drought Index {#Section_DroughtIndex}
 
