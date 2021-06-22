@@ -5,33 +5,18 @@
 ################################################################################
 
 
-
-
 default_barkbeetle <- read.csv("default-data/barkbeetle.csv",
-                               fileEncoding = "UTF-8-BOM",
-                               header = T)
+                               fileEncoding = "UTF-8-BOM", header = T)
 default_config <- read.csv("default-data/config.csv",
-                           fileEncoding = "UTF-8-BOM",
-                           header = T)
-default_landtypeparameters <-
-  read.csv(
-    "default-data/landtypeparameters.csv",
-    fileEncoding = "UTF-8-BOM",
-    header = T
-  )
-default_plantingparameters <-
-  read.csv(
-    "default-data/plantingparameters.csv",
-    fileEncoding = "UTF-8-BOM",
-    header = T
-  )
+                           fileEncoding = "UTF-8-BOM", header = T)
+default_landtypeparameters <- read.csv("default-data/landtypeparameters.csv",
+    fileEncoding = "UTF-8-BOM", header = T)
+default_plantingparameters <-read.csv("default-data/plantingparameters.csv",
+    fileEncoding = "UTF-8-BOM", header = T)
 default_randomstate <- read.csv("default-data/randomstate.csv",
-                                fileEncoding = "UTF-8-BOM",
-                                header = T)
+                                fileEncoding = "UTF-8-BOM", header = T)
 default_species <- read.csv("default-data/species.csv",
-                            fileEncoding = "UTF-8-BOM",
-                            header = T)
-
+                            fileEncoding = "UTF-8-BOM", header = T)
 
 
 runLandClim <- function(config = data.frame(),
