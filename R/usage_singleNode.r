@@ -10,7 +10,7 @@ library(doParallel)
 
 
 
-num_cores <- 4
+num_cores <- 2
 
 if (num_cores > detectCores())
     print("Warning... Requested number of cores exceed availability...")
