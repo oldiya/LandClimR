@@ -1,13 +1,20 @@
 source('core.r')
 library(doParallel)
 
+# Single machine parallelization 
+# Use the multipleNodes usage verison for Euler job submissions
 # The example below shows how 4 landclim runs can be executed
 # with 2 cores availability. It runs Landclim in parallel (at most 2 
 # processes at a time) until all landclim configurations are executed
 # num_cores can be changed as needed (pls don't exceed core availabilty)
 
 
-num_cores <- 2
+
+num_cores <- 4
+
+if (num_cores > detectCores())
+    print("Warning... Requested number of cores exceed availability...")
+
 cl <- makeCluster(num_cores)
 registerDoParallel(cl)
 
