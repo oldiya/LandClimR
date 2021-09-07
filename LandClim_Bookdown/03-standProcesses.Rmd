@@ -155,104 +155,91 @@ are then added to the number of stems establishing in a post-disturbance
 regeneration event. If this information is not included in the landtype
 file, vegetative reproduction is inactive.
 
-+-----------------------+----------------------+-----------------------+
-| Variable              | Data type            | Description           |
-+=======================+======================+=======================+
-| SaplingInitialBiomass | numeric              | 0,01 tonnes (10kg)    |
-|                       |                      | the initial tree      |
-|                       |                      | biomass (Bi (t=0)     |
-|                       |                      | assumed to be the     |
-|                       |                      | same for all the tree |
-|                       |                      | species. This value   |
-|                       |                      | is fixed in the code  |
-|                       |                      |                       |
-|                       |                      | \_                    |
-|                       |                      | initialSaplingBiomass |
-+-----------------------+----------------------+-----------------------+
-| Rmax                  | numeric              | User defined species  |
-|                       |                      | specific parameter    |
-|                       |                      | that shows the        |
-|                       |                      | maximum growth rate   |
-|                       |                      | under optimum         |
-|                       |                      | environmental         |
-|                       |                      | conditions per year   |
-+-----------------------+----------------------+-----------------------+
-| Sapling               | category             | Defined as trees less |
-|                       |                      | than 10 years old     |
-+-----------------------+----------------------+-----------------------+
-| rela                  |                      | Ratio of realized     |
-| tiveGrowthPerformance |                      | growth incremetn      |
-|                       |                      | during the last 10    |
-|                       |                      | years to max          |
-|                       |                      | potential growth      |
-|                       |                      | increment under       |
-|                       |                      | optimal environmental |
-|                       |                      | conditions (aka       |
-|                       |                      | species with better   |
-|                       |                      | grotwht are capable   |
-|                       |                      | of establishment more |
-|                       |                      | trees)                |
-|                       |                      |                       |
-|                       |                      | \_relativ             |
-|                       |                      | eGrowthPerformance[i] |
-|                       |                      | =                     |
-|                       |                      | (\_init               |
-|                       |                      | ialRealizedBiomass[i] |
-|                       |                      | -                     |
-|                       |                      | \_init                |
-|                       |                      | ialSaplingBiomass[i]) |
-|                       |                      | /                     |
-|                       |                      | \_optimum             |
-|                       |                      | GrowthPerformance[i]; |
-+-----------------------+----------------------+-----------------------+
-| \_opt                 |                      | maximun potential     |
-| imumGrowthPerformance |                      | growth icrement under |
-|                       |                      | optimal environmental |
-|                       |                      | conditions            |
-|                       |                      |                       |
-|                       |                      | \_initialSapl         |
-|                       |                      | ingBiomass[speciesId] |
-|                       |                      | \*                    |
-|                       |                      | (float)Math.Pow(1.0f  |
-|                       |                      | + \_Rmax[speciesId],  |
-|                       |                      | \_e                   |
-|                       |                      | stablishmentInterval) |
-|                       |                      | -                     |
-|                       |                      | \_initialSapli        |
-|                       |                      | ngBiomass[speciesId]; |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
-|                       |                      |                       |
-+-----------------------+----------------------+-----------------------+
++---------------------------+-----------+---------------------------+
+| Variable                  | Data type | Description               |
++===========================+===========+===========================+
+| SaplingInitialBiomass     | numeric   | 0,01 tonnes (10kg) the    |
+|                           |           | initial tree biomass (Bi  |
+|                           |           | (t=0) assumed to be the   |
+|                           |           | same for all the tree     |
+|                           |           | species. This value is    |
+|                           |           | fixed in the code         |
+|                           |           |                           |
+|                           |           | \_ initialSaplingBiomass  |
++---------------------------+-----------+---------------------------+
+| Rmax                      | numeric   | User defined species      |
+|                           |           | specific parameter that   |
+|                           |           | shows the maximum growth  |
+|                           |           | rate under optimum        |
+|                           |           | environmental conditions  |
+|                           |           | per year                  |
++---------------------------+-----------+---------------------------+
+| Sapling                   | category  | Defined as trees less     |
+|                           |           | than 10 years old         |
++---------------------------+-----------+---------------------------+
+| rela                      |           | Ratio of realized growth  |
+| tiveGrowthPerformance     |           | incremetn during the last |
+|                           |           | 10 years to max potential |
+|                           |           | growth increment under    |
+|                           |           | optimal environmental     |
+|                           |           | conditions (aka species   |
+|                           |           | with better grotwht are   |
+|                           |           | capable of establishment  |
+|                           |           | more trees)               |
+|                           |           |                           |
+|                           |           | \_relativ                 |
+|                           |           | eGrowthPerformance[i] =   |
+|                           |           | (\_init                   |
+|                           |           | ialRealizedBiomass[i] -   |
+|                           |           | \_init                    |
+|                           |           | ialSaplingBiomass[i]) /   |
+|                           |           | \_optimum                 |
+|                           |           | GrowthPerformance[i];     |
++---------------------------+-----------+---------------------------+
+| \_opt                     |           | maximun potential growth  |
+| imumGrowthPerformance     |           | icrement under optimal    |
+|                           |           | environmental conditions  |
+|                           |           |                           |
+|                           |           | \_initialSapl             |
+|                           |           | ingBiomass[speciesId] \*  |
+|                           |           | (float)Math.Pow(1.0f +    |
+|                           |           | \_Rmax[speciesId], \_e    |
+|                           |           | stablishmentInterval) -   |
+|                           |           | \_initialSapli            |
+|                           |           | ngBiomass[speciesId];     |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
+|                           |           |                           |
++---------------------------+-----------+---------------------------+
 
 ### Reproduction
 
@@ -389,53 +376,13 @@ By default, the LOGISTIC growth model is used.
 
 #### Tree growth formulation in the src code
 
-+------+---+-----------+----+-----------------------------------------+
-| Vari | T | Location  | R  | Description                             |
-| able | y |           | ef |                                         |
-| name | p |           | er |                                         |
-|      | e |           | en |                                         |
-|      |   |           | ce |                                         |
-+======+===+===========+====+=========================================+
-| Grow | F | Cohort.cs | Sc | The realized growth rate $r_i(t)$       |
-| thTr | u |           | hu |                                         |
-| ee() | n |           | ma |                                         |
-|      | c |           | ch |                                         |
-|      | t |           | er |                                         |
-|      | i |           | 20 |                                         |
-|      | o |           | 04 |                                         |
-|      | n |           |    |                                         |
-+------+---+-----------+----+-----------------------------------------+
-| Sp   | P | User      |    | Optimun growth rate $r_s$               |
-| ecie | a | input in  |    |                                         |
-| sPar | r | the       |    |                                         |
-| amet | a | species   |    |                                         |
-| ers. | m | parameter |    |                                         |
-| RMax | e | file      |    |                                         |
-|      | t |           |    |                                         |
-|      | e |           |    |                                         |
-|      | r |           |    |                                         |
-+------+---+-----------+----+-----------------------------------------+
-| Delt | V | float C   |    | the change of individual tree biomass   |
-| aBio | a | ohort.Del |    | per year                                |
-| mass | l | taBiomass |    |                                         |
-|      | u |           |    |                                         |
-|      | e |           |    |                                         |
-+------+---+-----------+----+-----------------------------------------+
-| Bio  | V | float     |    | The biomass of an individual tree in a  |
-| mass | a | Cohor     |    | cohort (multiplied by the number of     |
-|      | l | t.Biomass |    | trees in the cohort Nc will provide the |
-|      | u |           |    | biomass in of the cohort)               |
-|      | e |           |    |                                         |
-+------+---+-----------+----+-----------------------------------------+
-| Upda | F |           |    | This function transforms the biomass    |
-| teDi | u |           |    | into dbh values                         |
-| amet | n |           |    |                                         |
-| er() | c |           |    |                                         |
-|      | t |           |    |                                         |
-|      | i |           |    |                                         |
-|      | o |           |    |                                         |
-|      | n |           |    |                                         |
-+------+---+-----------+----+-----------------------------------------+
+| Vari able name              | T y p e           | Location                                 | R ef er en ce        | Description                                                                                                                                  |
+|-----------------------------|-------------------|------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| Grow thTr ee()              | F u n c t i o n   | Cohort.cs                                | Sc hu ma ch er 20 04 | The realized growth rate $r_i(t)$                                                                                                            |
+| Sp ecie sPar amet ers. RMax | P a r a m e t e r | User input in the species parameter file |                      | Optimun growth rate $r_s$                                                                                                                    |
+| Delt aBio mass              | V a l u e         | float C ohort.Del taBiomass              |                      | the change of individual tree biomass per year                                                                                               |
+| Bio mass                    | V a l u e         | float Cohor t.Biomass                    |                      | The biomass of an individual tree in a cohort (multiplied by the number of trees in the cohort Nc will provide the biomass in of the cohort) |
+| Upda teDi amet er()         | F u n c t i o n   |                                          |                      | This function transforms the biomass into dbh values                                                                                         |
 
 #### Treegrowthformulation
 

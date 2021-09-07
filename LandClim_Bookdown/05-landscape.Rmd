@@ -6,6 +6,17 @@
 
 ## Seed dispersal {#sectionSeedDispersal}
 
+
+
+### More on the dipersal kernel
+Here we denote dispersal kernel $k_D (r)$ as the probability density function (pdf) of the distribution of the end location of a disperser relative to the source point in a three-dimensional (3D) space.
+
+
+
+The kernel is defining the density of probability $k_D (r)$  that a dispersal event (here seeds from mature trees) ends at a distance r away from the source, regardless of the direction. The dispersal kernel $k_D (r)$  always gives a probability per unit distance.
+
+
+
 ## Natural disturbances
 
 ### Wind

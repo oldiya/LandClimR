@@ -74,7 +74,7 @@ $DDcorr(T_{m})$ is an empirical correction function developed by
 
 The following parameter are available:
 
-| P ara met ers             | Data type       | Description                                                                                                                                                                                    |
+| P ara met ers             | Da ta ty pe     | Description                                                                                                                                                                                    |
 |---------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | dtt / $k$                 | n u m e r i c   | It the developmental threshold temperature and its value is 5.5ºC . It is defined in the src of the model (IS IT THE SAME AS \_droughtTolerantTemperature ??)                                  |
 | Dco rr( Tm) / \$ co r r\$ | n u m e r i c   | Empirical correction of the number of degree days. It is estimated based o                                                                                                                     |

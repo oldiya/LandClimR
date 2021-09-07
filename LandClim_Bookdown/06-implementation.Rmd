@@ -134,37 +134,89 @@ Species' differences in their ability to reproduce vegetatively after disturbanc
 
 ### **Landtype parameters XML**
 
-Each grid cell belongs to a so-called *Landtype_parameters.xml*. These userdefined land types are the basis for distinguishing between different site characteristics, environmental conditions, and species-specific establishment probabilities.
+Each grid cell belongs to a different *Land type*. These user defined land types are the basis for distinguishing between different site characteristics, environmental conditions, and species-specific establishment probabilities. Site parameters can be defined by **ecoregions** (land types).
 
-Site parameters can be defined by **ecoregions** (land types).
 
-#### **List of land type file parameters**
+#### Description of the land type parameters
+Per each land type we need to define the following 
 
-**name:** empty / active
+##### Id
+Usually a number that defines the land type number in order e.g. 1, 2, etc
 
-**minShadeYears:** 30
+##### Name
+A character that describes the land type, it could be empty / active e.g. NE, SW
 
-**meanFireReturnInterval:** 3000
+##### MinShadeYears
+30
 
-**fireIgnitionCoefficient:**0.002
+##### MeanFireReturnInterval
+3000
 
-**ignitionCoefficient:**0.002
+##### FireIgnitionCoefficient:
+0.002
 
-**fireProbabilityCoefficient:** 20
+##### IgnitionCoefficient:
+0.002
 
-**lastWindthrowDisturbance:** 400
+##### fireProbabilityCoefficient
+20
 
-**lastFireDisturbance:** 400
+##### lastWindthrowDisturbance
+400
 
-**browsingIntensity:** 0.2
+##### lastFireDisturbance
+400
 
-**potentialSaplingDensity:** 0.5
+##### browsingIntensity
+0.2
 
-**defaultEstablishmentCoefficient:** 0.9
+##### potentialSaplingDensity
+0.5
 
-**defaultVegetativePropagules:** 0
+##### defaultEstablishmentCoefficient
+0.9 for all the species expect the one defined in the category "speciesEstablishmentCoefficients"
 
-**speciesEstablishmentCoefficients:** 0.9 for all the species
+
+##### speciesEstablishmentCoefficients:
+
+###### name 
+piceabie
+
+###### establishmentCoefficient
+0.9
+
+###### vegetativePropagules
+
+0.9 for all the species
+
+##### defaultVegetativePropagules
+for all the species
+
+##### maxBiomassDensity
+
+ 	<Id>2</Id>
+    	<Name>SW</Name>
+    	<MinShadeYears>30</MinShadeYears>
+    	<MeanFireReturnInterval>3000</MeanFireReturnInterval>
+    	<FireIgnitionCoefficient>0.0002</FireIgnitionCoefficient>
+    	<FireProbabilityCoefficient>20</FireProbabilityCoefficient>
+    	<LastWindthrowDisturbance>400</LastWindthrowDisturbance>
+    	<LastFireDisturbance>400</LastFireDisturbance>
+    	<BrowsingIntensity>0</BrowsingIntensity>
+    	<PotentialSaplingDensity>0.5</PotentialSaplingDensity>    	
+    	<DefaultEstablishmentCoefficient>0.9</DefaultEstablishmentCoefficient>
+    	
+		<SpeciesEstablishmentCoefficients>
+			<SpeciesEstablishmentCoefficient>
+				<Name>piceabie</Name>
+				<EstablishmentCoefficient>0.9</EstablishmentCoefficient>
+				<VegetativePropagules>false</VegetativePropagules>
+       		</SpeciesEstablishmentCoefficient>
+    	</SpeciesEstablishmentCoefficients>
+    	<DefaultVegetativePropagules>false</DefaultVegetativePropagules>
+    	<MaxBiomassDensity>1000</MaxBiomassDensity>
+
+
 
 ### **Planting parameters XML**
 
