@@ -5,24 +5,24 @@
 ################################################################################
 
 
-default_barkbeetle <- read.csv("default-data/barkbeetle.csv",
+default_barkbeetle <- read.csv("R/default-data/barkbeetle.csv",
                                fileEncoding = "UTF-8-BOM", header = T)
-default_config <- read.csv("default-data/config.csv",
+default_config <- read.csv("R/default-data/config.csv",
                            fileEncoding = "UTF-8-BOM", header = T)
-default_landtypeparameters <- read.csv("default-data/landtypeparameters.csv",
+default_landtypeparameters <- read.csv("R/default-data/landtypeparameters.csv",
     fileEncoding = "UTF-8-BOM", header = T)
-default_plantingparameters <-read.csv("default-data/plantingparameters.csv",
+default_plantingparameters <-read.csv("R/default-data/plantingparameters.csv",
     fileEncoding = "UTF-8-BOM", header = T)
-default_randomstate <- read.csv("default-data/randomstate.csv",
+default_randomstate <- read.csv("R/default-data/randomstate.csv",
                                 fileEncoding = "UTF-8-BOM", header = T)
-default_species <- read.csv("default-data/species.csv",
+default_species <- read.csv("R/default-data/species.csv",
                             fileEncoding = "UTF-8-BOM", header = T)
 
 # Important: if the XML path file already exists, the provided configuration
 # will not be processed. Please ensure that the XML file path does not exist
 # if you want to change anything in the configuration of a particular XML
 # LandClimR does not overwrite any XML file. It creates new files only.
-# The is needed to ensure that existing XMLs are not overwritten 
+# The is needed to ensure that existing XMLs are not overwritten
 
 runLandClim <- function(config = data.frame(),
                         configXMLpath = "",
@@ -52,8 +52,8 @@ runLandClim <- function(config = data.frame(),
       randomstate <- default_randomstate
   if (length(species) == 0)
       species <- default_species
-  
-  
+
+
   if (configXMLpath == "")
     configXMLpath <-
       paste0(workspacePath, "/modelConfiguration.xml")
@@ -110,7 +110,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         return(-1)
     }
     if (tolower(type) == 'config') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_config
         } else {
             data <- cbind(data, default_config[!names(default_config) %in% names(data)])
@@ -122,7 +122,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         # write InputConfiguration
         InputConfiguration <- xml2::xml_add_child(root, .value="InputConfiguration")
         OutputConfiguration <- xml2::xml_add_child(root, .value="OutputConfiguration")
-        
+
 
 
         # populate InputConfiguration
@@ -136,7 +136,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
         if (length(xml2::xml_find_all(InputConfiguration, ".//InputPath")) == 0)
             xml2::xml_add_child(InputConfiguration, .value="InputPath")
-        
+
 
         # populate OutputConfiguration
         if (!is.na(data["OutputConfiguration_OutputDirectory"][[1]]))
@@ -152,8 +152,8 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
         } else
             xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration, .value="CsvFieldDelimiter"), ",")
-        
-        
+
+
         if (!is.na(data["OutputConfiguration_Aggregations_OutputAggregation_Names"][[1]]) && !is.na(data["OutputConfiguration_Aggregations_OutputAggregation_Maps"][[1]])) {
             OutputConfiguration_Aggregations <- xml2::xml_add_child(OutputConfiguration, .value="Aggregations")
             name_list <- strsplit(toString(data["OutputConfiguration_Aggregations_OutputAggregation_Names"][[1]]), "#")[[1]]
@@ -172,12 +172,12 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         }
 
         OutputConfiguration_Climate <- xml2::xml_add_child(OutputConfiguration, .value="Climate")
-        
+
         if (!is.na(data["OutputConfiguration_Climate_Coordinates_Coordinate_Rows"][[1]]) && !is.na(data["OutputConfiguration_Climate_Coordinates_Coordinate_Cols"][[1]])) {
             OutputConfiguration_Climate_Coordinates <- xml2::xml_add_child(OutputConfiguration_Climate, .value="Coordinates")
             rows <- strsplit(toString(data["OutputConfiguration_Climate_Coordinates_Coordinate_Rows"][[1]]), "#")[[1]]
             cols <- strsplit(toString(data["OutputConfiguration_Climate_Coordinates_Coordinate_Cols"][[1]]), "#")[[1]]
-            
+
             if (length(rows) != length(cols)) {
                 print("Contradicting data: OutputConfiguration_Climate_Coordinates_Coordinate_Rows & OutputConfiguration_Climate_Coordinates_Coordinate_Cols")
                 return(-1)
@@ -197,21 +197,21 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         OutputConfiguration_Cohort <- xml2::xml_add_child(OutputConfiguration, .value="Cohort")
         OutputConfiguration_Cohort_Full <- xml2::xml_add_child(OutputConfiguration_Cohort, .value="Full")
         xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value="Enabled"), toString(data["OutputConfiguration_Cohort_Full_Enabled"][[1]]))
-        
+
         if("OutputConfiguration_Cohort_Full_Years" %in% data_columns)
             xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value="Years"), gsub("#", " ", data["OutputConfiguration_Cohort_Full_Years"][[1]]))
 
         xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="Biomass"), .value="Enabled"), toString(data["OutputConfiguration_Cohort_Biomass_Enabled"][[1]]))
         xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="StemCount"), .value="Enabled"), toString(data["OutputConfiguration_Cohort_StemCount_Enabled"][[1]]))
-        
-        
+
+
         if (!is.na(data["OutputConfiguration_Cohort_Aggregations"][[1]])) {
             OutputConfiguration_Cohort_Aggregations <- xml2::xml_add_child(OutputConfiguration_Cohort, .value="Aggregations")
             aggregations <- strsplit(toString(data["OutputConfiguration_Cohort_Aggregations"][[1]]), "#")[[1]]
             for (i in 1:length(aggregations))
                 xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Aggregations, .value="Aggregation"), toString(aggregations[i]))
         }
-        
+
         OutputConfiguration_Grass <- xml2::xml_add_child(OutputConfiguration, .value="Grass")
         xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Grass, .value="Enabled"), toString(data["OutputConfiguration_Grass_Enabled"][[1]]))
 
@@ -283,7 +283,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
             OutputConfiguration_Light_Coordinates <- xml2::xml_add_child(OutputConfiguration_Light, .value="Coordinates")
             rows <- strsplit(toString(data["OutputConfiguration_Light_Coordinates_Coordinate_Rows"][[1]]), "#")[[1]]
             cols <- strsplit(toString(data["OutputConfiguration_Light_Coordinates_Coordinate_Cols"][[1]]), "#")[[1]]
-            
+
             if (length(rows) != length(cols)) {
                 print("Contradicting data: OutputConfiguration_Light_Coordinates_Coordinate_Rows & OutputConfiguration_Light_Coordinates_Coordinate_Cols")
                 return(-1)
@@ -468,7 +468,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
         xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
         xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="ParameterFile"), toString(data["BeetleDisturbanceConfiguration_ParameterFile"][[1]]))
-        
+
         # write RuntimeConfiguration
         RuntimeConfiguration <- xml2::xml_add_child(root, .value="RuntimeConfiguration")
         xml2::xml_set_text(xml2::xml_add_child(RuntimeConfiguration, .value="StartYear"), toString(data["RuntimeConfiguration_StartYear"][[1]]))
@@ -488,14 +488,14 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         xml2::xml_set_text(xml2::xml_add_child(DispersalConfiguration, .value="MaxDm1Probability"), toString(data["DispersalConfiguration_MaxDm1Probability"][[1]]))
 
         # write DebugConfiguration
-        DebugConfiguration <- xml2::xml_add_child(root, .value="DebugConfiguration")    
+        DebugConfiguration <- xml2::xml_add_child(root, .value="DebugConfiguration")
         xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="WaitForExit"), toString(data["DebugConfiguration_WaitForExit"][[1]]))
         xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="DebugOutput"), toString(data["DebugConfiguration_DebugOutput"][[1]]))
-    
+
 
 
     } else if (tolower(type) == 'barkbeetle') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_barkbeetle
         } else {
             data <- cbind(data, default_barkbeetle[!names(default_barkbeetle) %in% names(data)])
@@ -540,12 +540,12 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
 
     } else if (tolower(type) == 'landtypeparameters') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_landtypeparameters
         }
-        
+
         root <- xml2::xml_new_root(.value="LandTypeParametersFile")
-        
+
         for(r in 1:nrow(data)) {
             row <- data[r,]
             LandTypeParameter <- xml2::xml_add_child(root, .value="LandTypeParameter")
@@ -587,12 +587,12 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         }
 
     } else if (tolower(type) == 'plantingparameters') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_plantingparameters
         }
-        
+
         root <- xml2::xml_new_root(.value="PlantingConfiguration")
-        
+
         for(r in 1:nrow(data)) {
             row <- data[r,]
             PlantingParameters <- xml2::xml_add_child(root, .value="PlantingParameters")
@@ -642,12 +642,12 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
         }
 
     } else if (tolower(type) == 'randomstate') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_randomstate
         } else {
             data <- cbind(data, default_randomstate[!names(default_randomstate) %in% names(data)])
         }
-        
+
         root <- xml2::xml_new_root(.value="RandomState")
         xml2::xml_set_text(xml2::xml_add_child(root, .value="X"), toString(data["X"][[1]]))
         xml2::xml_set_text(xml2::xml_add_child(root, .value="Y"), toString(data["Y"][[1]]))
@@ -659,7 +659,7 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
 
     } else if (tolower(type) == 'species') {
-        if (length (data) == 0) { 
+        if (length (data) == 0) {
             data <- default_species
         }
         root <- xml2::xml_new_root(.value="SpeciesFile")
@@ -667,13 +667,13 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
         for(r in 1:nrow(data)) {
             row <- data[r,]
-            child <- xml2::xml_add_child(root, .value="SpeciesParameters") 
-            for (colname in names(data)) 
+            child <- xml2::xml_add_child(root, .value="SpeciesParameters")
+            for (colname in names(data))
                 if (!is.na(row[colname][[1]]) && row[colname][[1]] != "")
                     xml2::xml_set_text(xml2::xml_add_child(child, .value=colname), toString(row[colname][[1]]))
-            
+
         }
-        
+
     } else {
         print(paste0("Error in XML generator. Unknown type: ", type))
         return(-1)
