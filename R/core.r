@@ -40,38 +40,25 @@ runLandClim <- function(config = data.frame(),
                         consoleOutputPath = "",
                         binPath = "bin") {
   print("asd")
-  if (length(config) == 0)
-      config <- default_config
-  if (length(barkbeetle) == 0)
-      barkbeetle <- default_barkbeetle
-  if (length(landtypeparameters) == 0)
-      landtypeparameters <- default_landtypeparameters
-  if (length(plantingparameters) == 0)
-      plantingparameters <- default_plantingparameters
-  if (length(randomstate) == 0)
-      randomstate <- default_randomstate
-  if (length(species) == 0)
-      species <- default_species
-
+  if (length(config) == 0){config <- default_config}
+  if (length(barkbeetle) == 0){barkbeetle <- default_barkbeetle}
+  if (length(landtypeparameters) == 0){landtypeparameters <- default_landtypeparameters}
+  if (length(plantingparameters) == 0){plantingparameters <- default_plantingparameters}
+  if (length(randomstate) == 0){randomstate <- default_randomstate}
+  if (length(species) == 0){species <- default_species}
 
   if (configXMLpath == "")
-    configXMLpath <-
-      paste0(workspacePath, "/modelConfiguration.xml")
+    {configXMLpath <- paste0(workspacePath, "/modelConfiguration.xml")}
   if (barkbeetleXMLpath == "")
-    barkbeetleXMLpath <-
-      paste0(workspacePath, "/barkbeetle-parameters.xml")
+    {barkbeetleXMLpath <- paste0(workspacePath, "/barkbeetle-parameters.xml")}
   if (landtypeparametersXMLpath == "")
-    landtypeparametersXMLpath <-
-      paste0(workspacePath, "/Landtype_parameters.xml")
+    landtypeparametersXMLpath <- paste0(workspacePath, "/Landtype_parameters.xml")
   if (plantingparametersXMLpath == "")
-    plantingparametersXMLpath <-
-      paste0(workspacePath, "/planting-parameters.xml")
+    plantingparametersXMLpath <- paste0(workspacePath, "/planting-parameters.xml")
   if (randomstateXMLpath == "")
-    randomstateXMLpath <-
-      paste0(workspacePath, "/randomstate.xml")
+    randomstateXMLpath <- paste0(workspacePath, "/randomstate.xml")
   if (speciesXMLpath == "")
-    speciesXMLpath <-
-      paste0(workspacePath, "/species-configuration.xml")
+    speciesXMLpath <- paste0(workspacePath, "/species-configuration.xml")
 
   if (!is.null(consoleOutputPath)) {
       if (consoleOutputPath == "") {
@@ -95,7 +82,7 @@ runLandClim <- function(config = data.frame(),
   writeXML(randomstate, "randomstate", randomstateXMLpath)
   writeXML(species, "species", speciesXMLpath)
 
-  if (.Platform$OS.type == "Unix")
+  if (.Platform$OS.type == "unix")
     system2(paste0(binPath, '/LandClim'),
             args = paste0(getwd(), "/", configXMLpath), stdout=consoleOutputPath)
   else
