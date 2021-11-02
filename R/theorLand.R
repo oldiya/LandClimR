@@ -41,7 +41,7 @@ theorLandscape <- function (ySize, # y size of the lanscape in m
   dem <- raster::raster (nrows = nr, ncols = nc, extension)
 
   # Assign values to the raster
-  dem[] <- altitud
+  dem[] <- altitude
 
   # Assign a coordinate reference system (CRS)
   raster::crs(dem) <- coor #EPSG
