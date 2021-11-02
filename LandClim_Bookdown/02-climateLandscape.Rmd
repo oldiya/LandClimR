@@ -104,7 +104,7 @@ effects.
 **Technical note**
 
 The water balance module has to be specified in the control file
-(e.g.,\<WaterBalanceModel\>ORIGINAL \</WaterBalanceModel\> see also
+(e.g.,\<WaterBalanceModel>ORIGINAL \</WaterBalanceModel> see also
 control file in the LandClim example folder). Besides, the choice of the
 water balance module determines the species parameter file to be used.
 By default, it is suggested to use the ORIGINAL water balance version

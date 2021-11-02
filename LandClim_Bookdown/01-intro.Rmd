@@ -2,7 +2,7 @@
 
 ## Structure of this book
 
-This book describes the model LandClim. The [current section](#intro) provides an overview on the model, section [2](#science1) and [3](#science2) describes the science behind the model and its links to the source code. The (section 4)[\#implementation] describes how to implement the model and the (last section)[\#tutorials] is a collection of tutorials.
+This book describes the model LandClim. The [current section](#intro) provides an overview on the model, section [2](#science1) and [3](#science2) describes the science behind the model and its links to the source code. The (section 4)\[#implementation\] describes how to implement the model and the (last section)\[#tutorials\] is a collection of tutorials.
 
 If you just want to try the model we recommend that you go to the [tutorials](#tutorials), if you want to understand the science behind the model explore the chapters [2](#science1) and [3](#science2), but if you are interested in using LandClim for your own research, have a look to the [implementation section](#implementation) and please get in touch with us.
 
@@ -93,11 +93,11 @@ LandClim has been applied to a various study regions worldwide with different ec
 
 How to download the code and the manuals etc support
 
-You can either download the source code (here)[add web link here] or directly download the executable files from (here)[add web link here].
+You can either download the source code (here)\[add web link here\] or directly download the executable files from (here)\[add web link here\].
 
 ### Using the source code
 
-After (downloading the LandClim source code )[\#\#\# Downloading LandClim] you will have to publish the model to obtain the executable files. For this you need to have installed the software netcoreapp/dotnet and navigate in the comand line until the src code:
+After (downloading the LandClim source code )\[##\# Downloading LandClim\] you will have to publish the model to obtain the executable files. For this you need to have installed the software netcoreapp/dotnet and navigate in the comand line until the src code:
 
 landclim\<src
 

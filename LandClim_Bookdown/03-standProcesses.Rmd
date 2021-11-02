@@ -188,25 +188,25 @@ file, vegetative reproduction is inactive.
 |                           |           | more trees)               |
 |                           |           |                           |
 |                           |           | \_relativ                 |
-|                           |           | eGrowthPerformance[i] =   |
+|                           |           | eGrowthPerformance\[i\] = |
 |                           |           | (\_init                   |
-|                           |           | ialRealizedBiomass[i] -   |
+|                           |           | ialRealizedBiomass\[i\] - |
 |                           |           | \_init                    |
-|                           |           | ialSaplingBiomass[i]) /   |
+|                           |           | ialSaplingBiomass\[i\]) / |
 |                           |           | \_optimum                 |
-|                           |           | GrowthPerformance[i];     |
+|                           |           | GrowthPerformance\[i\];   |
 +---------------------------+-----------+---------------------------+
 | \_opt                     |           | maximun potential growth  |
 | imumGrowthPerformance     |           | icrement under optimal    |
 |                           |           | environmental conditions  |
 |                           |           |                           |
 |                           |           | \_initialSapl             |
-|                           |           | ingBiomass[speciesId] \*  |
-|                           |           | (float)Math.Pow(1.0f +    |
-|                           |           | \_Rmax[speciesId], \_e    |
+|                           |           | ingBiomass\[speciesId\]   |
+|                           |           | \* (float)Math.Pow(1.0f + |
+|                           |           | \_Rmax\[speciesId\], \_e  |
 |                           |           | stablishmentInterval) -   |
 |                           |           | \_initialSapli            |
-|                           |           | ngBiomass[speciesId];     |
+|                           |           | ngBiomass\[speciesId\];   |
 +---------------------------+-----------+---------------------------+
 |                           |           |                           |
 +---------------------------+-----------+---------------------------+
@@ -306,18 +306,20 @@ limitation (light_rf), (2) degree-day limitation (DD_rf), and (3)
 drought limitation (drStr_rf). Values for the reduction factor range
 between 0 (maximum limitation) and 1 (no limitation).
 
-\\begin{figure}[h!]
-
+```{=tex}
+\begin{figure}[h!]
+```
 \\centering
 
-\\includegraphics[width=1.00\\textwidth]{GrowthRedFcts.png}
+\\includegraphics\[width=1.00\\textwidth\]{GrowthRedFcts.png}
 
     \\caption{Growth reduction functions for a) light response factor (light\\\_rf), b) degree-day response factor (DD\\\_rf) c) drought response factor (drSt\\\_rf)}
 
     \\label{Fig_GrowthRedFcts}
 
-\\end{figure}
-
+```{=tex}
+\end{figure}
+```
 These factors are implemented via Liebig's 'Law of the Minimum'. Thus,
 the realized growth rate ($r_{i}(t)$) is calculated as the optimum
 growth rate ($r_{s}$) reduced by the most limiting environmental factor
