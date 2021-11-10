@@ -16,7 +16,7 @@
 #delta : altitude rate corrections
 
 write.climate <- function (filename, latitude, elevation, climate,
-                           Tlapse= rep(0, 12), Plapse = rep(0,12), delta = 100){
+                           Tlapse = rep(0, 12), Plapse = rep(0,12), delta = 100){
 
   con <- file(filename, open="w")
   writeLines("#header info#", con)
