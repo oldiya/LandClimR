@@ -58,18 +58,6 @@ runLandClim <- function(overwrite = FALSE,
   }
 
 
-
-  # Save the console outputs from the simulation?
-  if (!is.null(consoleOutputPath)) {
-    if (consoleOutputPath == "") {
-      tempStr <- strsplit(tempdir(), "\\\\")
-      consoleOutputPath <- paste0(configXMLpath, "_consoleOutput_",
-                                  tempStr[[1]][[length(tempStr[[1]])]], ".txt")
-    }
-  }
-
-
-
   # OPTION A- No parameters are provided, use the default values and create the xml file in workspacePath
   if (!(class(config) == "data.frame") && is.na(config)){config <- default_config}
   if (!(class(barkbeetle) == "data.frame") && is.na(barkbeetle)){barkbeetle <- default_barkbeetle}
@@ -104,16 +92,17 @@ runLandClim <- function(overwrite = FALSE,
   if (class(config) == "character"){
     configXMLpath <- paste0(workspacePath, "config.xml")
   }
-  #if (class(barkbeetle) == "character")
-  #   barkbeetleXMLpath <- paste0(workspacePath, "barkbeetle.xml")
-  #if (class(landtypeparameters) == "character")
-  #  landtypeparametersXMLpath <- paste0(workspacePath, "landtype.xml")
-  #if (class(plantingparameters) == "character")
-  #  plantingparametersXMLpath <- paste0(workspacePath, "planting.xml")
-  #if (class(randomstate) == "character")
-  #  randomstateXMLpath <- paste0(workspacePath, "randomstate.xml")
-  #if (class(species) == "character")
-  #  speciesXMLpath <- paste0(workspacePath, "species.xml")
+
+
+  # Save the console outputs from the simulation?
+  if (!is.null(consoleOutputPath)) {
+    if (consoleOutputPath == "") {
+      tempStr <- strsplit(tempdir(), "\\\\")
+      consoleOutputPath <- paste0(configXMLpath, "_consoleOutput_",
+                                  tempStr[[1]][[length(tempStr[[1]])]], ".txt")
+    }
+  }
+
 
   # Run the model with the desired set-up
   if (tolower(.Platform$OS.type) == "unix"){
@@ -122,6 +111,8 @@ runLandClim <- function(overwrite = FALSE,
   } else {
     system2(paste0(binPath, '/LandClim.exe'),
             args = paste0(getwd(), "/", configXMLpath), stdout=consoleOutputPath)}
+
+
 }
 
 
