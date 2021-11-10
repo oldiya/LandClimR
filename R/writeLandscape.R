@@ -28,7 +28,7 @@ writeLandscape <- function (ySize, # y size of the landscape in m
                             so, # bucket size of the soil , EXPLANATION same as is altitude
                             landt, #land type , EXPLANATION same as is altitude
                             asp, # aspect , EXPLANATION same as is altitude
-                            plot, # if you want to plot the maps created
+                            plot = FALSE, # if you want to plot the maps created
                             fullpath# full path to the desired location
                             ){
   nr <- ceiling (ySize / cellSize) # number of rows
