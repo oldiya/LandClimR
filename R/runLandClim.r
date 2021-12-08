@@ -41,6 +41,7 @@ default_species <- read.csv("R/default-data/species.csv",
 
 
 runLandClim <- function(overwrite = FALSE,
+                        decadal,
                         config = NA,
                         barkbeetle = NA,
                         landtypeparameters = NA,
@@ -70,22 +71,22 @@ runLandClim <- function(overwrite = FALSE,
   # or has been assigned to the default values in the step above
   if (class(config) == "data.frame"){
     configXMLpath <- paste0(workspacePath, "config.xml")
-    writeXML(data = config, type = "config", filePathXML = configXMLpath, overwrite)}
+    writeXML(data = config, type = "config", filePathXML = configXMLpath, overwrite, decadal)}
   if (class(barkbeetle) == "data.frame"){
     barkbeetleXMLpath <- paste0(workspacePath, "barkbeetle.xml")
-    writeXML(barkbeetle, "barkbeetle", barkbeetleXMLpath, overwrite)}
+    writeXML(barkbeetle, "barkbeetle", barkbeetleXMLpath, overwrite, decadal)}
   if (class(landtypeparameters) == "data.frame"){
     landtypeparametersXMLpath <- paste0(workspacePath, "landtype.xml")
-    writeXML(landtypeparameters, "landtypeparameters", landtypeparametersXMLpath, overwrite)}
+    writeXML(landtypeparameters, "landtypeparameters", landtypeparametersXMLpath, overwrite, decadal)}
   if (class(plantingparameters) == "data.frame"){
     plantingparametersXMLpath <- paste0(workspacePath, "planting.xml")
-    writeXML(plantingparameters,"plantingparameters",plantingparametersXMLpath, overwrite)}
+    writeXML(plantingparameters,"plantingparameters",plantingparametersXMLpath, overwrite, decadal)}
   if (class(randomstate) == "data.frame"){
     randomstateXMLpath <- paste0(workspacePath, "randomstate.xml")
-    writeXML(randomstate, "randomstate", randomstateXMLpath, overwrite)}
+    writeXML(randomstate, "randomstate", randomstateXMLpath, overwrite, decadal)}
   if (class(species) == "data.frame"){
     speciesXMLpath <- paste0(workspacePath, "species.xml")
-    writeXML(species, "species", speciesXMLpath, overwrite)}
+    writeXML(species, "species", speciesXMLpath, overwrite, decadal)}
 
 
   # OPTION C - provide a path where the parameter file is located
@@ -97,20 +98,25 @@ runLandClim <- function(overwrite = FALSE,
   # Save the console outputs from the simulation?
   if (!is.null(consoleOutputPath)) {
     if (consoleOutputPath == "") {
-      tempStr <- strsplit(tempdir(), "\\\\")
+      tempStr <- basename(tempdir())
       consoleOutputPath <- paste0(configXMLpath, "_consoleOutput_",
-                                  tempStr[[1]][[length(tempStr[[1]])]], ".txt")
+                                  tempStr, ".txt")
     }
   }
 
 
   # Run the model with the desired set-up
+  start_time <- Sys.time()
   if (tolower(.Platform$OS.type) == "unix"){
     system2(paste0( binPath, '/LandClim'),
-            args = paste0(getwd(), "/", configXMLpath))#, stdout = consoleOutputPath)
+            args = paste0(getwd(), "/", configXMLpath), stdout = consoleOutputPath)
+
   } else {
     system2(paste0(binPath, '/LandClim.exe'),
-            args = paste0(getwd(), "/", configXMLpath), stdout=consoleOutputPath)}
+            args = paste0(getwd(), "/", configXMLpath), stdout=consoleOutputPath)
+  }
+  print(paste0(workspacePath, " finished!"))
+  print(Sys.time() - start_time)
 
 
 }

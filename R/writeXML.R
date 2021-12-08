@@ -19,7 +19,7 @@ default_species <- read.csv("R/default-data/species.csv",
                             fileEncoding = "UTF-8-BOM", header = T)
 
 writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml",
-                     overwrite) {
+                     overwrite, decadal = FALSE) {
 
   if (file.exists(filePathXML) && overwrite == FALSE){
      print(paste0("XML file already exists and it has not been updated. Find the file here ", filePathXML))
@@ -46,7 +46,9 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
     for (col in data_columns) {
       if (startsWith(col, "InputConfiguration_")) {
         if (!is.na(data[col][[1]])) {
-          xml2::xml_set_text(xml2::xml_add_child(InputConfiguration, .value=strsplit(col, '_')[[1]][2]), toString(data[col][[1]]))
+          xml2::xml_set_text(xml2::xml_add_child(InputConfiguration,
+                                                 .value=strsplit(col, '_')[[1]][2]),
+                             toString(data[col][[1]]))
         }
       }
     }
@@ -57,7 +59,9 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
 
     # populate OutputConfiguration
     if (!is.na(data["OutputConfiguration_OutputDirectory"][[1]]))
-      xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration, .value="OutputDirectory"), toString(data["OutputConfiguration_OutputDirectory"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
+                                             .value="OutputDirectory"),
+                         toString(data["OutputConfiguration_OutputDirectory"][[1]]))
     else
       xml2::xml_add_child(OutputConfiguration, .value="OutputDirectory")
 
@@ -289,8 +293,6 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
     xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Fire_History_Start"][[1]]))
 
 
-
-
     OutputConfiguration_Wind <- xml2::xml_add_child(OutputConfiguration, .value="Wind")
     child <- xml2::xml_add_child(OutputConfiguration_Wind, .value="Detail")
     xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Wind_Detail_Enabled"][[1]]))
@@ -382,9 +384,43 @@ writeXML <- function(data = data.frame(), type = "none", filePathXML = "temp.xml
     xml2::xml_set_text(xml2::xml_add_child(HarvestDisturbanceConfiguration, .value="ParameterFile"), toString(data["HarvestDisturbanceConfiguration_ParameterFile"][[1]]))
 
     # write BeetleDisturbanceConfiguration
-    BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="ParameterFile"), toString(data["BeetleDisturbanceConfiguration_ParameterFile"][[1]]))
+
+    if (decadal == TRUE) {
+      BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BeetleHostName"), toString(data["BeetleDisturbanceConfiguration_BeetleHostName"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BetaScale"), toString(data["BeetleDisturbanceConfiguration_BetaScale"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="IniBdi"), toString(data["BeetleDisturbanceConfiguration_IniBdi"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BgBpi"), toString(data["BeetleDisturbanceConfiguration_BgBpi"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="SiWMaxCoeff"), toString(data["BeetleDisturbanceConfiguration_SiWMaxCoeff"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BdiMaxCoeff"), toString(data["BeetleDisturbanceConfiguration_BdiMaxCoeff"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="CellCoI"), toString(data["BeetleDisturbanceConfiguration_CellCoI"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="SiCellNi"), toString(data["BeetleDisturbanceConfiguration_SiCellNi"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="SiWni"), toString(data["BeetleDisturbanceConfiguration_SiWni"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="WISiCell"), toString(data["BeetleDisturbanceConfiguration_WISiCell"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BpCoeff"), toString(data["BeetleDisturbanceConfiguration_BpCoeff"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="MaxInfBm"), toString(data["BeetleDisturbanceConfiguration_MaxInfBm"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="WIDist"), toString(data["BeetleDisturbanceConfiguration_WIDist"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="DTBark"), toString(data["BeetleDisturbanceConfiguration_DTBark"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="LowerAsymDrS"), toString(data["BeetleDisturbanceConfiguration_LowerAsymDrS"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="ParamCDrS"), toString(data["BeetleDisturbanceConfiguration_ParamCDrS"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="DrSFunction"), toString(data["BeetleDisturbanceConfiguration_DrSFunction"][[1]]))
+    } else {
+      BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="ParameterFile"), toString(data["BeetleDisturbanceConfiguration_ParameterFile"][[1]]))
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     # write RuntimeConfiguration
     RuntimeConfiguration <- xml2::xml_add_child(root, .value="RuntimeConfiguration")
