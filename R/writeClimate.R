@@ -10,7 +10,8 @@
 #filename,
 #latitude: Wheather station latitude
 #elevation: weather station elevation
-#climate: table where the column variables are year, mean temperature Jan to Temperature Dec [12] and precipitation sumJan to December [12]
+#climate: table where the column variables are year, mean temperature Jan to Temperature Dec [12]
+          #and precipitation sumJan to December [12]
 #Tlapse: is the value at which  temperature falls with altitude
 #Plapse: is the value at which  precipitation falls with altitude
 #delta : altitude rate corrections
@@ -37,4 +38,6 @@ write.climate <- function (filename, latitude, elevation, climate,
   close(con)
 
 }
+
+
 
