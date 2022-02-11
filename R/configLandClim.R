@@ -8,7 +8,6 @@
 #' @param randomstate the path to the randomstate file as a character or a data.frame where each of the variables/columns is a tag in the random state configuration file in LandClim. If not provided the default values will be used. The created file will be saved in the indicated workspacepath.
 #' @param species the path to the species file as a character or a data.frame where each of the variables/columns is a tag in the species parameters configuration file in LandClim. If not provided the default values will be used. The created file will be saved in the indicated workspacepath.
 #' @param workspacePath path where the the input xml files and output will be created. The name of the files will be the default names (config.xml, barkbeetle.xml, landtype.xml, planting.xml, randomstate.xml, species.xml) unless they have previously created.
-#' @param consoleOutputPath path to the folder and name ( e.g. nameofthefile.txt) of the file where you want to storage the console outputs shown during the simulation. If not provided the console outcomes will be seen in the console and there will not be storaged.
 #' @param binPath path to the folder where LandClim model binary files needed for your operative system are storaged.
 #' @return Run LandClim with the desired input files and saved in the \code{workspacePath} provided.
 #' @examples
@@ -41,18 +40,18 @@ default_species <- read.csv("R/default-data/species.csv",
 
 
 configLandClim <- function(overwrite = FALSE,
-                        decadal,
-                        config = NA,
-                        barkbeetle = NA,
-                        landtypeparameters = NA,
-                        plantingparameters = NA,
-                        randomstate =  NA,
-                        species = NA,
-                        workspacePath = "workspace") {
+                           decadal,
+                           config = NA,
+                           barkbeetle = NA,
+                           landtypeparameters = NA,
+                           plantingparameters = NA,
+                           randomstate =  NA,
+                           species = NA,
+                           workspacePath = "workspace") {
 
   # Check if the folder where you want to storage the parameter files and
   # simulation outputs exists if it does not exist the folder is created
-  if (!dir.exists(workspacePath)){
+  if (!dir.exists(workspacePath)) {
     dir.create(workspacePath, recursive = TRUE)
   }
 
@@ -92,29 +91,6 @@ configLandClim <- function(overwrite = FALSE,
     configXMLpath <- paste0(workspacePath, "config.xml")
   }
 
-
-  # Save the console outputs from the simulation?
-  if (!is.null(consoleOutputPath)) {
-    if (consoleOutputPath == "") {
-      tempStr <- basename(tempdir())
-      consoleOutputPath <- paste0(configXMLpath, "_consoleOutput_",
-                                  tempStr, ".txt")
-    }
-  }
-
-
-  # Run the model with the desired set-up
-  start_time <- Sys.time()
-  if (tolower(.Platform$OS.type) == "unix"){
-    system2(paste0( binPath, '/LandClim'),
-            args = paste0(getwd(), "/", configXMLpath), stdout = consoleOutputPath)
-
-  } else {
-    system2(paste0(binPath, '/LandClim.exe'),
-            args = paste0(getwd(), "/", configXMLpath), stdout=consoleOutputPath)
-  }
-  print(paste0(workspacePath, " finished!"))
-  print(Sys.time() - start_time)
 
 
 }
