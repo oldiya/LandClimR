@@ -47,7 +47,7 @@ configLandClim <- function(overwrite = FALSE,
                            plantingparameters = NA,
                            randomstate =  NA,
                            species = NA,
-                           workspacePath = "workspace") {
+                           workspacePath = "workspace/") {
 
   # Check if the folder where you want to storage the parameter files and
   # simulation outputs exists if it does not exist the folder is created
