@@ -27,6 +27,7 @@ configLandClim(overwrite=TRUE, decadal=FALSE, config = configDF,
                randomstate= LandClimR::default_randomstate,
                species= LandClimR::default_species)
 
+# using FFT branch of LandClim
 landClimpath <- "C:/Users/abbash/Desktop/landclim/build/Release/netcoreapp3.1/publish"
 
 climateTable <- matrix(data=1:25, nrow=1, ncol= 25)
