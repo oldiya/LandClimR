@@ -1,20 +1,26 @@
-################################################################################
-# Functions needed to run a LandClim simulation
-# Author: Olalla Díaz Yáñez (olalladiaz.net)
-# Aim:
-################################################################################
-
-
 # Write the climate file in the format required for input file in LandClim
+#
+#
+#' Write the climate file in the format required for input file in LandClim
+#'
+#' @param filename Name that you want for your climate file.
+#' @param latitude Wheather station latitude.
+#' @param elevation weather station elevation.
+#' @param climate table where the column variables are year, mean temperature Jan to Temperature Dec (12) and precipitation sumJan to December (12)
+#' @param Tlapse is the value at which  temperature falls with altitude.
+#' @param Plapse is the value at which  precipitation falls with altitude.
+#' @param delta : altitude rate corrections
+#' @return Creates the climate.dat file required to run LandClim
+#' @examples
+#' write.climate(filename,
+#'               latitude,
+#'               elevation,
+#'               climate,
+#'               Tlapse = rep(0, 12),
+#'               Plapse = rep(0,12),
+#'               delta = 100)
 
-#filename,
-#latitude: Wheather station latitude
-#elevation: weather station elevation
-#climate: table where the column variables are year, mean temperature Jan to Temperature Dec [12]
-          #and precipitation sumJan to December [12]
-#Tlapse: is the value at which  temperature falls with altitude
-#Plapse: is the value at which  precipitation falls with altitude
-#delta : altitude rate corrections
+
 
 write.climate <- function(filename, latitude, elevation, climate,
                           Tlapse = rep(0, 12), Plapse = rep(0,12), delta = 100){

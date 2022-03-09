@@ -11,13 +11,14 @@
 writeMaps <- function(landClimRasterStack, nodata_value = "-9999",
                       lcResolution = 25, folder = getwd()) {
   ex <- (raster::extent(landClimRasterStack))
-  landClimRasterStack_list <- lapply (raster::unstack (landClimRasterStack), function(x) raster::crop(x, ex))
+  landClimRasterStack_list <- lapply(raster::unstack(landClimRasterStack),
+                                     function(x) raster::crop(x, ex))
   rs <- raster::stack(landClimRasterStack_list)
   names(rs) <- names(landClimRasterStack)
   raster::writeRaster(rs, paste0(folder, "/landclim_maps.tif"), overwrite = TRUE)
   rm(rs)
   foo <- function(x){
-    sink (paste (folder, "/", names(x), ".asc", sep = ""))
+    sink(paste(folder, "/", names(x), ".asc", sep = ""))
     writeLines(c(paste("ncols", ncol(x)),
                  paste("nrows", nrow(x)),
                  paste("xllcorner", raster::xmin(x)),
@@ -25,7 +26,7 @@ writeMaps <- function(landClimRasterStack, nodata_value = "-9999",
                  paste("cellsize", lcResolution),
                  paste("NODATA_value", nodata_value)))
     sink()
-    write.table (matrix(round(x[]), nrow = nrow(x), ncol = ncol(x), byrow = TRUE),
+    write.table(matrix(round(x[]), nrow = nrow(x), ncol = ncol(x), byrow = TRUE),
                 file = paste(folder, "/", names(x), ".asc", sep = ""), append = TRUE,
                 quote = FALSE, row.names = FALSE, col.names = FALSE)
   }

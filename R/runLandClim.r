@@ -1,4 +1,4 @@
-#' Create theoretical landscapes to be used in LandClim
+#' runs LandClim with the desired set up
 #'
 #' @param configXMLpath path where the the configuration xml file is located.
 #' @param consoleOutputPath path to the folder and name (e.g. nameofthefile.txt) of the file where you want to storage the console outputs shown during the simulation. If not provided the console outcomes will be seen in the console and there will not be storage.
@@ -10,7 +10,7 @@
             #' binPath = "bin")
 
 
-runLandClim <- function (configXMLpath,
+runLandClim <- function(configXMLpath,
                          consoleOutputPath = "",
                          binPath = "bin",
                          batch = FALSE, runtime = 4, memory = 1024){
