@@ -11,12 +11,31 @@
                                         "planting","randomstate", "species"),
                                VarToChange){
 
-    if (type == "model") {tableToChange <- LandClimR::default_model}
-    if (type == "barkbeetle") {tableToChange <- LandClimR::default_barkbeetle}
-    if (type == "landtype") {tableToChange <- LandClimR::default_landtype}
-    if (type == "planting") {tableToChange <- LandClimR::default_planting}
-    if (type == "randomstate") {tableToChange <- LandClimR::default_randomstate}
-    if (type == "species") {tableToChange <- LandClimR::default_species}
+    if (type == "model") {
+      data("default_model", envir = environment())
+      tableToChange <- default_model}
+
+    if (type == "barkbeetle") {
+      data("default__barkbeetle", envir = environment())
+      tableToChange <- default__barkbeetle}
+
+    if (type == "landtype") {
+      data("default_landtype", envir = environment())
+      tableToChange <- default_landtype
+      }
+
+    if (type == "planting") {
+      data("default_planting", envir = environment())
+      tableToChange <- default_planting
+      }
+    if (type == "randomstate") {
+      data("default_randomstate", envir = environment())
+      tableToChange <- default_randomstate
+      }
+    if (type == "species") {
+     data("default_species", envir = environment())
+      tableToChange <- default_species
+      }
 
 
     for (i in 1:length(VarToChange)) {
