@@ -31,7 +31,7 @@ writeConfigFile <- function(data = data.frame(),
   # model configuration ----
   if (tolower(type) == 'model') {
     # Load default values for the configuration file
-    load("data/default_model.RData")
+    data("default_model", envir = environment())
     if (length(data) == 0) {
       data <- default_model
     } else {
@@ -62,25 +62,30 @@ writeConfigFile <- function(data = data.frame(),
 
 
     # populate OutputConfiguration
-    if (!is.na(data["OutputConfiguration_OutputDirectory"][[1]]))
+    if (!is.na(data["OutputConfiguration_OutputDirectory"][[1]])) {
       xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
                                              .value = "OutputDirectory"),
                          toString(data["OutputConfiguration_OutputDirectory"][[1]]))
-    else
+    } else {
       xml2::xml_add_child(OutputConfiguration, .value = "OutputDirectory")
+    }
 
-    if ("OutputConfiguration_CsvFieldDelimiter" %in% data_columns) {
+   if ("OutputConfiguration_CsvFieldDelimiter" %in% data_columns) {
       if (!is.na(data["OutputConfiguration_CsvFieldDelimiter"][[1]]))
-        xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
+        {xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
                                                .value = "CsvFieldDelimiter"),
-                           toString(data["OutputConfiguration_CsvFieldDelimiter"][[1]]))
-      else
+                           toString(data["OutputConfiguration_CsvFieldDelimiter"][[1]]))}
+      else{
         xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
                                                .value = "CsvFieldDelimiter"), ",")
+      }
 
-    } else
+
+    } else{
       xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration,
                                              .value = "CsvFieldDelimiter"), ",")
+    }
+
 
 
     if (!is.na(data["OutputConfiguration_Aggregations_OutputAggregation_Names"][[1]]) && !is.na(data["OutputConfiguration_Aggregations_OutputAggregation_Maps"][[1]])) {
@@ -126,18 +131,18 @@ writeConfigFile <- function(data = data.frame(),
 
     }
 
-    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Climate, .value="Climate"), .value="Enabled"), toString(data["OutputConfiguration_Climate_Climate_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Climate, .value="SoilMoisture"), .value="Enabled"), toString(data["OutputConfiguration_Climate_SoilMoisture_Enabled"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Climate, .value = "Climate"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Climate_Climate_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Climate, .value = "SoilMoisture"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Climate_SoilMoisture_Enabled"][[1]])))
 
-    OutputConfiguration_Cohort <- xml2::xml_add_child(OutputConfiguration, .value="Cohort")
-    OutputConfiguration_Cohort_Full <- xml2::xml_add_child(OutputConfiguration_Cohort, .value="Full")
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value="Enabled"), toString(data["OutputConfiguration_Cohort_Full_Enabled"][[1]]))
+    OutputConfiguration_Cohort <- xml2::xml_add_child(OutputConfiguration, .value = "Cohort")
+    OutputConfiguration_Cohort_Full <- xml2::xml_add_child(OutputConfiguration_Cohort, .value = "Full")
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Cohort_Full_Enabled"][[1]])))
 
     if("OutputConfiguration_Cohort_Full_Years" %in% data_columns)
       xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value="Years"), gsub("#", " ", data["OutputConfiguration_Cohort_Full_Years"][[1]]))
 
-    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="Biomass"), .value="Enabled"), toString(data["OutputConfiguration_Cohort_Biomass_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="StemCount"), .value="Enabled"), toString(data["OutputConfiguration_Cohort_StemCount_Enabled"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="Biomass"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Cohort_Biomass_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="StemCount"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Cohort_StemCount_Enabled"][[1]])))
 
 
     if (!is.na(data["OutputConfiguration_Cohort_Aggregations"][[1]])) {
@@ -148,69 +153,69 @@ writeConfigFile <- function(data = data.frame(),
     }
 
     OutputConfiguration_Grass <- xml2::xml_add_child(OutputConfiguration, .value="Grass")
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Grass, .value="Enabled"), toString(data["OutputConfiguration_Grass_Enabled"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Grass, .value="Enabled"), tolower(toString(data["OutputConfiguration_Grass_Enabled"][[1]])))
 
     child <- xml2::xml_add_child(OutputConfiguration_Grass, .value="BiomassYear")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Grass_BiomassYear_Enabled"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), tolower(toString(data["OutputConfiguration_Grass_BiomassYear_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Grass_BiomassYear_Start"][[1]]))
 
     child <- xml2::xml_add_child(OutputConfiguration_Grass, .value="Growth")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Grass_Growth_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Grass_Growth_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), tolower(toString(data["OutputConfiguration_Grass_Growth_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), tolower(toString(data["OutputConfiguration_Grass_Growth_Start"][[1]])))
 
     child <- xml2::xml_add_child(OutputConfiguration_Grass, .value="Yield")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Grass_Yield_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Grass_Yield_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), tolower(toString(data["OutputConfiguration_Grass_Yield_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), tolower(toString(data["OutputConfiguration_Grass_Yield_Start"][[1]])))
 
 
-    OutputConfiguration_Fuel <- xml2::xml_add_child(OutputConfiguration, .value="Fuel")
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Fuel, .value="Enabled"), toString(data["OutputConfiguration_Fuel_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Fuel, .value="Start"), toString(data["OutputConfiguration_Fuel_Start"][[1]]))
+    OutputConfiguration_Fuel <- xml2::xml_add_child(OutputConfiguration, .value = "Fuel")
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Fuel, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Fuel_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Fuel, .value = "Start"), toString(data["OutputConfiguration_Fuel_Start"][[1]]))
 
     OutputConfiguration_Mortality <- xml2::xml_add_child(OutputConfiguration, .value="Mortality")
     OutputConfiguration_Mortality_Detail <- xml2::xml_add_child(OutputConfiguration_Mortality, .value="Detail")
     OutputConfiguration_Mortality_Summary <- xml2::xml_add_child(OutputConfiguration_Mortality, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Detail, .value="Enabled"), toString(data["OutputConfiguration_Mortality_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Detail, .value="Start"), toString(data["OutputConfiguration_Mortality_Detail_Start"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Summary, .value="Enabled"), toString(data["OutputConfiguration_Mortality_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Summary, .value="Start"), toString(data["OutputConfiguration_Mortality_Summary_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Detail, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Mortality_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Detail, .value = "Start"), toString(data["OutputConfiguration_Mortality_Detail_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Summary, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Mortality_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Mortality_Summary, .value = "Start"), toString(data["OutputConfiguration_Mortality_Summary_Start"][[1]]))
 
 
-    OutputConfiguration_Planting <- xml2::xml_add_child(OutputConfiguration, .value="Planting")
-    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Planting_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Planting_Detail_Start"][[1]]))
+    OutputConfiguration_Planting <- xml2::xml_add_child(OutputConfiguration, .value = "Planting")
+    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Planting_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Planting_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value="DetailBiomass")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Planting_DetailBiomass_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Planting_DetailBiomass_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value = "DetailBiomass")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Planting_DetailBiomass_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Planting_DetailBiomass_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value="DetailStemcount")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Planting_DetailStemcount_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Planting_DetailStemcount_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value = "DetailStemcount")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Planting_DetailStemcount_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Planting_DetailStemcount_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Planting_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Planting_Summary_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Planting, .value = "Summary")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Planting_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Planting_Summary_Start"][[1]]))
 
 
 
     OutputConfiguration_Harvest <- xml2::xml_add_child(OutputConfiguration, .value="Harvest")
-    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Harvest_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Harvest_Detail_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Harvest_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Harvest_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value="DetailBiomass")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Harvest_DetailBiomass_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Harvest_DetailBiomass_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value = "DetailBiomass")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Harvest_DetailBiomass_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Harvest_DetailBiomass_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value="DetailStemcount")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Harvest_DetailStemcount_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Harvest_DetailStemcount_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value = "DetailStemcount")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Harvest_DetailStemcount_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Harvest_DetailStemcount_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Harvest_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Harvest_Summary_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Harvest, .value = "Summary")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Harvest_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Harvest_Summary_Start"][[1]]))
 
 
     OutputConfiguration_Light <- xml2::xml_add_child(OutputConfiguration, .value="Light")
@@ -233,170 +238,170 @@ writeConfigFile <- function(data = data.frame(),
     }
 
     child <- xml2::xml_add_child(OutputConfiguration_Light, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Light_Detail_Enabled"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Light_Detail_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Light_Detail_Start"][[1]]))
 
 
-    child <- xml2::xml_add_child(OutputConfiguration_Light, .value="LAI")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Light_LAI_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Light_LAI_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Light, .value = "LAI")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Light_LAI_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Light_LAI_Start"][[1]]))
 
 
 
-    OutputConfiguration_Drought <- xml2::xml_add_child(OutputConfiguration, .value="Drought")
+    OutputConfiguration_Drought <- xml2::xml_add_child(OutputConfiguration, .value = "Drought")
 
-    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value="Tree")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Drought_Tree_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Drought_Tree_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value = "Tree")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Drought_Tree_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Drought_Tree_Start"][[1]]))
 
 
-    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value="Herb")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Drought_Herb_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Drought_Herb_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value = "Herb")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Drought_Herb_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Drought_Herb_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value="Sapling")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Drought_Sapling_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Drought_Sapling_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value = "Sapling")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Drought_Sapling_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Drought_Sapling_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value="Stand")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Drought_Stand_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Drought_Stand_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Drought, .value = "Stand")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Drought_Stand_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Drought_Stand_Start"][[1]]))
 
     OutputConfiguration_Stand <- xml2::xml_add_child(OutputConfiguration, .value="Stand")
     xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Stand, .value="DbhClassSize"), toString(data["OutputConfiguration_Stand_DbhClassSize"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Stand_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Stand_Detail_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Stand_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Stand_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value="Species")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Stand_Species_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Stand_Species_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value = "Species")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Stand_Species_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Stand_Species_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value="DbhClasses")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Stand_DbhClasses_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Stand_DbhClasses_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Stand, .value = "DbhClasses")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Stand_DbhClasses_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Stand_DbhClasses_Start"][[1]]))
 
     OutputConfiguration_ManagementArea <- xml2::xml_add_child(OutputConfiguration, .value="ManagementArea")
     xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_ManagementArea, .value="DbhClassSize"), toString(data["OutputConfiguration_ManagementArea_DbhClassSize"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_ManagementArea_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_ManagementArea_Detail_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_ManagementArea_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_ManagementArea_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value="Species")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_ManagementArea_Species_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_ManagementArea_Species_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value = "Species")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_ManagementArea_Species_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_ManagementArea_Species_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value="DbhClasses")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_ManagementArea_DbhClasses_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_ManagementArea_DbhClasses_Start"][[1]]))
-
-
-    OutputConfiguration_Fire <- xml2::xml_add_child(OutputConfiguration, .value="Fire")
-    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Fire_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Fire_Detail_Start"][[1]]))
-
-    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Fire_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Fire_Summary_Start"][[1]]))
-
-    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value="History")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Fire_History_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Fire_History_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_ManagementArea, .value = "DbhClasses")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_ManagementArea_DbhClasses_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_ManagementArea_DbhClasses_Start"][[1]]))
 
 
-    OutputConfiguration_Wind <- xml2::xml_add_child(OutputConfiguration, .value="Wind")
-    child <- xml2::xml_add_child(OutputConfiguration_Wind, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Wind_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Wind_Detail_Start"][[1]]))
+    OutputConfiguration_Fire <- xml2::xml_add_child(OutputConfiguration, .value = "Fire")
+    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Fire_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Fire_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Wind, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Wind_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Wind_Summary_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value = "Summary")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Fire_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Fire_Summary_Start"][[1]]))
 
-
-
-
-    OutputConfiguration_Pasture <- xml2::xml_add_child(OutputConfiguration, .value="Pasture")
-    child <- xml2::xml_add_child(OutputConfiguration_Pasture, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Pasture_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Pasture_Detail_Start"][[1]]))
-
-    child <- xml2::xml_add_child(OutputConfiguration_Pasture, .value="Year")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Pasture_Year_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Pasture_Year_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Fire, .value = "History")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Fire_History_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Fire_History_Start"][[1]]))
 
 
-    OutputConfiguration_Beetle <- xml2::xml_add_child(OutputConfiguration, .value="Beetle")
-    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value="Detail")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Beetle_Detail_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Beetle_Detail_Start"][[1]]))
+    OutputConfiguration_Wind <- xml2::xml_add_child(OutputConfiguration, .value = "Wind")
+    child <- xml2::xml_add_child(OutputConfiguration_Wind, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Wind_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Wind_Detail_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value="Summary")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Beetle_Summary_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Beetle_Summary_Start"][[1]]))
+    child <- xml2::xml_add_child(OutputConfiguration_Wind, .value = "Summary")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Wind_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Wind_Summary_Start"][[1]]))
 
-    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value="Cell")
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Enabled"), toString(data["OutputConfiguration_Beetle_Cell_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(child, .value="Start"), toString(data["OutputConfiguration_Beetle_Cell_Start"][[1]]))
+
+
+
+    OutputConfiguration_Pasture <- xml2::xml_add_child(OutputConfiguration, .value = "Pasture")
+    child <- xml2::xml_add_child(OutputConfiguration_Pasture, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Pasture_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Pasture_Detail_Start"][[1]]))
+
+    child <- xml2::xml_add_child(OutputConfiguration_Pasture, .value = "Year")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Pasture_Year_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Pasture_Year_Start"][[1]]))
+
+
+    OutputConfiguration_Beetle <- xml2::xml_add_child(OutputConfiguration, .value = "Beetle")
+    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Detail")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Detail_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Detail_Start"][[1]]))
+
+    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Summary")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Summary_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Summary_Start"][[1]]))
+
+    child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Cell")
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Cell_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Cell_Start"][[1]]))
 
 
     # write ClimateConfiguration
-    ClimateConfiguration <- xml2::xml_add_child(root, .value="ClimateConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value="ClimateFile"), toString(data["ClimateConfiguration_ClimateFile"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value="Format"), toString(data["ClimateConfiguration_Format"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value="Randomization"), toString(data["ClimateConfiguration_Randomization"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value="WaterBalanceModel"), toString(data["ClimateConfiguration_WaterBalanceModel"][[1]]))
+    ClimateConfiguration <- xml2::xml_add_child(root, .value = "ClimateConfiguration")
+    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value = "ClimateFile"), toString(data["ClimateConfiguration_ClimateFile"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value = "Format"), toString(data["ClimateConfiguration_Format"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value = "Randomization"), toString(data["ClimateConfiguration_Randomization"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value = "WaterBalanceModel"), toString(data["ClimateConfiguration_WaterBalanceModel"][[1]]))
     if("ClimateConfiguration_Sequence" %in% data_columns)
-      xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value="Sequence"), toString(gsub("#", " ", data["ClimateConfiguration_Sequence"][[1]])))
+      xml2::xml_set_text(xml2::xml_add_child(ClimateConfiguration, .value = "Sequence"), toString(gsub("#", " ", data["ClimateConfiguration_Sequence"][[1]])))
 
 
     # write PlantingDisturbanceConfiguration
-    PlantingDisturbanceConfiguration <- xml2::xml_add_child(root, .value="PlantingDisturbanceConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(PlantingDisturbanceConfiguration, .value="Enabled"), toString(data["PlantingDisturbanceConfiguration_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(PlantingDisturbanceConfiguration, .value="ParameterFile"), toString(data["PlantingDisturbanceConfiguration_ParameterFile"][[1]]))
+    PlantingDisturbanceConfiguration <- xml2::xml_add_child(root, .value = "PlantingDisturbanceConfiguration")
+    xml2::xml_set_text(xml2::xml_add_child(PlantingDisturbanceConfiguration, .value = "Enabled"), tolower(toString(data["PlantingDisturbanceConfiguration_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(PlantingDisturbanceConfiguration, .value = "ParameterFile"), toString(data["PlantingDisturbanceConfiguration_ParameterFile"][[1]]))
 
 
     # write FireDisturbanceConfiguration
-    FireDisturbanceConfiguration <- xml2::xml_add_child(root, .value="FireDisturbanceConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="Enabled"), toString(data["FireDisturbanceConfiguration_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="ProbExp"), toString(data["FireDisturbanceConfiguration_ProbExp"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="ProbExpBeta"), toString(data["FireDisturbanceConfiguration_ProbExpBeta"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="ProbPMax"), toString(data["FireDisturbanceConfiguration_ProbPMax"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="ProbPMin"), toString(data["FireDisturbanceConfiguration_ProbPMin"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="SizeMax"), toString(data["FireDisturbanceConfiguration_SizeMax"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="SpreadFunction"), toString(data["FireDisturbanceConfiguration_SpreadFunction"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value="DroughtIndex"), toString(data["FireDisturbanceConfiguration_DroughtIndex"][[1]]))
+    FireDisturbanceConfiguration <- xml2::xml_add_child(root, .value = "FireDisturbanceConfiguration")
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "Enabled"), tolower(toString(data["FireDisturbanceConfiguration_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "ProbExp"), toString(data["FireDisturbanceConfiguration_ProbExp"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "ProbExpBeta"), toString(data["FireDisturbanceConfiguration_ProbExpBeta"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "ProbPMax"), toString(data["FireDisturbanceConfiguration_ProbPMax"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "ProbPMin"), toString(data["FireDisturbanceConfiguration_ProbPMin"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "SizeMax"), toString(data["FireDisturbanceConfiguration_SizeMax"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "SpreadFunction"), toString(data["FireDisturbanceConfiguration_SpreadFunction"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(FireDisturbanceConfiguration, .value = "DroughtIndex"), toString(data["FireDisturbanceConfiguration_DroughtIndex"][[1]]))
 
 
 
 
     # write WindDisturbanceConfiguration
-    WindDisturbanceConfiguration <- xml2::xml_add_child(root, .value="WindDisturbanceConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="Enabled"), toString(data["WindDisturbanceConfiguration_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="WindthrowModel"), toString(data["WindDisturbanceConfiguration_WindthrowModel"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="BreakoutCoefficient"), toString(data["WindDisturbanceConfiguration_BreakoutCoefficient"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="MeanWindthrowSize"), toString(data["WindDisturbanceConfiguration_MeanWindthrowSize"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="ProbabilityCoefficient"), toString(data["WindDisturbanceConfiguration_ProbabilityCoefficient"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="SizeCoefficient"), toString(data["WindDisturbanceConfiguration_SizeCoefficient"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="MeanReturnInterval"), toString(data["WindDisturbanceConfiguration_MeanReturnInterval"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="MinWindthrowSize"), toString(data["WindDisturbanceConfiguration_MinWindthrowSize"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value="MaxWindthrowSize"), toString(data["WindDisturbanceConfiguration_MaxWindthrowSize"][[1]]))
+    WindDisturbanceConfiguration <- xml2::xml_add_child(root, .value = "WindDisturbanceConfiguration")
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "Enabled"), tolower(toString(data["WindDisturbanceConfiguration_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "WindthrowModel"), toString(data["WindDisturbanceConfiguration_WindthrowModel"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "BreakoutCoefficient"), toString(data["WindDisturbanceConfiguration_BreakoutCoefficient"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "MeanWindthrowSize"), toString(data["WindDisturbanceConfiguration_MeanWindthrowSize"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "ProbabilityCoefficient"), toString(data["WindDisturbanceConfiguration_ProbabilityCoefficient"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "SizeCoefficient"), toString(data["WindDisturbanceConfiguration_SizeCoefficient"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "MeanReturnInterval"), toString(data["WindDisturbanceConfiguration_MeanReturnInterval"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "MinWindthrowSize"), toString(data["WindDisturbanceConfiguration_MinWindthrowSize"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(WindDisturbanceConfiguration, .value = "MaxWindthrowSize"), toString(data["WindDisturbanceConfiguration_MaxWindthrowSize"][[1]]))
 
 
 
     # write HarvestDisturbanceConfiguration
-    HarvestDisturbanceConfiguration <- xml2::xml_add_child(root, .value="HarvestDisturbanceConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(HarvestDisturbanceConfiguration, .value="Enabled"), toString(data["HarvestDisturbanceConfiguration_Enabled"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(HarvestDisturbanceConfiguration, .value="ParameterFile"), toString(data["HarvestDisturbanceConfiguration_ParameterFile"][[1]]))
+    HarvestDisturbanceConfiguration <- xml2::xml_add_child(root, .value = "HarvestDisturbanceConfiguration")
+    xml2::xml_set_text(xml2::xml_add_child(HarvestDisturbanceConfiguration, .value = "Enabled"), tolower(toString(data["HarvestDisturbanceConfiguration_Enabled"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(HarvestDisturbanceConfiguration, .value = "ParameterFile"), toString(data["HarvestDisturbanceConfiguration_ParameterFile"][[1]]))
 
     # write BeetleDisturbanceConfiguration
 
     if (decadal == TRUE) {
       BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
-      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), tolower(toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]])))
       xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BeetleHostName"), toString(data["BeetleDisturbanceConfiguration_BeetleHostName"][[1]]))
       xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="BetaScale"), toString(data["BeetleDisturbanceConfiguration_BetaScale"][[1]]))
       xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="IniBdi"), toString(data["BeetleDisturbanceConfiguration_IniBdi"][[1]]))
@@ -416,7 +421,7 @@ writeConfigFile <- function(data = data.frame(),
       xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="DrSFunction"), toString(data["BeetleDisturbanceConfiguration_DrSFunction"][[1]]))
     } else {
       BeetleDisturbanceConfiguration <- xml2::xml_add_child(root, .value="BeetleDisturbanceConfiguration")
-      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="Enabled"), tolower(toString(data["BeetleDisturbanceConfiguration_Enabled"][[1]])))
       xml2::xml_set_text(xml2::xml_add_child(BeetleDisturbanceConfiguration, .value="ParameterFile"), toString(data["BeetleDisturbanceConfiguration_ParameterFile"][[1]]))
 
     }
@@ -441,14 +446,22 @@ writeConfigFile <- function(data = data.frame(),
 
     # write DebugConfiguration
     DebugConfiguration <- xml2::xml_add_child(root, .value="DebugConfiguration")
-    xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="WaitForExit"), toString(data["DebugConfiguration_WaitForExit"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="DebugOutput"), toString(data["DebugConfiguration_DebugOutput"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="WaitForExit"), tolower(toString(data["DebugConfiguration_WaitForExit"][[1]])))
+    xml2::xml_set_text(xml2::xml_add_child(DebugConfiguration, .value="DebugOutput"), tolower(toString(data["DebugConfiguration_DebugOutput"][[1]])))
 
 
     # write new tags not part of the default structure for the configuration file
 
      # identify the new tags not present in the default structure
     newChilds <- data[!names(data) %in% names(default_model)]
+
+    if (TRUE %in% (names (newChilds) %in% "OutputConfiguration_Cohort_Full_Years")){
+      newChilds <- newChilds [, -which(names(newChilds) %in% c("OutputConfiguration_Cohort_Full_Years"))]
+    }
+    if (TRUE %in%(names (newChilds) %in% "tableToChange")){
+      newChilds <- newChilds [, -which(names(newChilds) %in% c("tableToChange"))]
+    }
+
 
     # if there are any new tags add them
     if (TRUE %in% !names(data) %in% names(default_model)) {
@@ -466,7 +479,8 @@ writeConfigFile <- function(data = data.frame(),
           if (length(child) > 3){
             print("it is not possible at the moment to add child of a child outside the defaults structure of the XML file")
           }
-        }}
+        }
+        }
     }
 
 
@@ -474,7 +488,7 @@ writeConfigFile <- function(data = data.frame(),
 
   # barkbeetle ----
   } else if (tolower(type) == 'barkbeetle') {
-    load("data/default_barkbeetle.RData")
+    data("default_barkbeetle", envir=environment())
     if (length(data) == 0) {
       data <- default_barkbeetle
     } else {
@@ -545,12 +559,12 @@ writeConfigFile <- function(data = data.frame(),
 # landtype-----
 
   } else if (tolower(type) == 'landtype') {
-    load("data/default_landtype.RData")
+    data("default_landtype", envir = environment())
     if (length (data) == 0) {
       data <- default_landtype
     }
 
-    root <- xml2::xml_new_root(.value="LandTypeParametersFile")
+    root <- xml2::xml_new_root(.value = "LandTypeParametersFile")
 
     for(r in 1:nrow(data)) {
       row <- data[r,]
@@ -578,15 +592,15 @@ writeConfigFile <- function(data = data.frame(),
         }
 
         for (i in 1:length(name_list)) {
-          grandchild <- xml2::xml_add_child(child, .value="SpeciesEstablishmentCoefficient")
-          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value="Name"), toString(name_list[i]))
-          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value="EstablishmentCoefficient"), toString(ec_list[i]))
-          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value="VegetativePropagules"), toString(vp_list[i]))
+          grandchild <- xml2::xml_add_child(child, .value = "SpeciesEstablishmentCoefficient")
+          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value = "Name"), toString(name_list[i]))
+          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value = "EstablishmentCoefficient"), toString(ec_list[i]))
+          xml2::xml_set_text(xml2::xml_add_child(grandchild, .value = "VegetativePropagules"), tolower(toString(vp_list[i])))
         }
 
       }
-      xml2::xml_set_text(xml2::xml_add_child(LandTypeParameter, .value="DefaultVegetativePropagules"), toString(row["DefaultVegetativePropagules"][[1]]))
-      xml2::xml_set_text(xml2::xml_add_child(LandTypeParameter, .value="MaxBiomassDensity"), toString(row["MaxBiomassDensity"][[1]]))
+      xml2::xml_set_text(xml2::xml_add_child(LandTypeParameter, .value = "DefaultVegetativePropagules"), tolower(toString(row["DefaultVegetativePropagules"][[1]])))
+      xml2::xml_set_text(xml2::xml_add_child(LandTypeParameter, .value = "MaxBiomassDensity"), toString(row["MaxBiomassDensity"][[1]]))
 
     }
 
@@ -620,7 +634,7 @@ writeConfigFile <- function(data = data.frame(),
 # planting ----
 #
   } else if (tolower(type) == 'planting') {
-    load("data/default_planting.RData")
+    data("default_planting", envir=environment())
     if (length(data) == 0) {
       data <- default_planting
     }
@@ -703,7 +717,7 @@ writeConfigFile <- function(data = data.frame(),
 #randomstate -----
 
   } else if (tolower(type) == 'randomstate') {
-    load("data/default_randomstate.RData")
+    data("default_randomstate", envir=environment())
     if (length (data) == 0) {
       data <- default_randomstate
     } else {
@@ -746,7 +760,7 @@ writeConfigFile <- function(data = data.frame(),
 #species-----
 
   } else if (tolower(type) == 'species') {
-    load("data/default_species.RData")
+    data("default_species", envir = environment())
     if (length (data) == 0) {
       data <- default_species
     }
@@ -795,3 +809,4 @@ writeConfigFile <- function(data = data.frame(),
   xml2::write_xml(root, filePath)
 
 }}
+
