@@ -25,16 +25,16 @@ runLandClim <- function(configXMLpath,
     }
   }
 
-  print (consoleOutputPath)
+  print(consoleOutputPath)
 
-  if (batch == TRUE){
+  if (batch == TRUE) {
     cmd <- paste0(binPath, '/LandClim ', getwd(), "/", configXMLpath)
     system2(cat(paste0('bsub -n 1 -R "rusage[mem=', memory, ']" -W ', runtime, ':00 "', cmd,'"')))
 
   } else if (batch == FALSE) {
     # Run the model with the desired set-up
     start_time <- Sys.time()
-    if (tolower(.Platform$OS.type) == "unix"){
+    if (tolower(.Platform$OS.type) == "unix") {
       system2(paste0(binPath, '/LandClim'),
               args = paste0(getwd(), "/", configXMLpath), stdout = consoleOutputPath)
 
