@@ -1,2 +1,2 @@
-﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,CellCoI,SiCellNi,SiWni,WISiCell,DRSiCell,SSSiCell,ADSiCell,BpCoeff,MaxInfBm,WIDist,DTBark,LowerAsymDrS,ParamCDrS,DrStrRf,DrSFunction,SpruceShareParameters_SsA,SpruceShareParameters_SsK,SpruceShareParameters_SsQ,SpruceShareParameters_Ssr,SpruceShareParameters_Ssm,SpruceShareParameters_Ssv
-piceabie,10000,0.01,0.01,1,1,1,0,1,0.5,0.167,0.167,0.167,14,150,500,2,0,0,0.2,default,0.08,1,0.2674846,6.8455438,0.375,0.3002734
+﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,CellCoI,SiCellNi,SiWni,BpCoeff,MaxInfBm,WIDist,DTBark,LowerAsymDrS,ParamCDrS,DrSFunction
+piceabie,10000,0.01,0.01,1,1,1,0,1,14,150,500,2,0,0,default
