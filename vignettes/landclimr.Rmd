@@ -1,0 +1,23 @@
+---
+title: "Introduction to landclimr"
+output: rmarkdown::html_vignette
+description: >
+  Start here if this is your first time using LandClim. You'll learn the basic   
+  philosophy, how to create the most important input files, set user define parameters 
+  and run a simple simulation.
+vignette: >
+  %\VignetteIndexEntry{landclimr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+#library(landclimr)
+```
