@@ -16,8 +16,8 @@
       tableToChange <- default_model}
 
     if (type == "barkbeetle") {
-      data("default__barkbeetle", envir = environment())
-      tableToChange <- default__barkbeetle}
+      data("default_barkbeetle", envir = environment())
+      tableToChange <- default_barkbeetle}
 
     if (type == "landtype") {
       data("default_landtype", envir = environment())

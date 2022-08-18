@@ -52,8 +52,8 @@ configLandClim <- function(overwrite = FALSE,
   # OPTION A- No parameters are provided, use the default values and create the xml file in workspacePath
   if (is.null(model)) {model <- default_model}
   if (is.null(barkbeetle)) {barkbeetle <- default_barkbeetle}
-  if (is.null(landtype )) {landtype <- default_landtype}
-  if (is.null(planting )) {planting <- default_planting}
+  if (is.null(landtype)) {landtype <- default_landtype}
+  if (is.null(planting)) {planting <- default_planting}
   if (is.null(randomstate)) {randomstate <- default_randomstate}
   if (is.null(species)) {species <- default_species}
 
@@ -67,31 +67,36 @@ configLandClim <- function(overwrite = FALSE,
 
   if (TRUE %in% (class(barkbeetle) %in% "data.frame")){
      barkbeetleXMLpath <- paste0(workspacePath, "barkbeetle.xml")
-     writeConfigFile(data = barkbeetle, type = "barkbeetle", filePath = barkbeetleXMLpath,
+     writeConfigFile(data = barkbeetle, type = "barkbeetle",
+                     filePath = barkbeetleXMLpath,
                      overwrite = overwrite, decadal = decadal)
      }
 
    if (TRUE %in% (class(landtype) %in% "data.frame")){
      landtypeXMLpath <- paste0(workspacePath, "landtype.xml")
-     writeConfigFile(data = landtype , type = "landtype", filePath = landtypeXMLpath,
+     writeConfigFile(data = landtype, type = "landtype",
+                     filePath = landtypeXMLpath,
                      overwrite = overwrite, decadal = decadal)
    }
 
   if (TRUE %in% (class(planting) %in% "data.frame")){
     plantingXMLpath <- paste0(workspacePath, "planting.xml")
-     writeConfigFile(data = planting ,type = "planting",  filePath = plantingXMLpath,
+     writeConfigFile(data = planting ,type = "planting",
+                     filePath = plantingXMLpath,
                      overwrite = overwrite, decadal = decadal)
   }
 
   if (TRUE %in% (class(randomstate)  %in% "data.frame")){
     randomstateXMLpath <- paste0(workspacePath, "randomstate.xml")
-     writeConfigFile(data = randomstate, type = "randomstate",  filePath = randomstateXMLpath,
+     writeConfigFile(data = randomstate, type = "randomstate",
+                     filePath = randomstateXMLpath,
                      overwrite = overwrite, decadal = decadal)
   }
 
   if (TRUE %in% (class(species)  %in% "data.frame")){
     speciesXMLpath <- paste0(workspacePath, "species.xml")
-     writeConfigFile(data = species, type = "species",  filePath = speciesXMLpath,
+     writeConfigFile(data = species, type = "species",
+                     filePath = speciesXMLpath,
                      overwrite = overwrite, decadal = decadal)
      }
 
@@ -101,6 +106,9 @@ configLandClim <- function(overwrite = FALSE,
   if (class(model) == "character") {
     modelXMLpath <- paste0(workspacePath, "model.xml")
   }
+
+  # OR where the relative path to the parameter files
+
 
 }
 
