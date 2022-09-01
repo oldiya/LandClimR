@@ -140,6 +140,7 @@ writeConfigFile <- function(data = data.frame(),
     if("OutputConfiguration_Cohort_Full_Years" %in% data_columns){
       xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value="Years"), gsub("#", " ", data["OutputConfiguration_Cohort_Full_Years"][[1]]))
     }
+    xml2::xml_set_text(xml2::xml_add_child(OutputConfiguration_Cohort_Full, .value = "MinimalOutput"), tolower(toString(data["OutputConfiguration_Cohort_Full_MinimalOutput"][[1]])))
 
     xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="Biomass"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Cohort_Biomass_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(xml2::xml_add_child(OutputConfiguration_Cohort, .value="StemCount"), .value = "Enabled"), tolower(toString(data["OutputConfiguration_Cohort_StemCount_Enabled"][[1]])))
