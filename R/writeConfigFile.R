@@ -356,14 +356,19 @@ writeConfigFile <- function(data = data.frame(),
     child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Detail")
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Detail_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Detail_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Years"), gsub("#", " ", data["OutputConfiguration_Beetle_Detail_Years"][[1]]))
+
 
     child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Summary")
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Summary_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Summary_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Years"), gsub("#", " ", data["OutputConfiguration_Beetle_Summary_Years"][[1]]))
+
 
     child <- xml2::xml_add_child(OutputConfiguration_Beetle, .value = "Cell")
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Beetle_Cell_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Beetle_Cell_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Years"), gsub("#", " ", data["OutputConfiguration_Beetle_Cell_Years"][[1]]))
 
 
     # write ClimateConfiguration
