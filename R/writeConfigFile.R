@@ -334,13 +334,13 @@ writeConfigFile <- function(data = data.frame(),
     child <- xml2::xml_add_child(OutputConfiguration_Wind, .value = "Detail")
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Wind_Detail_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Wind_Detail_Start"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Years"),  gsub("#", " ", data["OutputConfiguration_Wind_Detail_Years"][[1]]))
+
 
     child <- xml2::xml_add_child(OutputConfiguration_Wind, .value = "Summary")
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Enabled"), tolower(toString(data["OutputConfiguration_Wind_Summary_Enabled"][[1]])))
     xml2::xml_set_text(xml2::xml_add_child(child, .value = "Start"), toString(data["OutputConfiguration_Wind_Summary_Start"][[1]]))
-
-
-
+    xml2::xml_set_text(xml2::xml_add_child(child, .value = "Years"),  gsub("#", " ", data["OutputConfiguration_Wind_Summary_Years"][[1]]))
 
     OutputConfiguration_Pasture <- xml2::xml_add_child(OutputConfiguration, .value = "Pasture")
     child <- xml2::xml_add_child(OutputConfiguration_Pasture, .value = "Detail")
