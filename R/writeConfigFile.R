@@ -525,7 +525,6 @@ writeConfigFile <- function(data = data.frame(),
     root <- xml2::xml_new_root(.value = "BeetleConfiguration")
     BeetleParameters <- xml2::xml_add_child(root, .value = "BeetleParameters")
     xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BeetleHostName"), toString(data["BeetleHostName"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BetaScale"), toString(data["BetaScale"][[1]]))
     xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="IniBdi"), toString(data["IniBdi"][[1]]))
     xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BgBpi"), toString(data["BgBpi"][[1]]))
     xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="SiWMaxCoeff"), toString(data["SiWMaxCoeff"][[1]]))
