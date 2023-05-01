@@ -8,8 +8,10 @@
 
 # Write maps required as input files
 
-writeMaps <- function(landClimRasterStack, nodata_value = "-9999",
-                      lcResolution = 25, folder = getwd()) {
+writeMaps <- function(landClimRasterStack,
+                      nodata_value = "-9999",
+                      lcResolution = 25,
+                      folder = getwd()) {
   ex <- (raster::extent(landClimRasterStack))
   landClimRasterStack_list <- lapply(raster::unstack(landClimRasterStack),
                                      function(x) raster::crop(x, ex))
