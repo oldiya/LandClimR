@@ -13,7 +13,7 @@
 #' @param fullpath The full path where the landscapes will be saved.
 #' @return Save the created maps into the \code{fullpath} provided.
 #' @examples
-#' theorLandscape (ySize = 1500, xSize = 1500, cellSize = 30, coor = 5514,
+#' writeLandscape (ySize = 1500, xSize = 1500, cellSize = 30, coor = 5514,
 #'                 altitude = 1800, slop = 0, so = 20, landt = 11, asp = 0,
 #'                 plot = TRUE, fullpath = "/Users/olalladiaz/MyRepos/beetleunc/Data/theoretical/squared"=
 
