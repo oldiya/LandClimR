@@ -524,37 +524,46 @@ writeConfigFile <- function(data = data.frame(),
 
     root <- xml2::xml_new_root(.value = "BeetleConfiguration")
     BeetleParameters <- xml2::xml_add_child(root, .value = "BeetleParameters")
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BeetleHostName"), toString(data["BeetleHostName"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="IniBdi"), toString(data["IniBdi"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BgBpi"), toString(data["BgBpi"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="SiWMaxCoeff"), toString(data["SiWMaxCoeff"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BdiMaxCoeff"), toString(data["BdiMaxCoeff"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="CellCoI"), toString(data["CellCoI"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="SiCellNi"), toString(data["SiCellNi"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="SiWni"), toString(data["SiWni"][[1]]))
-    #xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="WISiCell"), toString(data["WISiCell"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="BpCoeff"), toString(data["BpCoeff"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="MaxInfBm"), toString(data["MaxInfBm"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="WIDist"), toString(data["WIDist"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="DTBark"), toString(data["DTBark"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="LowerAsymDrS"), toString(data["LowerAsymDrS"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="ParamCDrS"), toString(data["ParamCDrS"][[1]]))
-    #xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="DrStrRf"), toString(data["DrStrRf"][[1]]))
-    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="DrSFunction"), toString(data["DrSFunction"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "BeetleHostName"), toString(data["BeetleHostName"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "IniBdi"), toString(data["IniBdi"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "BgBpi"), toString(data["BgBpi"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "SiWMaxCoeff"), toString(data["SiWMaxCoeff"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "BdiMaxCoeff"), toString(data["BdiMaxCoeff"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "SiWni"), toString(data["SiWni"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "WIDist"), toString(data["WIDist"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "DTBark"), toString(data["DTBark"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wAge"), toString(data["wAge"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wBeetleHost"), toString(data["wBeetleHost"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wDrought"), toString(data["wDrought"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wDBH"), toString(data["wDBH"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wActivity"), toString(data["wActivity"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wWind"), toString(data["wWind"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Sdro"), toString(data["Sdro"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "LowerAsymDrS"), toString(data["LowerAsymDrS"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "ParamCDrS"), toString(data["ParamCDrS"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Sspr"), toString(data["Sspr"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Swin"), toString(data["Swin"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Sdia"), toString(data["Sdia"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Dbh1"), toString(data["Dbh1"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Dbh2"), toString(data["Dbh2"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "G"), toString(data["G"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "K"), toString(data["K"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Kvar"), toString(data["Kvar"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "BeetleDispersalDistance"), toString(data["BeetleDispersalDistance"][[1]]))
+
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "M"), toString(data["M"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "Sco"), toString(data["Sco"][[1]]))
 
 
-    # xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="DRSiCell"), toString(data["DRSiCell"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="SSSiCell"), toString(data["SSSiCell"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value="ADSiCell"), toString(data["ADSiCell"][[1]]))
-    #
-    # child <- xml2::xml_add_child(BeetleParameters, .value="SpruceShareParameters")
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="SsA"), toString(data["SpruceShareParameters_SsA"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="SsK"), toString(data["SpruceShareParameters_SsK"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="SsQ"), toString(data["SpruceShareParameters_SsQ"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="Ssr"), toString(data["SpruceShareParameters_Ssr"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="Ssm"), toString(data["SpruceShareParameters_Ssm"][[1]]))
-    # xml2::xml_set_text(xml2::xml_add_child(child, .value="Ssv"), toString(data["SpruceShareParameters_Ssv"][[1]]))
-
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wDrMortality"), toString(data["wDrMortality"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wAgeMortality"), toString(data["wAgeMortality"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wWindMortality"), toString(data["wWindMortality"][[1]]))
+    xml2::xml_set_text(xml2::xml_add_child(BeetleParameters, .value = "wDBHMortality"), toString(data["wDBHMortality"][[1]]))
 
     # write new tags not part of the default structure for the configuration file
 
