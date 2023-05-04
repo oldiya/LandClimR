@@ -69,12 +69,12 @@ writeLandscape <- function(ySize, # y size of the landscape in m
 
   if (plot == TRUE) {
     # Plot maps
-    raster::plot(dem, col = Palettes::terrain.colors(100), main = "DEM")
-    raster::plot(slope, col = Palettes::terrain.colors(100), main = "Slope")
-    raster::plot(aspect, col = Palettes::terrain.colors(100), main = "Aspect")
-    raster::plot(mask, col = Palettes::terrain.colors(100), main = "Mask")
-    raster::plot(soil , col = Palettes::terrain.colors(100), main = "Soil")
-    raster::plot(landtype, col = Palettes::terrain.colors(100), main = "Landtype")
+    raster::plot(dem, col = terrain.colors(100), main = "DEM")
+    raster::plot(slope, col = terrain.colors(100), main = "Slope")
+    raster::plot(aspect, col = terrain.colors(100), main = "Aspect")
+    raster::plot(mask, col = terrain.colors(100), main = "Mask")
+    raster::plot(soil , col = terrain.colors(100), main = "Soil")
+    raster::plot(landtype, col = terrain.colors(100), main = "Landtype")
   }
 
   # Create raster-stack
