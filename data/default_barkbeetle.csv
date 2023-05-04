@@ -1,2 +1,2 @@
-﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,CellCoI,SiCellNi,SiWni,BpCoeff,MaxInfBm,WIDist,DTBark,LowerAsymDrS,ParamCDrS,DrSFunction
-piceabie,10000,0.01,0.01,1,1,1,0,1,14,150,500,2,0,0,default
+﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,SiWni,WIDist,DTBark,  wDrought, wWind, wAge , wBeetleHost,wDBH,wActivity,Sdro,LowerAsymDrS,  ParamCDrS,Sspr, Swin,  Sdia, Dbh1,Dbh2, G,K, Kvar, BeetleDispersalDistance,  Sco, wDrMortality, wAgeMortality, wWindMortality, wDBHMortality,M
+piceabie,10000,0.01,0.01,1,1,1,500,2,0,0.2,0.2,0.2,0.2,0.2,Sdro1,0,0,Sspr1, Swin1,  Sdia1,20,50,G1,K1,7500,500,Sco4,1,1,1,1,M1

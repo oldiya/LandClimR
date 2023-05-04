@@ -1,2 +1,2 @@
-﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,CellCoI,SiCellNi,SiWni,BpCoeff,MaxInfBm,WIDist,DTBark,LowerAsymDrS,ParamCDrS,DrStrRf,DrSFunction
-piceabie,10000,0.01,0.01,1,1,1,0,1,14,150,500,2,0,0,0.2,default
+﻿BeetleHostName,BetaScale,IniBdi,BgBpi,SiWMaxCoeff,BdiMaxCoeff,SiWni,WIDist,DTBark,SiWni,BpCoeff,MaxInfBm,WIDist,,LowerAsymDrS,ParamCDrS,DrStrRf,DrSFunction
+piceabie,10000,0.01,0.01,1,1,1,500,2,1,14,150,500,,0,0,0.2,default
