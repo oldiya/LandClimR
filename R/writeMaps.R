@@ -17,7 +17,7 @@ writeMaps <- function(landClimRasterStack,
                                      function(x) raster::crop(x, ex))
   rs <- raster::stack(landClimRasterStack_list)
   names(rs) <- names(landClimRasterStack)
-  raster::writeRaster(rs, paste0(folder, "/landclim_maps.tif"), overwrite = TRUE)
+  #raster::writeRaster(rs, filename=paste0(folder, "/landclim_maps.tif"), overwrite = TRUE)
   rm(rs)
   foo <- function(x){
     sink(paste(folder, "/", names(x), ".asc", sep = ""))
