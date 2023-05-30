@@ -46,65 +46,87 @@ configLandClim <- function(overwrite = FALSE,
     dir.create(workspacePath, recursive = TRUE)
   }
 
-  #OPTION 0 - user parameter file is not created
-  if (is.null(model)) {print("Model user parameter file is not created")}
-  if (is.null(barkbeetle)) {print("Barkbeetle user parameter file is not created")}
-  if (is.null(landtype)) {print("Landtype user parameter file is not created")}
-  if (is.null(planting)) {print("Planting user parameter file is not created")}
-  if (is.null(randomstate)) {print("Randomstate user parameter file is not created")}
-  if (is.null(species)) {print("Species user parameter file is not created")}
-
-  # OPTION A- No parameters are provided, use the default values and create the xml file in workspacePath
-  if (is.na("default")) {model <- default_model}
-  if (is.na("default")) {barkbeetle <- default_barkbeetle}
-  if (is.na("default")) {landtype <- default_landtype}
-  if (is.na("default")) {planting <- default_planting}
-  if (is.na("default")) {randomstate <- default_randomstate}
-  if (is.na("default")) {species <- default_species}
-
-  #OPTION B - provide your own parameter values, create the xml file in workspacePath
-  # or has been assigned to the default values in the step above
-  if (TRUE %in% (class(model) %in% "data.frame")){
+  #OPTION
+  #A - user parameter file is not created--> NULL
+  #B - provide your own parameter values, create the xml file in workspacePath
+  #C -  been assigned to the default values if NA was assigned
+  if (is.null(model)) {print("Model user parameter file is not created")
+    } else if (TRUE %in% (class(model) %in% "data.frame")){
      modelXMLpath <- paste0(workspacePath, "model.xml")
      writeConfigFile(data = model, type = "model", filePath = modelXMLpath,
                      overwrite = overwrite, decadal = decadal)
-  }
+    }else if (is.na(model)) {
+       model <- default_model
+       modelXMLpath <- paste0(workspacePath, "model.xml")
+       writeConfigFile(data = model, type = "model", filePath = modelXMLpath,
+                       overwrite = overwrite, decadal = decadal)}
 
-  if (TRUE %in% (class(barkbeetle) %in% "data.frame")){
+
+  if (is.null(barkbeetle)) {print("Barkbeetle user parameter file is not created")
+    } else if (TRUE %in% (class(barkbeetle) %in% "data.frame")){
      barkbeetleXMLpath <- paste0(workspacePath, "barkbeetle.xml")
      writeConfigFile(data = barkbeetle, type = "barkbeetle",
                      filePath = barkbeetleXMLpath,
                      overwrite = overwrite, decadal = decadal)
-     }
+    } else  if (is.na(barkbeetle)) {
+       barkbeetle <- default_barkbeetle
+       barkbeetleXMLpath <- paste0(workspacePath, "barkbeetle.xml")
+       writeConfigFile(data = barkbeetle, type = "barkbeetle",
+                       filePath = barkbeetleXMLpath,
+                       overwrite = overwrite, decadal = decadal)}
 
-   if (TRUE %in% (class(landtype) %in% "data.frame")){
+
+  if (is.null(landtype)) {print("Landtype user parameter file is not created")
+    } else if (TRUE %in% (class(landtype) %in% "data.frame")){
      landtypeXMLpath <- paste0(workspacePath, "landtype.xml")
      writeConfigFile(data = landtype, type = "landtype",
                      filePath = landtypeXMLpath,
                      overwrite = overwrite, decadal = decadal)
-   }
+    } else if (is.na(landtype)) {
+     landtype <- default_landtype
+     landtypeXMLpath <- paste0(workspacePath, "landtype.xml")
+     writeConfigFile(data = landtype, type = "landtype",
+                     filePath = landtypeXMLpath,
+                     overwrite = overwrite, decadal = decadal)}
 
-  if (TRUE %in% (class(planting) %in% "data.frame")){
+  if (is.null(planting)) {print("Planting user parameter file is not created")
+    } else if (TRUE %in% (class(planting) %in% "data.frame")){
     plantingXMLpath <- paste0(workspacePath, "planting.xml")
      writeConfigFile(data = planting ,type = "planting",
                      filePath = plantingXMLpath,
                      overwrite = overwrite, decadal = decadal)
-  }
+    } else  if (is.na(planting)) {
+    planting <- default_planting
+    plantingXMLpath <- paste0(workspacePath, "planting.xml")
+    writeConfigFile(data = planting ,type = "planting",
+                    filePath = plantingXMLpath,
+                    overwrite = overwrite, decadal = decadal)}
 
-  if (TRUE %in% (class(randomstate)  %in% "data.frame")){
+  if (is.null(randomstate)) {print("Randomstate user parameter file is not created")
+    } else if (TRUE %in% (class(randomstate)  %in% "data.frame")){
     randomstateXMLpath <- paste0(workspacePath, "randomstate.xml")
      writeConfigFile(data = randomstate, type = "randomstate",
                      filePath = randomstateXMLpath,
                      overwrite = overwrite, decadal = decadal)
-  }
+    } else  if (is.na(randomstate)) {
+    randomstate <- default_randomstate
+    randomstateXMLpath <- paste0(workspacePath, "randomstate.xml")
+    writeConfigFile(data = randomstate, type = "randomstate",
+                    filePath = randomstateXMLpath,
+                    overwrite = overwrite, decadal = decadal)}
 
-  if (TRUE %in% (class(species)  %in% "data.frame")){
+  if (is.null(species)) {print("Species user parameter file is not created")
+    } else if (TRUE %in% (class(species)  %in% "data.frame")){
     speciesXMLpath <- paste0(workspacePath, "species.xml")
      writeConfigFile(data = species, type = "species",
                      filePath = speciesXMLpath,
                      overwrite = overwrite, decadal = decadal)
-     }
-
+    } else  if (is.na(species)) {
+       species <- default_species
+       speciesXMLpath <- paste0(workspacePath, "species.xml")
+       writeConfigFile(data = species, type = "species",
+                       filePath = speciesXMLpath,
+                       overwrite = overwrite, decadal = decadal)}
 
   # OPTION C - provide a path where the model configuration file is located
   # this file contain the path to the other parameter and configuration files
